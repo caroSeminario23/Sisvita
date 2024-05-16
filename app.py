@@ -1,9 +1,12 @@
 from flask import Flask
 from utils.db import db
 #from services.contact import contacts
+from services.hist_eval_ansiedad import hist_eval_ansiedad_routes
+from services.exp_psi_estudiante import exp_psi_estudiante_routes
 from services.test_ansiedad import test_ansiedad
 from flask_sqlalchemy import SQLAlchemy
 from config import DATABASE_CONNECTION
+
 
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']=DATABASE_CONNECTION
@@ -12,6 +15,8 @@ app.config['SQLALCHEMY_DATABASE_URI']=DATABASE_CONNECTION
 db.init_app(app)
 #app.register_blueprint(contacts)
 app.register_blueprint(test_ansiedad)
+app.register_blueprint(exp_psi_estudiante_routes)
+app.register_blueprint(hist_eval_ansiedad_routes)
 
 with app.app_context():
     db.create_all

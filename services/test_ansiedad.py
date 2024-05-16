@@ -4,7 +4,7 @@ from flask import Blueprint, request, jsonify
 from models.test_ansiedad import test_ansiedad
 from utils.db import db
 
-test_ansiedad= Blueprint('test_ansiedad', __name__)
+test_ansiedad = Blueprint('test_ansiedad', __name__)
 @test_ansiedad.route('/test_ansiedad/v1', methods=['GET'])
 def getMensaje():
     result={}
