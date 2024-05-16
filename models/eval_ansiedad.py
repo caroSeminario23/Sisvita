@@ -12,6 +12,5 @@ class EvalAnsiedad(db.Model):
     idTestAnsiedad = db.Column(db.Integer, db.ForeignKey('test_ansiedad.idTest'))
     respuestas = db.Column(db.String(100000))
     fechaEvaluacion = db.Column(db.Date)
->>>>>>> 15cadf8870ba4f8756a518487e026e609083dd93
     
     test_ansiedad = db.relationship('TestAnsiedad', backref='eval_ansiedad')
