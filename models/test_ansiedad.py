@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from datetime import datetime
 
 @dataclass
-class test_ansiedad(db.Models):
+class test_ansiedad(db.Model):
     idTest: int
     nombre: str
     descripcion: str
