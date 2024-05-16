@@ -3,9 +3,9 @@ import os
 
 load_dotenv()
 
-pwd=os.environ['dylanpereyra12']
-user=os.environ['postgres']
-host=os.environ['localhost']
+pwd=os.environ['PASSWORD']
+user=os.environ['USER']
+host=os.environ['HOST']
 database=os.environ['DATABASE']
 server=os.environ['SERVER']
 
