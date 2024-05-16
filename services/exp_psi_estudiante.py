@@ -29,7 +29,7 @@ def create_exp_psi_estudiante():
     return make_response(jsonify(data), 201)
 
 @exp_psi_estudiante_routes.route('/exp_psi_estudiante', methods=['GET'])
-def get_exp_psi_estudiantes():
+def get_exps_psi_estudiantes():
     all_exp_psi_estudiantes = ExpPsiEstudiante.query.all()
     result = exps_psi_estudiante_schema.dump(all_exp_psi_estudiantes)
 
