@@ -6,11 +6,11 @@ from schemas.estudiante_schema import EstudianteSchema
 class ExpPsiEstudianteSchema(ma.Schema):
     class Meta:
         model=ExpPsiEstudiante
-        field=('idExpediente',
-               'idEstudiante',
+        field=('id_expediente',
+               'id_estudiante',
                'año',
-               'estadoSaludMental',
-               'fechaActualización',
+               'estado_salud_mental',
+               'fecha_actualización',
                'estudiante')
         
     estudiante=ma.Nested(EstudianteSchema)    

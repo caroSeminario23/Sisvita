@@ -5,10 +5,10 @@ from marshmallow import fields
 class EvalAnsiedadSchema(ma.Schema):
     class Meta:
         model=EvalAnsiedad
-        field=('idEvaluacion',
-               'idTest',
-               'idExpediente',
-               'fechaEvaluacion',
+        field=('id_evaluacion',
+               'id_test',
+               'id_expediente',
+               'fecha_evaluacion',
                'resultado',
                'test'
                )

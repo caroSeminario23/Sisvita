@@ -1,7 +1,7 @@
 from utils.db import db
 class Estudiante(db.Model):
     __tablename__ = 'estudiante'
-    idEstudiante = db.Column(db.Integer, primary_key=True)
+    id_estudiante = db.Column(db.Integer, primary_key=True)
     nombres = db.Column(db.String(100), nullable=False)
     apellidos = db.Column(db.String(100), nullable=False)
     fecha_nacimiento = db.Column(db.Date, nullable=False)

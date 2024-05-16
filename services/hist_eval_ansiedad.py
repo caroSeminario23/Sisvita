@@ -1,4 +1,3 @@
-# insert / update / delete / select / select_all
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
 from models.hist_eval_ansiedad import HistEvalAnsiedad
@@ -8,11 +7,11 @@ hist_eval_ansiedad_routes = Blueprint("hist_eval_ansiedad_routes", __name__)
 
 @hist_eval_ansiedad_routes.route('/hist_eval_ansiedad', methods=['POST'])
 def create_hist_eval_ansiedad():
-    idExpediente = request.json.get('idExpediente')
-    idEvaluacion = request.json.get('idEvaluacion')
-    fechaEvaluacion = request.json.get('fechaEvaluacion')
+    id_expediente = request.json.get('id_expediente')
+    id_evaluacion = request.json.get('id_evaluacion')
+    fecha_evaluacion = request.json.get('fecha_evaluacion')
 
-    new_hist_eval_ansiedad = HistEvalAnsiedad(idExpediente=idExpediente, idEvaluacion=idEvaluacion, fechaEvaluacion=fechaEvaluacion)
+    new_hist_eval_ansiedad = HistEvalAnsiedad(id_expediente=id_expediente, id_evaluacion=id_evaluacion, fecha_evaluacion=fecha_evaluacion)
 
     db.session.add(new_hist_eval_ansiedad)
     db.session.commit()
@@ -72,13 +71,13 @@ def update_hist_eval_ansiedad(id):
         }
         return make_response(jsonify(data), 404)
 
-    idExpediente = request.json.get('idExpediente')
-    idEvaluacion = request.json.get('idEvaluacion')
-    fechaEvaluacion = request.json.get('fechaEvaluacion')
+    id_expediente = request.json.get('id_expediente')
+    id_evaluacion = request.json.get('id_evaluacion')
+    fecha_evaluacion = request.json.get('fecha_evaluacion')
 
-    hist_eval_ansiedad.idExpediente = idExpediente
-    hist_eval_ansiedad.idEvaluacion = idEvaluacion
-    hist_eval_ansiedad.fechaEvaluacion = fechaEvaluacion
+    hist_eval_ansiedad.id_expediente = id_expediente
+    hist_eval_ansiedad.id_evaluacion = id_evaluacion
+    hist_eval_ansiedad.fecha_evaluacion = fecha_evaluacion
 
     db.session.commit()
 

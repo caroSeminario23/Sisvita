@@ -8,9 +8,9 @@ from schemas.eval_ansiedad_schema import EvalAnsiedadSchema
 class HistEvalAnsiedadSchema(ma.Schema):
     class Meta:
         model=HistEvalAnsiedad
-        field=('idExpediente',
-               'idEvaluacion',
-               'fechaEvaluacion',
+        field=('id_expediente',
+               'id_evaluacion',
+               'fecha_evaluacion',
                'expediente',
                'evaluacion'
                )

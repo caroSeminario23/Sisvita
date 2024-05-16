@@ -1,103 +1,133 @@
-# insert / update / delete / select / select_all
-# realizarTestAnsiedad
-from flask import Blueprint, request, jsonify
-from models.test_ansiedad import test_ansiedad
+from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
+from models.test_ansiedad import TestAnsiedad
+from schemas.test_ansiedad_schema import test_ansiedad_schema, tests_ansiedad_schema
 
-test_ansiedad = Blueprint('test_ansiedad', __name__)
-@test_ansiedad.route('/test_ansiedad/v1', methods=['GET'])
-def getMensaje():
-    result={}
-    result["data"]='flask-crud-backend'
-    return jsonify(result)
+test_ansiedad_routes = Blueprint("test_ansiedad_routes", __name__)
 
-@test_ansiedad.route('/test_ansiedad/v1/listar', methods=['GET'])
-def getContactos():
-    result={}
-    test_ansiedad=test_ansiedad.query.all()
-    result["data"]=test_ansiedad
-    result["status.code"]=200
-    result["message"]="Se recupero sin incoveniente"
-    return jsonify(result),200
+@test_ansiedad_routes.route('/test_ansiedad', methods=['POST'])
+def create_test_ansiedad():
+    nombre = request.json.get('nombre')
+    descripcion = request.json.get('descripcion')
+    numero_preguntas = request.json.get('numero_preguntas')
+    detalle_escala = request.json.get('detalle_escala')
+    version = request.json.get('version')
+    idiomas = request.json.get('idiomas')
+    fecha_actualizacion = request.json.get('fecha_actualizacion')
 
-@test_ansiedad.route('/test_ansiedad/v1/insert', methods=['POST'])
-def insert():
-    result={}
-    body=request.get_json()
-    nombre=body.get('nombre')
-    descripcion=body.get('descripcion')
-    numeroPreguntas=body.get('numeroPreguntas')
-    detalleEscala=body.get('detalleEscala')
-    version=body.get('version')
-    idiomas=body.get('idiomas')
-    fechaActualizacion=body.get('fechaActualizacion')
+    new_test_ansiedad = TestAnsiedad(
+        nombre=nombre,
+        descripcion=descripcion,
+        numero_preguntas=numero_preguntas,
+        detalle_escala=detalle_escala,
+        version=version,
+        idiomas=idiomas,
+        fecha_actualizacion=fecha_actualizacion
+    )
 
-    if not nombre or not descripcion or not numeroPreguntas or not detalleEscala or not version or not idiomas or not descripcion or not fechaActualizacion:
-        result["status_code"]=400
-        result["msg"]="faltan datos"
-        return jsonify(result), 400
-    test_ansiedad=test_ansiedad(nombre,descripcion,numeroPreguntas,detalleEscala,version,idiomas,fechaActualizacion)
-    db.session.add(test_ansiedad)
+    db.session.add(new_test_ansiedad)
     db.session.commit()
-    result["data"]=test_ansiedad
-    result["status_code"]=201
-    result["msg"]="faltan datos"
-    return jsonify(result),201
 
-@test_ansiedad.route('/test_ansiedad/v1/update',methods=['POST'])
-def update():
-    result = {}
-    body = request.get_json()
-    idTest=body.get('idTest')
-    nombre=body.get('nombre')
-    descripcion=body.get('descripcion')
-    numeroPreguntas=body.get('numeroPreguntas')
-    detalleEscala=body.get('detalleEscala')
-    version=body.get('version')
-    idiomas=body.get('idiomas')
-    fechaActualizacion=body.get('fechaActualizacion')
+    result = test_ansiedad_schema.dump(new_test_ansiedad)
 
-    if not nombre or not descripcion or not numeroPreguntas or not detalleEscala or not version or not idiomas or not descripcion or not fechaActualizacion:
-        result["status_code"] = 400
-        result["msg"] = "faltan datos"
-        return jsonify(result),400
-    
-    test_ansiedad = test_ansiedad.query.get(idTest)
+    data = {
+        'message': 'Nuevo test de ansiedad creado!',
+        'status': 201,
+        'data': result
+    }
+
+    return make_response(jsonify(data), 201)
+
+@test_ansiedad_routes.route('/test_ansiedad', methods=['GET'])
+def get_tests_ansiedad():
+    all_tests_ansiedad = TestAnsiedad.query.all()
+    result = tests_ansiedad_schema.dump(all_tests_ansiedad)
+
+    data = {
+        'message': 'Todos los tests de ansiedad',
+        'status': 200,
+        'data': result
+    }
+
+    return make_response(jsonify(data), 200)
+
+@test_ansiedad_routes.route('/test_ansiedad/<int:id>', methods=['GET'])
+def get_test_ansiedad(id):
+    test_ansiedad = TestAnsiedad.query.get(id)
+
+    if not test_ansiedad:
+        data = {
+            'message': 'Test de ansiedad no encontrado',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+
+    result = test_ansiedad_schema.dump(test_ansiedad)
+
+    data = {
+        'message': 'Test de ansiedad encontrado',
+        'status': 200,
+        'data': result
+    }
+
+    return make_response(jsonify(data), 200)
+
+@test_ansiedad_routes.route('/test_ansiedad/<int:id>', methods=['PUT'])
+def update_test_ansiedad(id):
+    test_ansiedad = TestAnsiedad.query.get(id)
+
+    if not test_ansiedad:
+        data = {
+            'message': 'Test de ansiedad no encontrado',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+
+    nombre = request.json.get('nombre')
+    descripcion = request.json.get('descripcion')
+    numero_preguntas = request.json.get('numero_preguntas')
+    detalle_escala = request.json.get('detalle_escala')
+    version = request.json.get('version')
+    idiomas = request.json.get('idiomas')
+    fecha_actualizacion = request.json.get('fecha_actualizacion')
+
     test_ansiedad.nombre = nombre
     test_ansiedad.descripcion = descripcion
-    test_ansiedad.numeroPreguntas = numeroPreguntas
-    test_ansiedad.detalleEscala = detalleEscala
+    test_ansiedad.numero_preguntas = numero_preguntas
+    test_ansiedad.detalle_escala = detalle_escala
     test_ansiedad.version = version
     test_ansiedad.idiomas = idiomas
-    test_ansiedad.fechaActualizacion = fechaActualizacion
+    test_ansiedad.fecha_actualizacion = fecha_actualizacion
 
-    db.session.add(test_ansiedad)
     db.session.commit()
 
-    result["data"]= test_ansiedad
-    result["status_code"]=202
-    result["msg"] = "Se modifico el contacto"
-    return jsonify(result),202
+    result = test_ansiedad_schema.dump(test_ansiedad)
 
-@test_ansiedad.route('/test_ansiedad/v1/delete',methods=['DELETE'])
-def delete():
-    result={}
-    body=request.get_json()
-    idTest=body.get("idTest")
-    if not idTest:
-        result["status_code"]=400
-        result["msg"]="Debe consignar un id valido"
-        return jsonify(result), 400
-    
-    test_ansiedad=test_ansiedad.query.get(idTest)
+    data = {
+        'message': 'Test de ansiedad actualizado',
+        'status': 200,
+        'data': result
+    }
+
+    return make_response(jsonify(data), 200)
+
+@test_ansiedad_routes.route('/test_ansiedad/<int:id>', methods=['DELETE'])
+def delete_test_ansiedad(id):
+    test_ansiedad = TestAnsiedad.query.get(id)
+
     if not test_ansiedad:
-        result["status_code"]=400
-        result["msg"]="Contacto no existe"
-        return jsonify(result), 400
-    
+        data = {
+            'message': 'Test de ansiedad no encontrado',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+
     db.session.delete(test_ansiedad)
     db.session.commit()
-    result["data"]=test_ansiedad
-    result["status_code"]=200
-    result["msg"]="Se elimino el contacto"
-    return jsonify(result),200
+
+    data = {
+        'message': 'Test de ansiedad eliminado',
+        'status': 200
+    }
+
+    return make_response(jsonify(data), 200)

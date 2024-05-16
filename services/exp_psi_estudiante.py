@@ -8,12 +8,17 @@ exp_psi_estudiante_routes = Blueprint("exp_psi_estudiante_routes", __name__)
 
 @exp_psi_estudiante_routes.route('/exp_psi_estudiante', methods=['POST'])
 def create_exp_psi_estudiante():
-    idEstudiante = request.json.get('idEstudiante')
+    id_estudiante = request.json.get('id_estudiante')
     año = request.json.get('año')
-    estadoSaludMental = request.json.get('estadoSaludMental')
-    fechaActualización = request.json.get('fechaActualización')
+    estado_salud_mental = request.json.get('estado_salud_mental')
+    fecha_actualizacion = request.json.get('fecha_actualizacion')
 
-    new_exp_psi_estudiante = ExpPsiEstudiante(idEstudiante=idEstudiante, año=año, estadoSaludMental=estadoSaludMental, fechaActualización=fechaActualización)
+    new_exp_psi_estudiante = ExpPsiEstudiante(
+        id_estudiante=id_estudiante,
+        año=año,
+        estado_salud_mental=estado_salud_mental,
+        fecha_actualizacion=fecha_actualizacion
+    )
 
     db.session.add(new_exp_psi_estudiante)
     db.session.commit()
@@ -73,15 +78,15 @@ def update_exp_psi_estudiante(id):
         }
         return make_response(jsonify(data), 404)
 
-    idEstudiante = request.json.get('idEstudiante')
+    id_estudiante = request.json.get('id_estudiante')
     año = request.json.get('año')
-    estadoSaludMental = request.json.get('estadoSaludMental')
-    fechaActualización = request.json.get('fechaActualización')
+    estado_salud_mental = request.json.get('estado_salud_mental')
+    fecha_actualizacion = request.json.get('fecha_actualizacion')
 
-    exp_psi_estudiante.idEstudiante = idEstudiante
+    exp_psi_estudiante.id_estudiante = id_estudiante
     exp_psi_estudiante.año = año
-    exp_psi_estudiante.estadoSaludMental = estadoSaludMental
-    exp_psi_estudiante.fechaActualización = fechaActualización
+    exp_psi_estudiante.estado_salud_mental = estado_salud_mental
+    exp_psi_estudiante.fecha_actualizacion = fecha_actualizacion
 
     db.session.commit()
 
