@@ -29,6 +29,19 @@ def create_eval_ansiedad():
 
     return make_response(jsonify(data), 201)
 
+@eval_ansiedad_routes.route('/eval_ansiedad', methods=['GET'])
+def get_all_evaluaciones_ansiedad():
+    all_evaluaciones_ansiedad = EvalAnsiedad.query.all()
+    result = evals_ansiedad_schema.dump(all_evaluaciones_ansiedad)
+
+    data = {
+        'message': 'Todas las evaluaciones de ansiedad',
+        'status': 200,
+        'data': result
+    }
+
+    return make_response(jsonify(data), 200)
+
 @eval_ansiedad_routes.route('/eval_ansiedad/<int:id>', methods=['GET'])
 def get_eval_ansiedad(id):
     eval_ansiedad = EvalAnsiedad.query.get(id)
@@ -75,39 +88,6 @@ def update_eval_ansiedad(id):
         'status': 200,
         'data': result
     }
-    return make_response(jsonify(data), 200)
-
-@eval_ansiedad_routes('/eval_ansiedad/<int:id>', methods=['PUT'])
-def update_estudiante(id):
-    eval_ansiedad = EvalAnsiedad.query.get(id)
-
-    if not eval_ansiedad:
-        data = {
-            'message': 'Evaluación de estudiante no encontrada',
-            'status': 404
-        }
-        return make_response(jsonify(data), 404)
-
-    idEvaluacion = request.json.get('idEvaluacion')
-    idTestAnsiedad = request.json.get('idTestAnsiedad')
-    respuestas = request.json.get('respuestas')
-    fechaEvaluacion = request.json.get('fechaEvaluacion')
-
-    eval_ansiedad.idEvaluacion = idEvaluacion
-    eval_ansiedad.idTestAnsiedad = idTestAnsiedad
-    eval_ansiedad.respuestas = respuestas
-    eval_ansiedad.fechaEvaluacion = fechaEvaluacion
-
-    db.session.commit()
-
-    result = eval_ansiedad_schema.dump(eval_ansiedad)
-
-    data = {
-        'message': 'Evaluación de estudiante actualizada',
-        'status': 200,
-        'data': result
-    }
-
     return make_response(jsonify(data), 200)
 
 @eval_ansiedad_routes.route('/eval_ansiedad/<int:id>', methods=['DELETE'])
