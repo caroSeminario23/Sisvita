@@ -12,15 +12,15 @@ def create_estudiante():
     idEstudiante = request.json.get('idEstudiante')
     nombres = request.json.get('nombres')
     apellidos = request.json.get('apellidos')
-    fecha_nacimiento = request.json.get('fecha_nacimiento')
-    correo_electronico = request.json.get('correo_electronico')
+    fechaNacimiento = request.json.get('fechaNacimiento')
+    correo = request.json.get('correo')
     genero = request.json.get('genero')
     direccion = request.json.get('direccion')
-    numero_telefono = request.json.get('numero_telefono')
-    carrera_universitaria = request.json.get('carrera_universitaria')
-    año_ingreso = request.json.get('año_ingreso')
+    numeroTelefono = request.json.get('numeroTelefono')
+    carrera = request.json.get('carrera')
+    añoIngreso = request.json.get('añoIngreso')
 
-    new_estudiante = Estudiante(idEstudiante=idEstudiante, nombres=nombres, apellidos=apellidos, fecha_nacimiento=fecha_nacimiento, correo_electronico=correo_electronico, genero=genero, direccion=direccion, numero_telefono=numero_telefono, carrera_universitaria=carrera_universitaria, año_ingreso=año_ingreso)
+    new_estudiante = Estudiante(idEstudiante=idEstudiante, nombres=nombres, apellidos=apellidos, fechaNacimiento=fechaNacimiento, correo=correo, genero=genero, direccion=direccion, numeroTelefono=numeroTelefono, carrera=carrera, añoIngreso=añoIngreso)
 
     db.session.add(new_estudiante)
     db.session.commit()
@@ -83,24 +83,24 @@ def update_estudiante(id):
     idEstudiante = request.json.get('idEstudiante')
     nombres = request.json.get('nombres')
     apellidos = request.json.get('apellidos')
-    fecha_nacimiento = request.json.get('fecha_nacimiento')
-    correo_electronico = request.json.get('correo_electronico')
+    fechaNacimiento = request.json.get('fechaNacimiento')
+    correo = request.json.get('correo')
     genero = request.json.get('genero')
     direccion = request.json.get('direccion')
-    numero_telefono = request.json.get('numero_telefono')
-    carrera_universitaria = request.json.get('carrera_universitaria')
-    año_ingreso = request.json.get('año_ingreso')
+    numeroTelefono = request.json.get('numeroTelefono')
+    carrera = request.json.get('carrera')
+    añoIngreso = request.json.get('añoIngreso')
 
     estudiante.idEstudiante = idEstudiante
     estudiante.nombres = nombres
     estudiante.apellidos = apellidos
-    estudiante.fecha_nacimiento = fecha_nacimiento
-    estudiante.correo_electronico = correo_electronico
+    estudiante.fechaNacimiento = fechaNacimiento
+    estudiante.correo = correo
     estudiante.genero = genero
     estudiante.direccion = direccion
-    estudiante.numero_telefono = numero_telefono
-    estudiante.carrera_universitaria = carrera_universitaria
-    estudiante.año_ingreso = año_ingreso
+    estudiante.numeroTelefono = numeroTelefono
+    estudiante.carrera = carrera
+    estudiante.añoIngreso = añoIngreso
 
     db.session.commit()
 

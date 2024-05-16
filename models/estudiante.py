@@ -6,11 +6,11 @@ class Estudiante(db.Model):
     apellidos = db.Column(db.String(100), nullable=False)
     fecha_nacimiento = db.Column(db.Date, nullable=False)
     correo_electronico = db.Column(db.String(100), nullable=False)
-    genero = db.Column(db.String(10), nullable=False)
-    direccion = db.Column(db.String(200), nullable=False)
-    numero_telefono = db.Column(db.String(20), nullable=False)
-    carrera_universitaria = db.Column(db.String(100), nullable=False)
-    año_ingreso = db.Column(db.Integer, nullable=False)
+    genero = db.Column(db.String(50), nullable=False)
+    direccion = db.Column(db.String(100), nullable=False)
+    numero_telefono = db.Column(db.String(9), nullable=False)
+    carrera_universitaria = db.Column(db.String(50), nullable=False)
+    año_ingreso = db.Column(db.String(4), nullable=False)
     
     # constructor de la clase
     def __init__(self, nombres, apellidos, fecha_nacimiento, correo_electronico, genero, direccion, numero_telefono, carrera_universitaria, año_ingreso):
