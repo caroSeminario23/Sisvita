@@ -1,6 +1,7 @@
 from utils.db import db
 from datetime import datetime
 
+
 class TestAnsiedad(db.Model):
     __tablename__ = 'test_ansiedad'
     id_test = db.Column(db.Integer, primary_key=True)

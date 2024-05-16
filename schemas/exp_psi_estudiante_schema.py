@@ -13,6 +13,7 @@ class ExpPsiEstudianteSchema(ma.Schema):
                'fecha_actualización',
                'estudiante')
         
-    estudiante=ma.Nested(EstudianteSchema)    
+    estudiante=ma.Nested(EstudianteSchema)   
+    
 exp_psi_estudiante_schema = ExpPsiEstudianteSchema()
 exps_psi_estudiante_schema = ExpPsiEstudianteSchema(many=True)
