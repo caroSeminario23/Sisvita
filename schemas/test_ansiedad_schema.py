@@ -5,7 +5,7 @@ from marshmallow import fields
 class Test_Ansiedad_Schema(ma.Schema):
     class Meta:
         model=Test_Ansiedad
-        field=('id_test_ansiedad',
+        fields=('id_test_ansiedad',
                'nombre',
                'descripcion',
                'n_preguntas',

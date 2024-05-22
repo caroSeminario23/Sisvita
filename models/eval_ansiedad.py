@@ -1,5 +1,5 @@
 from utils.db import db
-#from models.test_ansiedad import TestAnsiedad
+from models.test_ansiedad import Test_Ansiedad
 class Eval_Ansiedad(db.Model):
     __tablename__ = 'eval_ansiedad'
 

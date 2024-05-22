@@ -12,10 +12,10 @@ class Estudiante(db.Model):
     direccion = db.Column(db.String(500), nullable=False)
     numero_telefono = db.Column(db.String(20), nullable=False)
     carrera_universitaria = db.Column(db.String(50), nullable=False)
-    año_ingreso = db.Column(db.Integer, nullable=False)
+    anio_ingreso = db.Column(db.Integer, nullable=False)
     
     # constructor de la clase
-    def __init__(self, doc_identificacion, nombres, apellidos, fecha_nacimiento, correo_electronico, genero, direccion, numero_telefono, carrera_universitaria, año_ingreso):
+    def __init__(self, doc_identificacion, nombres, apellidos, fecha_nacimiento, correo_electronico, genero, direccion, numero_telefono, carrera_universitaria, anio_ingreso):
         self.doc_identificacion = doc_identificacion
         self.nombres = nombres
         self.apellidos = apellidos
@@ -25,4 +25,4 @@ class Estudiante(db.Model):
         self.direccion = direccion
         self.numero_telefono = numero_telefono
         self.carrera_universitaria = carrera_universitaria
-        self.año_ingreso = año_ingreso
+        self.anio_ingreso = anio_ingreso

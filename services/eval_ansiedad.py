@@ -9,11 +9,11 @@ eval_ansiedad_routes = Blueprint("eval_ansiedad_routes", __name__)
 
 @eval_ansiedad_routes.route('/eval_ansiedad', methods=['POST'])
 def create_eval_ansiedad():
-    idTestAnsiedad = request.json.get('idTestAnsiedad')
-    respuestas = request.json.get('respuestas')
-    fechaEvaluacion = request.json.get('fechaEvaluacion')
+    id_test_ansiedad = request.json.get('id_test_ansiedad')
+    respuestas_formulario = request.json.get('respuestas_formulario')
+    fecha_evaluacion = request.json.get('fecha_evaluacion')
 
-    new_eval_ansiedad = Eval_Ansiedad(id_test_ansiedad=idTestAnsiedad, respuestas_formulario=respuestas, fecha_evaluacion=fechaEvaluacion)
+    new_eval_ansiedad = Eval_Ansiedad(id_test_ansiedad=id_test_ansiedad, respuestas_formulario=respuestas_formulario, fecha_evaluacion=fecha_evaluacion)
 
     db.session.add(new_eval_ansiedad)
     db.session.commit()
@@ -32,7 +32,7 @@ def create_eval_ansiedad():
 def get_all_evaluaciones_ansiedad():
     all_evaluaciones_ansiedad = Eval_Ansiedad.query.all()
     result = evals_ansiedad_schema.dump(all_evaluaciones_ansiedad)
-
+    
     data = {
         'message': 'Todas las evaluaciones de ansiedad han sido encontradas',
         'status': 200,
@@ -69,13 +69,13 @@ def update_eval_ansiedad(id):
         }
         return make_response(jsonify(data), 404)
     
-    idTestAnsiedad = request.json.get('idTestAnsiedad')
-    respuestas = request.json.get('respuestas')
-    fechaEvaluacion = request.json.get('fechaEvaluacion')
+    id_test_ansiedad = request.json.get('id_test_ansiedad')
+    respuestas_formulario = request.json.get('respuestas_formulario')
+    fecha_evaluacion = request.json.get('fecha_evaluacion')
     
-    eval_ansiedad.id_test_ansiedad = idTestAnsiedad
-    eval_ansiedad.respuestas_formulario = respuestas
-    eval_ansiedad.fecha_evaluacion = fechaEvaluacion
+    eval_ansiedad.id_test_ansiedad = id_test_ansiedad
+    eval_ansiedad.respuestas_formulario = respuestas_formulario
+    eval_ansiedad.fecha_evaluacion = fecha_evaluacion
     
     db.session.commit()
     

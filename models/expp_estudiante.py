@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from utils.db import db
-#from models.estudiante import Estudiante
+from models.estudiante import Estudiante
 
 class ExpP_Estudiante(db.Model):
     __tablename__ = 'expp_estudiante'
