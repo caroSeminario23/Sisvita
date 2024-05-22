@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
 from models.hist_ev_ansiedad import HistEvalAnsiedad
-from schemas.hist_eval_ansiedad_schema import hist_eval_ansiedad_schema, hists_eval_ansiedad_schema
+from schemas.hist_ev_ansiedad_schema import hist_eval_ansiedad_schema, hists_eval_ansiedad_schema
 
 hist_eval_ansiedad_routes = Blueprint("hist_eval_ansiedad_routes", __name__)
 

@@ -3,16 +3,15 @@ from models.eval_ansiedad import EvalAnsiedad
 from marshmallow import fields
 from schemas.test_ansiedad_schema import TestAnsiedadSchema
 
-class EvalAnsiedadSchema(ma.Schema):
+class Eval_Ansiedad_Schema(ma.Schema):
     class Meta:
         model=EvalAnsiedad
-        field=('id_evaluacion',
-               'id_test',
-               'id_expediente',
+        field=('id_eval_ansiedad',
+               'id_test_ansiedad',
+               'respuestas_formulario',
                'fecha_evaluacion',
-               'resultado',
-               'test'
+               'test_ansiedad'
                )
-        test=ma.Nested(TestAnsiedadSchema)  
-eval_ansiedad_schema = EvalAnsiedadSchema()
-evals_ansiedad_schema = EvalAnsiedadSchema(many=True)
+        test_ansiedad=ma.Nested(Test_Ansiedad_Schema)  
+eval_ansiedad_schema = Eval_Ansiedad_Schema()
+evals_ansiedad_schema = Eval_Ansiedad_Schema(many=True)

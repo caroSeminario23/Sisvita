@@ -2,10 +2,11 @@ from utils.ma import ma
 from models.estudiante import Estudiante
 from marshmallow import fields
 
-class EstudianteSchema(ma.Schema):
+class Estudiante_Schema(ma.Schema):
     class Meta:
         model=Estudiante
         fields = ('id_estudiante',
+              'doc_identificacion',
               'nombres',
               'apellidos',
               'fecha_nacimiento',
@@ -16,5 +17,5 @@ class EstudianteSchema(ma.Schema):
               'carrera_universitaria',
               'año_ingreso'
               )
-estudiante_schema = EstudianteSchema()
-estudiantes_schema = EstudianteSchema(many=True)
+estudiante_schema = Estudiante_Schema()
+estudiantes_schema = Estudiante_Schema(many=True)

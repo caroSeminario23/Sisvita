@@ -1,6 +1,7 @@
 from datetime import datetime
+
 from utils.db import db
-from models.estudiante import Estudiante
+#from models.estudiante import Estudiante
 
 class ExpP_Estudiante(db.Model):
     __tablename__ = 'expp_estudiante'
@@ -10,7 +11,7 @@ class ExpP_Estudiante(db.Model):
     estado_salud_mental = db.Column(db.String(30), nullable=False)
     fecha_actualizacion = db.Column(db.Date, nullable=False)
 
-    #estudiante = db.relationship('Estudiante', backref='exp_psi_estudiante')
+    estudiante = db.relationship('Estudiante', backref='expp_estudiante')
 
     def __init__(self, id_exp_psicologico, id_estudiante, anio, estado_salud_mental, fecha_actualizacion=datetime.now()):
         self.id_exp_psicologico = id_exp_psicologico

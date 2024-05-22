@@ -1,5 +1,5 @@
 from utils.db import db
-from models.test_ansiedad import TestAnsiedad
+#from models.test_ansiedad import TestAnsiedad
 class Eval_Ansiedad(db.Model):
     __tablename__ = 'eval_ansiedad'
 
@@ -8,7 +8,7 @@ class Eval_Ansiedad(db.Model):
     respuestas_formulario = db.Column(db.String(300), nullable=False)
     fecha_evaluacion = db.Column(db.Date, nullable=False)
 
-    #test_ansiedad = db.relationship('TestAnsiedad', backref='eval_ansiedad')
+    test_ansiedad = db.relationship('Test_Ansiedad', backref='eval_ansiedad')
     
     # constructor de la clase
     def __init__(self, id_test_ansiedad, respuestas_formulario, fecha_evaluacion):
