@@ -15,12 +15,15 @@ app.config['SQLALCHEMY_DATABASE_URI']=DATABASE_CONNECTION
 
 #SQLAlchemy(app)
 db.init_app(app)
-#app.register_blueprint(contacts)
+
 app.register_blueprint(test_ansiedad_routes)
-app.register_blueprint(exp_psi_estudiante_routes)
-app.register_blueprint(hist_eval_ansiedad_routes)
 app.register_blueprint(estudiante_routes)
+app.register_blueprint(exp_psi_estudiante_routes)
 app.register_blueprint(eval_ansiedad_routes)
+app.register_blueprint(hist_eval_ansiedad_routes)
+
+
+
 
 with app.app_context():
     db.create_all

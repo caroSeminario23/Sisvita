@@ -1,11 +1,11 @@
 from utils.ma import ma
-from models.eval_ansiedad import EvalAnsiedad
+from models.eval_ansiedad import Eval_Ansiedad
 from marshmallow import fields
-from schemas.test_ansiedad_schema import TestAnsiedadSchema
+from schemas.test_ansiedad_schema import Test_Ansiedad_Schema
 
 class Eval_Ansiedad_Schema(ma.Schema):
     class Meta:
-        model=EvalAnsiedad
+        model=Eval_Ansiedad
         field=('id_eval_ansiedad',
                'id_test_ansiedad',
                'respuestas_formulario',
