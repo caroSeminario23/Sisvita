@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
-from models.test_ansiedad import TestAnsiedad
+from models.test_ansiedad import Test_Ansiedad
 from schemas.test_ansiedad_schema import test_ansiedad_schema, tests_ansiedad_schema
 
 test_ansiedad_routes = Blueprint("test_ansiedad_routes", __name__)
@@ -9,19 +9,19 @@ test_ansiedad_routes = Blueprint("test_ansiedad_routes", __name__)
 def create_test_ansiedad():
     nombre = request.json.get('nombre')
     descripcion = request.json.get('descripcion')
-    numero_preguntas = request.json.get('numero_preguntas')
-    detalle_escala = request.json.get('detalle_escala')
+    n_preguntas = request.json.get('n_preguntas')
+    detalle_escalas = request.json.get('detalle_escalas')
     version = request.json.get('version')
-    idiomas = request.json.get('idiomas')
+    idiomas_disponibles = request.json.get('idiomas_disponibles')
     fecha_actualizacion = request.json.get('fecha_actualizacion')
 
-    new_test_ansiedad = TestAnsiedad(
+    new_test_ansiedad = Test_Ansiedad(
         nombre=nombre,
         descripcion=descripcion,
-        numero_preguntas=numero_preguntas,
-        detalle_escala=detalle_escala,
+        n_preguntas=n_preguntas,
+        detalle_escalas=detalle_escalas,
         version=version,
-        idiomas=idiomas,
+        idiomas_disponibles=idiomas_disponibles,
         fecha_actualizacion=fecha_actualizacion
     )
 
@@ -40,11 +40,11 @@ def create_test_ansiedad():
 
 @test_ansiedad_routes.route('/test_ansiedad', methods=['GET'])
 def get_tests_ansiedad():
-    all_tests_ansiedad = TestAnsiedad.query.all()
+    all_tests_ansiedad = Test_Ansiedad.query.all()
     result = tests_ansiedad_schema.dump(all_tests_ansiedad)
 
     data = {
-        'message': 'Todos los tests de ansiedad',
+        'message': 'Todos los tests de ansiedad han sido encontrados',
         'status': 200,
         'data': result
     }
@@ -53,7 +53,7 @@ def get_tests_ansiedad():
 
 @test_ansiedad_routes.route('/test_ansiedad/<int:id>', methods=['GET'])
 def get_test_ansiedad(id):
-    test_ansiedad = TestAnsiedad.query.get(id)
+    test_ansiedad = Test_Ansiedad.query.get(id)
 
     if not test_ansiedad:
         data = {
@@ -74,7 +74,7 @@ def get_test_ansiedad(id):
 
 @test_ansiedad_routes.route('/test_ansiedad/<int:id>', methods=['PUT'])
 def update_test_ansiedad(id):
-    test_ansiedad = TestAnsiedad.query.get(id)
+    test_ansiedad = Test_Ansiedad.query.get(id)
 
     if not test_ansiedad:
         data = {
@@ -85,18 +85,18 @@ def update_test_ansiedad(id):
 
     nombre = request.json.get('nombre')
     descripcion = request.json.get('descripcion')
-    numero_preguntas = request.json.get('numero_preguntas')
-    detalle_escala = request.json.get('detalle_escala')
+    n_preguntas = request.json.get('n_preguntas')
+    detalle_escalas = request.json.get('detalle_escalas')
     version = request.json.get('version')
-    idiomas = request.json.get('idiomas')
+    idiomas_disponibles = request.json.get('idiomas_disponibles')
     fecha_actualizacion = request.json.get('fecha_actualizacion')
 
     test_ansiedad.nombre = nombre
     test_ansiedad.descripcion = descripcion
-    test_ansiedad.numero_preguntas = numero_preguntas
-    test_ansiedad.detalle_escala = detalle_escala
+    test_ansiedad.n_preguntas = n_preguntas
+    test_ansiedad.detalle_escalas = detalle_escalas
     test_ansiedad.version = version
-    test_ansiedad.idiomas = idiomas
+    test_ansiedad.idiomas_disponibles = idiomas_disponibles
     test_ansiedad.fecha_actualizacion = fecha_actualizacion
 
     db.session.commit()
@@ -113,7 +113,7 @@ def update_test_ansiedad(id):
 
 @test_ansiedad_routes.route('/test_ansiedad/<int:id>', methods=['DELETE'])
 def delete_test_ansiedad(id):
-    test_ansiedad = TestAnsiedad.query.get(id)
+    test_ansiedad = Test_Ansiedad.query.get(id)
 
     if not test_ansiedad:
         data = {

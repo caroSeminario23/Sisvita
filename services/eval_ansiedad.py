@@ -2,19 +2,18 @@
 
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
-from models.eval_ansiedad import EvalAnsiedad
+from models.eval_ansiedad import Eval_Ansiedad
 from schemas.eval_ansiedad_schema import eval_ansiedad_schema, evals_ansiedad_schema
 
 eval_ansiedad_routes = Blueprint("eval_ansiedad_routes", __name__)
 
 @eval_ansiedad_routes.route('/eval_ansiedad', methods=['POST'])
 def create_eval_ansiedad():
-    idEvaluacion = request.json.get('idEvaluacion')
     idTestAnsiedad = request.json.get('idTestAnsiedad')
     respuestas = request.json.get('respuestas')
     fechaEvaluacion = request.json.get('fechaEvaluacion')
 
-    new_eval_ansiedad = EvalAnsiedad(idEvaluacion=idEvaluacion, idTestAnsiedad=idTestAnsiedad, respuestas=respuestas, fechaEvaluacion=fechaEvaluacion)
+    new_eval_ansiedad = Eval_Ansiedad(id_test_ansiedad=idTestAnsiedad, respuestas_formulario=respuestas, fecha_evaluacion=fechaEvaluacion)
 
     db.session.add(new_eval_ansiedad)
     db.session.commit()
@@ -31,11 +30,11 @@ def create_eval_ansiedad():
 
 @eval_ansiedad_routes.route('/eval_ansiedad', methods=['GET'])
 def get_all_evaluaciones_ansiedad():
-    all_evaluaciones_ansiedad = EvalAnsiedad.query.all()
+    all_evaluaciones_ansiedad = Eval_Ansiedad.query.all()
     result = evals_ansiedad_schema.dump(all_evaluaciones_ansiedad)
 
     data = {
-        'message': 'Todas las evaluaciones de ansiedad',
+        'message': 'Todas las evaluaciones de ansiedad han sido encontradas',
         'status': 200,
         'data': result
     }
@@ -44,7 +43,7 @@ def get_all_evaluaciones_ansiedad():
 
 @eval_ansiedad_routes.route('/eval_ansiedad/<int:id>', methods=['GET'])
 def get_eval_ansiedad(id):
-    eval_ansiedad = EvalAnsiedad.query.get(id)
+    eval_ansiedad = Eval_Ansiedad.query.get(id)
     if eval_ansiedad:
         result = eval_ansiedad_schema.dump(eval_ansiedad)
         data = {
@@ -62,7 +61,7 @@ def get_eval_ansiedad(id):
     
 @eval_ansiedad_routes.route('/eval_ansiedad/<int:id>', methods=['PUT'])
 def update_eval_ansiedad(id):
-    eval_ansiedad = EvalAnsiedad.query.get(id)
+    eval_ansiedad = Eval_Ansiedad.query.get(id)
     if not eval_ansiedad:
         data = {
             'message': 'Evaluación de ansiedad no encontrada',
@@ -70,15 +69,13 @@ def update_eval_ansiedad(id):
         }
         return make_response(jsonify(data), 404)
     
-    idEvaluacion = request.json.get('idEvaluacion')
     idTestAnsiedad = request.json.get('idTestAnsiedad')
     respuestas = request.json.get('respuestas')
     fechaEvaluacion = request.json.get('fechaEvaluacion')
     
-    eval_ansiedad.idEvaluacion = idEvaluacion
-    eval_ansiedad.idTestAnsiedad = idTestAnsiedad
-    eval_ansiedad.respuestas = respuestas
-    eval_ansiedad.fechaEvaluacion = fechaEvaluacion
+    eval_ansiedad.id_test_ansiedad = idTestAnsiedad
+    eval_ansiedad.respuestas_formulario = respuestas
+    eval_ansiedad.fecha_evaluacion = fechaEvaluacion
     
     db.session.commit()
     
@@ -92,7 +89,7 @@ def update_eval_ansiedad(id):
 
 @eval_ansiedad_routes.route('/eval_ansiedad/<int:id>', methods=['DELETE'])
 def delete_eval_ansiedad(id):
-    eval_ansiedad = EvalAnsiedad.query.get(id)
+    eval_ansiedad = Eval_Ansiedad.query.get(id)
 
     if not eval_ansiedad:
         data = {

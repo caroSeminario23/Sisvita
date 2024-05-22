@@ -9,18 +9,18 @@ estudiante_routes = Blueprint("estudiante_routes", __name__)
 
 @estudiante_routes.route('/estudiante', methods=['POST'])
 def create_estudiante():
-    idEstudiante = request.json.get('idEstudiante')
+    doc_identificacion = request.json.get('doc_identificacion')
     nombres = request.json.get('nombres')
     apellidos = request.json.get('apellidos')
-    fechaNacimiento = request.json.get('fechaNacimiento')
-    correo = request.json.get('correo')
+    fecha_nacimiento = request.json.get('fecha_nacimiento')
+    correo_electronico = request.json.get('correo_electronico')
     genero = request.json.get('genero')
     direccion = request.json.get('direccion')
-    numeroTelefono = request.json.get('numeroTelefono')
-    carrera = request.json.get('carrera')
-    añoIngreso = request.json.get('añoIngreso')
+    numero_telefono = request.json.get('numero_telefono')
+    carrera_universitaria = request.json.get('carrera_universitaria')
+    año_ingreso = request.json.get('año_ingreso')
 
-    new_estudiante = Estudiante(idEstudiante=idEstudiante, nombres=nombres, apellidos=apellidos, fechaNacimiento=fechaNacimiento, correo=correo, genero=genero, direccion=direccion, numeroTelefono=numeroTelefono, carrera=carrera, añoIngreso=añoIngreso)
+    new_estudiante = Estudiante(doc_identificacion=doc_identificacion, nombres=nombres, apellidos=apellidos, fecha_nacimiento=fecha_nacimiento, correo_electronico=correo_electronico, genero=genero, direccion=direccion, numero_telefono=numero_telefono, carrera_universitaria=carrera_universitaria, año_ingreso=año_ingreso)
 
     db.session.add(new_estudiante)
     db.session.commit()
@@ -28,7 +28,7 @@ def create_estudiante():
     result = estudiante_schema.dump(new_estudiante)
 
     data = {
-        'message': 'Nuevo expedientes de estudiante creado!',
+        'message': 'Nuevo estudiante registrado!',
         'status': 201,
         'data': result
     }
@@ -41,7 +41,7 @@ def get_estudiantes():
     result = estudiantes_schema.dump(all_estudiantes)
 
     data = {
-        'message': 'Todos los expedientes de estudiantes',
+        'message': 'Todos los registros de estudiantes han sido encontrados',
         'status': 200,
         'data': result
     }
@@ -80,27 +80,27 @@ def update_estudiante(id):
         }
         return make_response(jsonify(data), 404)
 
-    idEstudiante = request.json.get('idEstudiante')
+    doc_identificacion = request.json.get('doc_identificacion')
     nombres = request.json.get('nombres')
     apellidos = request.json.get('apellidos')
-    fechaNacimiento = request.json.get('fechaNacimiento')
-    correo = request.json.get('correo')
+    fecha_nacimiento = request.json.get('fecha_nacimiento')
+    correo_electronico = request.json.get('correo_electronico')
     genero = request.json.get('genero')
     direccion = request.json.get('direccion')
-    numeroTelefono = request.json.get('numeroTelefono')
-    carrera = request.json.get('carrera')
-    añoIngreso = request.json.get('añoIngreso')
+    numero_telefono = request.json.get('numero_telefono')
+    carrera_universitaria = request.json.get('carrera_universitaria')
+    año_ingreso = request.json.get('año_ingreso')
 
-    estudiante.idEstudiante = idEstudiante
+    estudiante.doc_identificacion = doc_identificacion
     estudiante.nombres = nombres
     estudiante.apellidos = apellidos
-    estudiante.fechaNacimiento = fechaNacimiento
-    estudiante.correo = correo
+    estudiante.fecha_nacimiento = fecha_nacimiento
+    estudiante.correo_electronico = correo_electronico
     estudiante.genero = genero
     estudiante.direccion = direccion
-    estudiante.numeroTelefono = numeroTelefono
-    estudiante.carrera = carrera
-    estudiante.añoIngreso = añoIngreso
+    estudiante.numero_telefono = numero_telefono
+    estudiante.carrera_universitaria = carrera_universitaria
+    estudiante.año_ingreso = año_ingreso
 
     db.session.commit()
 

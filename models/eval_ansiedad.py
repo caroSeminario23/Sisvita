@@ -3,7 +3,7 @@ from utils.db import db
 class Eval_Ansiedad(db.Model):
     __tablename__ = 'eval_ansiedad'
 
-    id_eval_ansiedad = db.Column(db.Integer, primary_key=True)
+    id_eval_ansiedad = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_test_ansiedad = db.Column(db.Integer, db.ForeignKey('test_ansiedad.id_test_ansiedad'), nullable=False)
     respuestas_formulario = db.Column(db.String(300), nullable=False)
     fecha_evaluacion = db.Column(db.Date, nullable=False)
