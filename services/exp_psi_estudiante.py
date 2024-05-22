@@ -1,7 +1,7 @@
 # insert / update / delete / select / select_all
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
-from models.exp_psi_estudiante import ExpPsiEstudiante
+from models.expp_estudiante import ExpPsiEstudiante
 from schemas.exp_psi_estudiante_schema import exp_psi_estudiante_schema, exps_psi_estudiante_schema
 
 exp_psi_estudiante_routes = Blueprint("exp_psi_estudiante_routes", __name__)

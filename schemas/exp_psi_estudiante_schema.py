@@ -1,5 +1,5 @@
 from utils.ma import ma
-from models.exp_psi_estudiante import ExpPsiEstudiante
+from models.expp_estudiante import ExpPsiEstudiante
 from marshmallow import fields
 from schemas.estudiante_schema import EstudianteSchema
 
