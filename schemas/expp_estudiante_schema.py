@@ -10,9 +10,11 @@ class ExpP_Estudiante_Schema(ma.Schema):
                'id_estudiante',
                'anio',
                'estado_salud_mental',
-               'fecha_actualizacion',
-               'estudiante')
+               'fecha_actualización',
+               'estudiante'
+               )
         
     estudiante=ma.Nested(Estudiante_Schema)    
+
 exp_psi_estudiante_schema = ExpP_Estudiante_Schema()
 exps_psi_estudiante_schema = ExpP_Estudiante_Schema(many=True)

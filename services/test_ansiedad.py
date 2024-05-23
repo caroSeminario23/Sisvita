@@ -5,7 +5,7 @@ from schemas.test_ansiedad_schema import test_ansiedad_schema, tests_ansiedad_sc
 
 test_ansiedad_routes = Blueprint("test_ansiedad_routes", __name__)
 
-@test_ansiedad_routes.route('/test_ansiedad', methods=['POST'])
+@test_ansiedad_routes.route('/create_test_ansiedad', methods=['POST'])
 def create_test_ansiedad():
     nombre = request.json.get('nombre')
     descripcion = request.json.get('descripcion')
@@ -38,7 +38,7 @@ def create_test_ansiedad():
 
     return make_response(jsonify(data), 201)
 
-@test_ansiedad_routes.route('/test_ansiedad', methods=['GET'])
+@test_ansiedad_routes.route('/get_tests_ansiedad', methods=['GET'])
 def get_tests_ansiedad():
     all_tests_ansiedad = Test_Ansiedad.query.all()
     result = tests_ansiedad_schema.dump(all_tests_ansiedad)
@@ -51,7 +51,7 @@ def get_tests_ansiedad():
 
     return make_response(jsonify(data), 200)
 
-@test_ansiedad_routes.route('/test_ansiedad/<int:id>', methods=['GET'])
+@test_ansiedad_routes.route('/get_test_ansiedad/<int:id>', methods=['GET'])
 def get_test_ansiedad(id):
     test_ansiedad = Test_Ansiedad.query.get(id)
 
@@ -72,7 +72,7 @@ def get_test_ansiedad(id):
 
     return make_response(jsonify(data), 200)
 
-@test_ansiedad_routes.route('/test_ansiedad/<int:id>', methods=['PUT'])
+@test_ansiedad_routes.route('/update_test_ansiedad/<int:id>', methods=['PUT'])
 def update_test_ansiedad(id):
     test_ansiedad = Test_Ansiedad.query.get(id)
 
@@ -111,7 +111,7 @@ def update_test_ansiedad(id):
 
     return make_response(jsonify(data), 200)
 
-@test_ansiedad_routes.route('/test_ansiedad/<int:id>', methods=['DELETE'])
+@test_ansiedad_routes.route('/delete_test_ansiedad/<int:id>', methods=['DELETE'])
 def delete_test_ansiedad(id):
     test_ansiedad = Test_Ansiedad.query.get(id)
 

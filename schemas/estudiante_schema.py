@@ -17,5 +17,6 @@ class Estudiante_Schema(ma.Schema):
               'carrera_universitaria',
               'año_ingreso'
               )
+        
 estudiante_schema = Estudiante_Schema()
 estudiantes_schema = Estudiante_Schema(many=True)

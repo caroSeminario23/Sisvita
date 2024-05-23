@@ -6,7 +6,7 @@ from schemas.expp_estudiante_schema import exp_psi_estudiante_schema, exps_psi_e
 
 exp_psi_estudiante_routes = Blueprint("exp_psi_estudiante_routes", __name__)
 
-@exp_psi_estudiante_routes.route('/exp_psi_estudiante', methods=['POST'])
+@exp_psi_estudiante_routes.route('/create_exp_psi_estudiante', methods=['POST'])
 def create_exp_psi_estudiante():
     id_estudiante = request.json.get('id_estudiante')
     año = request.json.get('año')
@@ -33,7 +33,7 @@ def create_exp_psi_estudiante():
 
     return make_response(jsonify(data), 201)
 
-@exp_psi_estudiante_routes.route('/exp_psi_estudiante', methods=['GET'])
+@exp_psi_estudiante_routes.route('/get_exps_psi_estudiante', methods=['GET'])
 def get_exps_psi_estudiantes():
     all_exp_psi_estudiantes = ExpP_Estudiante.query.all()
     result = exps_psi_estudiante_schema.dump(all_exp_psi_estudiantes)
@@ -46,7 +46,7 @@ def get_exps_psi_estudiantes():
 
     return make_response(jsonify(data), 200)
 
-@exp_psi_estudiante_routes.route('/exp_psi_estudiante/<int:id>', methods=['GET'])
+@exp_psi_estudiante_routes.route('/get_exp_psi_estudiante/<int:id>', methods=['GET'])
 def get_exp_psi_estudiante(id):
     exp_psi_estudiante = ExpP_Estudiante.query.get(id)
 
@@ -67,7 +67,7 @@ def get_exp_psi_estudiante(id):
 
     return make_response(jsonify(data), 200)
 
-@exp_psi_estudiante_routes.route('/exp_psi_estudiante/<int:id>', methods=['PUT'])
+@exp_psi_estudiante_routes.route('/update_exp_psi_estudiante/<int:id>', methods=['PUT'])
 def update_exp_psi_estudiante(id):
     exp_psi_estudiante = ExpP_Estudiante.query.get(id)
 
@@ -100,7 +100,7 @@ def update_exp_psi_estudiante(id):
 
     return make_response(jsonify(data), 200)
 
-@exp_psi_estudiante_routes.route('/exp_psi_estudiante/<int:id>', methods=['DELETE'])
+@exp_psi_estudiante_routes.route('/delete_exp_psi_estudiante/<int:id>', methods=['DELETE'])
 def delete_exp_psi_estudiante(id):
     exp_psi_estudiante = ExpP_Estudiante.query.get(id)
 

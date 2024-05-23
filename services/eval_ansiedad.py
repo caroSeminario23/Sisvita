@@ -7,7 +7,7 @@ from schemas.eval_ansiedad_schema import eval_ansiedad_schema, evals_ansiedad_sc
 
 eval_ansiedad_routes = Blueprint("eval_ansiedad_routes", __name__)
 
-@eval_ansiedad_routes.route('/eval_ansiedad', methods=['POST'])
+@eval_ansiedad_routes.route('/create_eval_ansiedad', methods=['POST'])
 def create_eval_ansiedad():
     id_test_ansiedad = request.json.get('id_test_ansiedad')
     respuestas_formulario = request.json.get('respuestas_formulario')
@@ -28,7 +28,7 @@ def create_eval_ansiedad():
 
     return make_response(jsonify(data), 201)
 
-@eval_ansiedad_routes.route('/eval_ansiedad', methods=['GET'])
+@eval_ansiedad_routes.route('/get_evals_ansiedad', methods=['GET'])
 def get_all_evaluaciones_ansiedad():
     all_evaluaciones_ansiedad = Eval_Ansiedad.query.all()
     result = evals_ansiedad_schema.dump(all_evaluaciones_ansiedad)
@@ -41,7 +41,7 @@ def get_all_evaluaciones_ansiedad():
 
     return make_response(jsonify(data), 200)
 
-@eval_ansiedad_routes.route('/eval_ansiedad/<int:id>', methods=['GET'])
+@eval_ansiedad_routes.route('/get_eval_ansiedad/<int:id>', methods=['GET'])
 def get_eval_ansiedad(id):
     eval_ansiedad = Eval_Ansiedad.query.get(id)
     if eval_ansiedad:
@@ -59,7 +59,7 @@ def get_eval_ansiedad(id):
         }
         return make_response(jsonify(data), 404)
     
-@eval_ansiedad_routes.route('/eval_ansiedad/<int:id>', methods=['PUT'])
+@eval_ansiedad_routes.route('/update_eval_ansiedad/<int:id>', methods=['PUT'])
 def update_eval_ansiedad(id):
     eval_ansiedad = Eval_Ansiedad.query.get(id)
     if not eval_ansiedad:
@@ -87,7 +87,7 @@ def update_eval_ansiedad(id):
     }
     return make_response(jsonify(data), 200)
 
-@eval_ansiedad_routes.route('/eval_ansiedad/<int:id>', methods=['DELETE'])
+@eval_ansiedad_routes.route('/delete_eval_ansiedad/<int:id>', methods=['DELETE'])
 def delete_eval_ansiedad(id):
     eval_ansiedad = Eval_Ansiedad.query.get(id)
 

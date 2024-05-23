@@ -12,6 +12,8 @@ class Test_Ansiedad(db.Model):
     version = db.Column(db.String(20), nullable=False)
     idiomas_disponibles = db.Column(db.String(300), nullable=False)
     fecha_actualizacion = db.Column(db.Date, nullable=False)
+
+    evaluaciones = db.relationship('Eval_Ansiedad', backref='test_ansiedad1', cascade='all, delete-orphan')
     
     def __init__(self, nombre, descripcion, n_preguntas, detalle_escalas, version, idiomas_disponibles, fecha_actualizacion=datetime.now()):
         self.nombre = nombre

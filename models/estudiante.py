@@ -1,4 +1,7 @@
+from sqlalchemy.orm import relationship
+
 from utils.db import db
+
 class Estudiante(db.Model):
     __tablename__ = 'estudiante'
 
@@ -13,6 +16,8 @@ class Estudiante(db.Model):
     numero_telefono = db.Column(db.String(20), nullable=False)
     carrera_universitaria = db.Column(db.String(50), nullable=False)
     anio_ingreso = db.Column(db.Integer, nullable=False)
+    
+    expedientes = relationship('ExpP_Estudiante', backref='estudiante1', cascade='all, delete-orphan')
     
     # constructor de la clase
     def __init__(self, doc_identificacion, nombres, apellidos, fecha_nacimiento, correo_electronico, genero, direccion, numero_telefono, carrera_universitaria, anio_ingreso):

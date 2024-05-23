@@ -5,7 +5,7 @@ from schemas.hist_ev_ansiedad_schema import hist_eval_ansiedad_schema, hists_eva
 
 hist_eval_ansiedad_routes = Blueprint("hist_eval_ansiedad_routes", __name__)
 
-@hist_eval_ansiedad_routes.route('/hist_eval_ansiedad', methods=['POST'])
+@hist_eval_ansiedad_routes.route('/create_hist_eval_ansiedad', methods=['POST'])
 def create_hist_eval_ansiedad():
     id_eval_ansiedad = request.json.get('id_eval_ansiedad')
     id_exp_psicologico = request.json.get('id_exp_psicologico')
@@ -26,7 +26,7 @@ def create_hist_eval_ansiedad():
 
     return make_response(jsonify(data), 201)
 
-@hist_eval_ansiedad_routes.route('/hist_eval_ansiedad', methods=['GET'])
+@hist_eval_ansiedad_routes.route('/get_hists_eval_ansiedad', methods=['GET'])
 def get_hists_eval_ansiedad():
     all_hists_eval_ansiedad = Hist_Ev_Ansiedad.query.all()
     result = hists_eval_ansiedad_schema.dump(all_hists_eval_ansiedad)
@@ -39,9 +39,9 @@ def get_hists_eval_ansiedad():
 
     return make_response(jsonify(data), 200)
 
-@hist_eval_ansiedad_routes.route('/hist_eval_ansiedad/<int:id>', methods=['GET'])
-def get_hist_eval_ansiedad(id):
-    hist_eval_ansiedad = Hist_Ev_Ansiedad.query.get(id)
+@hist_eval_ansiedad_routes.route('/get_hist_eval_ansiedad/<int:id_eval_ansiedad>/<int:id_exp_psicologico>', methods=['GET'])
+def get_hist_eval_ansiedad(id_eval_ansiedad, id_exp_psicologico):
+    hist_eval_ansiedad = Hist_Ev_Ansiedad.query.get((id_eval_ansiedad, id_exp_psicologico))
 
     if not hist_eval_ansiedad:
         data = {
@@ -60,9 +60,9 @@ def get_hist_eval_ansiedad(id):
 
     return make_response(jsonify(data), 200)
 
-@hist_eval_ansiedad_routes.route('/hist_eval_ansiedad/<int:id>', methods=['PUT'])
-def update_hist_eval_ansiedad(id):
-    hist_eval_ansiedad = Hist_Ev_Ansiedad.query.get(id)
+@hist_eval_ansiedad_routes.route('/update_hist_eval_ansiedad/<int:id_eval_ansiedad>/<int:id_exp_psicologico>', methods=['PUT'])
+def update_hist_eval_ansiedad(id_eval_ansiedad, id_exp_psicologico):
+    hist_eval_ansiedad = Hist_Ev_Ansiedad.query.get((id_eval_ansiedad, id_exp_psicologico))
 
     if not hist_eval_ansiedad:
         data = {
@@ -91,9 +91,9 @@ def update_hist_eval_ansiedad(id):
 
     return make_response(jsonify(data), 200)
 
-@hist_eval_ansiedad_routes.route('/hist_eval_ansiedad/<int:id>', methods=['DELETE'])
-def delete_hist_eval_ansiedad(id):
-    hist_eval_ansiedad = Hist_Ev_Ansiedad.query.get(id)
+@hist_eval_ansiedad_routes.route('/delete_hist_eval_ansiedad/<int:id_eval_ansiedad>/<int:id_exp_psicologico>', methods=['DELETE'])
+def delete_hist_eval_ansiedad(id_eval_ansiedad, id_exp_psicologico):
+    hist_eval_ansiedad = Hist_Ev_Ansiedad.query.get((id_eval_ansiedad, id_exp_psicologico))
 
     if not hist_eval_ansiedad:
         data = {

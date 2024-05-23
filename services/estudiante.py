@@ -7,7 +7,7 @@ from schemas.estudiante_schema import estudiante_schema, estudiantes_schema
 
 estudiante_routes = Blueprint("estudiante_routes", __name__)
 
-@estudiante_routes.route('/estudiante', methods=['POST'])
+@estudiante_routes.route('/create_estudiante', methods=['POST'])
 def create_estudiante():
     doc_identificacion = request.json.get('doc_identificacion')
     nombres = request.json.get('nombres')
@@ -35,7 +35,7 @@ def create_estudiante():
 
     return make_response(jsonify(data), 201)
 
-@estudiante_routes.route('/estudiante', methods=['GET'])
+@estudiante_routes.route('/get_estudiantes', methods=['GET'])
 def get_estudiantes():
     all_estudiantes = Estudiante.query.all()
     result = estudiantes_schema.dump(all_estudiantes)
@@ -48,7 +48,7 @@ def get_estudiantes():
 
     return make_response(jsonify(data), 200)
 
-@estudiante_routes.route('/estudiante/<int:id>', methods=['GET'])
+@estudiante_routes.route('/get_estudiante/<int:id>', methods=['GET'])
 def get_estudiante(id):
     estudiante = Estudiante.query.get(id)
 
@@ -69,7 +69,7 @@ def get_estudiante(id):
 
     return make_response(jsonify(data), 200)
 
-@estudiante_routes.route('/estudiante/<int:id>', methods=['PUT'])
+@estudiante_routes.route('/update_estudiante/<int:id>', methods=['PUT'])
 def update_estudiante(id):
     estudiante = Estudiante.query.get(id)
 
@@ -114,7 +114,7 @@ def update_estudiante(id):
 
     return make_response(jsonify(data), 200)
 
-@estudiante_routes.route('/estudiante/<int:id>', methods=['DELETE'])
+@estudiante_routes.route('/delete_estudiante/<int:id>', methods=['DELETE'])
 def delete_estudiante(id):
     estudiante = Estudiante.query.get(id)
 

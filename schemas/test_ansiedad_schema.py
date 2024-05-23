@@ -12,7 +12,8 @@ class Test_Ansiedad_Schema(ma.Schema):
                'detalle_escalas',
                'version',
                'idiomas_disponibles',
-               'fecha_actualizacion')
+               'fecha_actualizacion'
+               )
 
 test_ansiedad_schema = Test_Ansiedad_Schema()
 tests_ansiedad_schema = Test_Ansiedad_Schema(many=True)
