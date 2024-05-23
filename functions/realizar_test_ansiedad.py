@@ -8,7 +8,7 @@ from datetime import datetime
 
 cus = Blueprint('cus', __name__)
 
-@cus.route('/realizar_test_ansiedad', methods=['POST'])
+@cus.route('/realizar_test_ansiedad/<int:id_estudiante>/<int:id_test_ansiedad>', methods=['POST'])
 def realizar_test_ansiedad(id_estudiante, id_test_ansiedad):
     # Buscar al estudiante
     estudiante = Estudiante.query.get(id_estudiante)
