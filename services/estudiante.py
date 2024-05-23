@@ -18,9 +18,9 @@ def create_estudiante():
     direccion = request.json.get('direccion')
     numero_telefono = request.json.get('numero_telefono')
     carrera_universitaria = request.json.get('carrera_universitaria')
-    año_ingreso = request.json.get('año_ingreso')
+    anio_ingreso = request.json.get('anio_ingreso')
 
-    new_estudiante = Estudiante(doc_identificacion=doc_identificacion, nombres=nombres, apellidos=apellidos, fecha_nacimiento=fecha_nacimiento, correo_electronico=correo_electronico, genero=genero, direccion=direccion, numero_telefono=numero_telefono, carrera_universitaria=carrera_universitaria, año_ingreso=año_ingreso)
+    new_estudiante = Estudiante(doc_identificacion=doc_identificacion, nombres=nombres, apellidos=apellidos, fecha_nacimiento=fecha_nacimiento, correo_electronico=correo_electronico, genero=genero, direccion=direccion, numero_telefono=numero_telefono, carrera_universitaria=carrera_universitaria, anio_ingreso=anio_ingreso)
 
     db.session.add(new_estudiante)
     db.session.commit()
