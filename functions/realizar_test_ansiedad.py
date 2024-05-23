@@ -6,6 +6,7 @@ from models.hist_ev_ansiedad import Hist_Ev_Ansiedad
 from models.expp_estudiante import ExpP_Estudiante
 from schemas.eval_ansiedad_schema import Eval_Ansiedad_Schema
 from schemas.hist_ev_ansiedad_schema import Hist_Ev_Ansiedad_Schema
+from schemas.expp_estudiante_schema import ExpP_Estudiante_Schema
 
 from datetime import datetime
 from utils.db import db
@@ -58,6 +59,24 @@ def realizar_test_ansiedad(id_estudiante, id_test_ansiedad):
     # Buscar el expediente psicológico del estudiante
     exp_psicologico = ExpP_Estudiante.query.filter_by(id_estudiante=id_estudiante).first()
 
+    if not exp_psicologico:
+        id_estudiante = estudiante.id_estudiante
+        anio = datetime.now().year
+        estado_salud_mental = 'Saludable'
+        fecha_actualizacion = datetime.now()
+
+        new_exp_psicologico = ExpP_Estudiante(
+            id_estudiante=id_estudiante,
+            anio=anio,
+            estado_salud_mental=estado_salud_mental,
+            fecha_actualizacion=fecha_actualizacion
+        )
+
+        db.session.add(new_exp_psicologico)
+        db.session.commit()
+
+        result3 = ExpP_Estudiante_Schema.dump(new_exp_psicologico)
+
     new_hist_ev_ansiedad = Hist_Ev_Ansiedad(
         id_eval_ansiedad=new_eval_ansiedad.id_eval_ansiedad,
         id_exp_psicologico=exp_psicologico.id_exp_psicologico,
@@ -73,7 +92,8 @@ def realizar_test_ansiedad(id_estudiante, id_test_ansiedad):
         'message': 'Test de ansiedad realizado exitosamente',
         'status': 201,
         'respuestas': result1,
-        'historial_evaluaciones': result2
+        'historial_evaluaciones': result2,
+        'expediente_psicologico': result3
     }
 
     return make_response(jsonify(data), 201)
