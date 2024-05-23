@@ -4,7 +4,11 @@ from models.test_ansiedad import Test_Ansiedad
 from models.eval_ansiedad import Eval_Ansiedad
 from models.hist_ev_ansiedad import Hist_Ev_Ansiedad
 from models.expp_estudiante import ExpP_Estudiante
+from schemas.eval_ansiedad_schema import Eval_Ansiedad_Schema
+from schemas.hist_ev_ansiedad_schema import Hist_Ev_Ansiedad_Schema
+
 from datetime import datetime
+from utils.db import db
 
 cus = Blueprint('cus', __name__)
 
@@ -12,9 +16,9 @@ cus = Blueprint('cus', __name__)
 def realizar_test_ansiedad(id_estudiante, id_test_ansiedad):
     # Buscar al estudiante
     estudiante = Estudiante.query.get(id_estudiante)
-    if not test_ansiedad:
+    if not estudiante:
         data = {
-            'message': 'Test de ansiedad no encontrado',
+            'message': 'Estudiante no encontrado',
             'status': 404
         }
         return make_response(jsonify(data), 404)
@@ -46,6 +50,11 @@ def realizar_test_ansiedad(id_estudiante, id_test_ansiedad):
         fecha_evaluacion=datetime.now()
     )
 
+    db.session.add(new_eval_ansiedad)
+    db.session.commit()
+
+    result1 = Eval_Ansiedad_Schema.dump(new_eval_ansiedad)
+
     # Buscar el expediente psicológico del estudiante
     exp_psicologico = ExpP_Estudiante.query.filter_by(id_estudiante=id_estudiante).first()
 
@@ -55,4 +64,16 @@ def realizar_test_ansiedad(id_estudiante, id_test_ansiedad):
         fecha_evaluacion=datetime.now()
     )
 
-    return make_response(jsonify({'message': 'Test de ansiedad realizado exitosamente', 'status': 200}), 200)
+    db.session.add(new_hist_ev_ansiedad)
+    db.session.commit()
+
+    result2 = Hist_Ev_Ansiedad_Schema.dump(new_hist_ev_ansiedad)
+
+    data = {
+        'message': 'Test de ansiedad realizado exitosamente',
+        'status': 201,
+        'respuestas': result1,
+        'historial_evaluaciones': result2
+    }
+
+    return make_response(jsonify(data), 201)
