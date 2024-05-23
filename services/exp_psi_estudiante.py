@@ -79,12 +79,12 @@ def update_exp_psi_estudiante(id):
         return make_response(jsonify(data), 404)
 
     id_estudiante = request.json.get('id_estudiante')
-    año = request.json.get('año')
+    anio = request.json.get('anio')
     estado_salud_mental = request.json.get('estado_salud_mental')
     fecha_actualizacion = request.json.get('fecha_actualizacion')
 
     exp_psi_estudiante.id_estudiante = id_estudiante
-    exp_psi_estudiante.anio = año
+    exp_psi_estudiante.anio = anio
     exp_psi_estudiante.estado_salud_mental = estado_salud_mental
     exp_psi_estudiante.fecha_actualizacion = fecha_actualizacion
 
