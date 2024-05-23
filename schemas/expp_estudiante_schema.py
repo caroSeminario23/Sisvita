@@ -10,7 +10,7 @@ class ExpP_Estudiante_Schema(ma.Schema):
                'id_estudiante',
                'anio',
                'estado_salud_mental',
-               'fecha_actualización',
+               'fecha_actualizacion',
                'estudiante'
                )
         

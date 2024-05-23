@@ -15,8 +15,7 @@ class ExpP_Estudiante(db.Model):
     estudiante = db.relationship('Estudiante', backref='expp_estudiante1')
     historial_evaluaciones = db.relationship('Hist_Ev_Ansiedad', backref='expp_estudiante2', cascade='all, delete-orphan')
 
-    def __init__(self, id_exp_psicologico, id_estudiante, anio, estado_salud_mental, fecha_actualizacion=datetime.now()):
-        self.id_exp_psicologico = id_exp_psicologico
+    def __init__(self, id_estudiante, anio, estado_salud_mental, fecha_actualizacion=datetime.now()):
         self.id_estudiante = id_estudiante
         self.anio = anio
         self.estado_salud_mental = estado_salud_mental
