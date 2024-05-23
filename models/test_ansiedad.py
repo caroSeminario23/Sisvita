@@ -4,7 +4,7 @@ from datetime import datetime
 class Test_Ansiedad(db.Model):
     __tablename__ = 'test_ansiedad'
     
-    id_test_ansiedad = db.Column(db.Integer, primary_key=True)
+    id_test_ansiedad = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nombre = db.Column(db.String(50), nullable=False)
     descripcion = db.Column(db.String(300), nullable=False)
     n_preguntas = db.Column(db.Integer, nullable=False)

@@ -6,7 +6,7 @@ from utils.db import db
 class ExpP_Estudiante(db.Model):
     __tablename__ = 'expp_estudiante'
 
-    id_exp_psicologico = db.Column(db.Integer, primary_key=True)
+    id_exp_psicologico = db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_estudiante = db.Column(db.Integer, db.ForeignKey('estudiante.id_estudiante'), nullable=False)
     anio = db.Column(db.Integer, nullable=False)
     estado_salud_mental = db.Column(db.String(30), nullable=False)
