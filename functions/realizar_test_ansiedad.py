@@ -60,7 +60,7 @@ def realizar_test_ansiedad(id_estudiante, id_test_ansiedad):
     # Buscar el expediente psicológico del estudiante
     exp_psicologico = ExpP_Estudiante.query.filter_by(id_estudiante=id_estudiante).first()
 
-    if not exp_psicologico:
+    '''if not exp_psicologico:
         id_estudiante = estudiante.id_estudiante
         anio = datetime.now().year
         estado_salud_mental = 'Saludable'
@@ -81,13 +81,15 @@ def realizar_test_ansiedad(id_estudiante, id_test_ansiedad):
     else:
         result3 = None
 
+    new_hist_ev_ansiedad = None'''
+
     if exp_psicologico is not None:
         new_hist_ev_ansiedad = Hist_Ev_Ansiedad(
             id_eval_ansiedad=new_eval_ansiedad.id_eval_ansiedad,
             id_exp_psicologico=exp_psicologico.id_exp_psicologico,
             fecha_actualizacion=datetime.now()
         )
-        result3 = "NO SE CREO EXPEDIENTE PSICOLOGICO"
+        #result3 = "NO SE CREO EXPEDIENTE PSICOLOGICO"
     else:
         id_estudiante = estudiante.id_estudiante
         anio = datetime.now().year
@@ -104,8 +106,16 @@ def realizar_test_ansiedad(id_estudiante, id_test_ansiedad):
         db.session.add(new_exp_psicologico)
         db.session.commit()
 
-        expp_estudiante_schema = ExpP_Estudiante_Schema()
-        result3 = expp_estudiante_schema.dump(new_exp_psicologico)
+        '''expp_estudiante_schema = ExpP_Estudiante_Schema()
+        result3 = expp_estudiante_schema.dump(new_exp_psicologico)'''
+        exp_psicologico = new_exp_psicologico
+        #result3 = "SE CREO EXPEDIENTE PSICOLOGICO"
+
+        new_hist_ev_ansiedad = Hist_Ev_Ansiedad(
+            id_eval_ansiedad=new_eval_ansiedad.id_eval_ansiedad,
+            id_exp_psicologico=exp_psicologico.id_exp_psicologico,
+            fecha_actualizacion=datetime.now()
+        )
 
     db.session.add(new_hist_ev_ansiedad)
     db.session.commit()
@@ -117,8 +127,8 @@ def realizar_test_ansiedad(id_estudiante, id_test_ansiedad):
         'message': 'Test de ansiedad realizado exitosamente',
         'status': 201,
         'respuestas': result1,
-        'historial_evaluaciones': result2,
-        'expediente_psicologico': result3
+        'historial_evaluaciones': result2
+        #'expediente_psicologico': result3
     }
 
     return make_response(jsonify(data), 201)
