@@ -54,7 +54,8 @@ def realizar_test_ansiedad(id_estudiante, id_test_ansiedad):
     db.session.add(new_eval_ansiedad)
     db.session.commit()
 
-    result1 = Eval_Ansiedad_Schema.dump(new_eval_ansiedad)
+    eval_ansiedad_schema = Eval_Ansiedad_Schema()
+    result1 = eval_ansiedad_schema.dump(new_eval_ansiedad)
 
     # Buscar el expediente psicológico del estudiante
     exp_psicologico = ExpP_Estudiante.query.filter_by(id_estudiante=id_estudiante).first()
@@ -75,18 +76,42 @@ def realizar_test_ansiedad(id_estudiante, id_test_ansiedad):
         db.session.add(new_exp_psicologico)
         db.session.commit()
 
-        result3 = ExpP_Estudiante_Schema.dump(new_exp_psicologico)
+        expp_estudiante_schema = ExpP_Estudiante_Schema()
+        result3 = expp_estudiante_schema.dump(exp_psicologico)
+    else:
+        result3 = None
 
-    new_hist_ev_ansiedad = Hist_Ev_Ansiedad(
-        id_eval_ansiedad=new_eval_ansiedad.id_eval_ansiedad,
-        id_exp_psicologico=exp_psicologico.id_exp_psicologico,
-        fecha_evaluacion=datetime.now()
-    )
+    if exp_psicologico is not None:
+        new_hist_ev_ansiedad = Hist_Ev_Ansiedad(
+            id_eval_ansiedad=new_eval_ansiedad.id_eval_ansiedad,
+            id_exp_psicologico=exp_psicologico.id_exp_psicologico,
+            fecha_actualizacion=datetime.now()
+        )
+        result3 = "NO SE CREO EXPEDIENTE PSICOLOGICO"
+    else:
+        id_estudiante = estudiante.id_estudiante
+        anio = datetime.now().year
+        estado_salud_mental = 'Saludable'
+        fecha_actualizacion = datetime.now()
+
+        new_exp_psicologico = ExpP_Estudiante(
+            id_estudiante=id_estudiante,
+            anio=anio,
+            estado_salud_mental=estado_salud_mental,
+            fecha_actualizacion=fecha_actualizacion
+        )
+
+        db.session.add(new_exp_psicologico)
+        db.session.commit()
+
+        expp_estudiante_schema = ExpP_Estudiante_Schema()
+        result3 = expp_estudiante_schema.dump(new_exp_psicologico)
 
     db.session.add(new_hist_ev_ansiedad)
     db.session.commit()
 
-    result2 = Hist_Ev_Ansiedad_Schema.dump(new_hist_ev_ansiedad)
+    hist_ev_ansiedad_schema = Hist_Ev_Ansiedad_Schema()
+    result2 = hist_ev_ansiedad_schema.dump(new_hist_ev_ansiedad)
 
     data = {
         'message': 'Test de ansiedad realizado exitosamente',

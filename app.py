@@ -23,7 +23,8 @@ app.register_blueprint(exp_psi_estudiante_routes)
 app.register_blueprint(test_ansiedad_routes)
 app.register_blueprint(eval_ansiedad_routes)
 app.register_blueprint(hist_eval_ansiedad_routes)
-app.register_blueprint(cus)
+app.register_blueprint(cus, url_prefix='/cus')
+
 
 
 with app.app_context():
