@@ -6,6 +6,7 @@ from services.exp_psi_estudiante import exp_psi_estudiante_routes
 from services.test_ansiedad import test_ansiedad_routes
 from services.eval_ansiedad import eval_ansiedad_routes
 from services.hist_eval_ansiedad import hist_eval_ansiedad_routes
+from functions.realizar_test_ansiedad import cus
 
 from flask_sqlalchemy import SQLAlchemy
 from config import DATABASE_CONNECTION
@@ -22,6 +23,7 @@ app.register_blueprint(exp_psi_estudiante_routes)
 app.register_blueprint(test_ansiedad_routes)
 app.register_blueprint(eval_ansiedad_routes)
 app.register_blueprint(hist_eval_ansiedad_routes)
+app.register_blueprint(cus)
 
 
 with app.app_context():
