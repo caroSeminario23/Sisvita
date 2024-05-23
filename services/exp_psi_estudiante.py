@@ -9,13 +9,13 @@ exp_psi_estudiante_routes = Blueprint("exp_psi_estudiante_routes", __name__)
 @exp_psi_estudiante_routes.route('/create_exp_psi_estudiante', methods=['POST'])
 def create_exp_psi_estudiante():
     id_estudiante = request.json.get('id_estudiante')
-    año = request.json.get('año')
+    anio = request.json.get('anio')
     estado_salud_mental = request.json.get('estado_salud_mental')
     fecha_actualizacion = request.json.get('fecha_actualizacion')
 
     new_exp_psi_estudiante = ExpP_Estudiante(
         id_estudiante=id_estudiante,
-        anio=año,
+        anio=anio,
         estado_salud_mental=estado_salud_mental,
         fecha_actualizacion=fecha_actualizacion
     )
