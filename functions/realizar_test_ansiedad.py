@@ -2,13 +2,16 @@ from flask import Blueprint
 
 cus = Blueprint('cus', __name__)
 
-'''@cus.route('/realizar_test_ansiedad', methods=['POST'])
-def realizar_test_ansiedad(estudiante, respuestas):
-    # Realizar el test de ansiedad y obtener los resultados
-    resultados = realizar_test(respuestas)
+@cus.route('/realizar_test_ansiedad', methods=['POST'])
+def realizar_test_ansiedad():
+    # Buscar al estudiante
 
-    # Registrar los resultados en el expediente del estudiante
-    estudiante.expediente.registrar_evaluacion("Test de Ansiedad", resultados)
+    # Buscar el test de ansiedad que se va a realizar
 
-    # Devolver los resultados
-    return resultados'''
+    # Obtener las preguntas del test de ansiedad
+
+    # Registrar las respuestas del estudiante
+
+    # Guardar las respuestas en la base de datos
+
+    pass
