@@ -9,7 +9,6 @@ class Carrera(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     descripcion = db.Column(db.String(200), nullable=False)
 
-    
     # constructor de la clase
     def __init__(self, nombre, descripcion):
         self.nombre = nombre

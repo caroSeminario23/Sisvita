@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, make_response, request
 from models.estudiante import Estudiante
-from models.test_ansiedad import Test_Ansiedad
-from models.eval_ansiedad import Eval_Ansiedad
+from models.test import Test_Ansiedad
+from models.evaluacion import Eval_Ansiedad
 from models.hist_ev_ansiedad import Hist_Ev_Ansiedad
 from models.expp_estudiante import ExpP_Estudiante
 from schemas.eval_ansiedad_schema import Eval_Ansiedad_Schema

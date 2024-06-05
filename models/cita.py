@@ -12,10 +12,10 @@ class Cita(db.Model):
     id_modalidad = db.Column(db.Integer, db.ForeignKey('modalidad.id_modalidad'), nullable=False)
     fec_programada = db.Column(db.DateTime, nullable=False)
 
-    estudiante = relationship('Estudiante', back_populates='cita1')
-    especialista = relationship('Especialista', back_populates='cita2')
-    estado = relationship('Estado', back_populates='cita3')
-    modalidad = relationship('Modalidad', back_populates='cita4')
+    estudiante = relationship('Estudiante', backref='cita1')
+    especialista = relationship('Especialista', backref='cita2')
+    estado = relationship('Estado', backref='cita3')
+    modalidad = relationship('Modalidad', backref='cita4')
     
     # constructor de la clase
     def __init__(self, id_estudiante, id_especialista, motivo, id_estado, id_modalidad, fec_programada):

@@ -1,5 +1,5 @@
 from utils.ma import ma
-from models.eval_ansiedad import Eval_Ansiedad
+from models.evaluacion import Eval_Ansiedad
 from marshmallow import fields
 from schemas.test_ansiedad_schema import Test_Ansiedad_Schema
 

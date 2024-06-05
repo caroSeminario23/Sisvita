@@ -2,7 +2,7 @@
 
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
-from models.eval_ansiedad import Eval_Ansiedad
+from models.evaluacion import Eval_Ansiedad
 from schemas.eval_ansiedad_schema import eval_ansiedad_schema, evals_ansiedad_schema
 
 eval_ansiedad_routes = Blueprint("eval_ansiedad_routes", __name__)

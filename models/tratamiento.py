@@ -7,7 +7,7 @@ class Tratamiento(db.Model):
 
     id_resultado1 = db.Column(db.Integer, db.ForeignKey('resultado.id_evaluacion'), primary_key=True, nullable=False)
     id_resultado2 = db.Column(db.Integer, db.ForeignKey('resultado.id_especialista'), primary_key=True, nullable=False)
-    id_especialista = db.Column(db.Integer, db.ForeignKey('especialista.id_especialista'), nullable=False)
+    id_especialista = db.Column(db.Integer, db.ForeignKey('especialista.id_especialista'), primary_key=True, nullable=False)
     objetivo = db.Column(db.String(50), nullable=False)
     indicaciones = db.Column(db.String(500), nullable=False)
     fec_asignacion = db.Column(db.DateTime, nullable=False)
