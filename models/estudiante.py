@@ -16,6 +16,7 @@ class Estudiante(db.Model):
     num_telefono = db.Column(db.Numeric(9), nullable=False)
     anio_ingreso = db.Column(db.Integer, nullable=False)
     id_carrera = db.Column(db.Integer, db.ForeignKey('carrera.id_carrera'), nullable=False)
+    contrasenia = db.Column(db.String(255), nullable=False)
     
     genero = relationship('Genero', backref='estudiante1')
     carrera = relationship('Carrera', backref='estudiante2')

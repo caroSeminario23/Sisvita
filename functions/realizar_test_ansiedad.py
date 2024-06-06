@@ -4,7 +4,7 @@ from models.test import Test_Ansiedad
 from models.evaluacion import Eval_Ansiedad
 from models.hist_ev_ansiedad import Hist_Ev_Ansiedad
 from models.expp_estudiante import ExpP_Estudiante
-from schemas.eval_ansiedad_schema import Eval_Ansiedad_Schema
+from schemas.evaluacion_schema import Eval_Ansiedad_Schema
 from schemas.hist_ev_ansiedad_schema import Hist_Ev_Ansiedad_Schema
 from schemas.expp_estudiante_schema import ExpP_Estudiante_Schema
 

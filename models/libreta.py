@@ -9,7 +9,7 @@ class Libreta(db.Model):
     id_estudiante = db.Column(db.Integer, db.ForeignKey('estudiante.id_estudiante'), nullable=False)
     per_academico = db.Column(db.String(20), nullable=False)
     nota_promedio = db.Column(db.Float, nullable=False)
-    observaciones = db.Column(db.String(250), nullable=True)
+    observaciones = db.Column(db.String(250), nullable=False)
 
     estudiante = relationship('Estudiante', backref='libreta1')
     

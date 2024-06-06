@@ -15,6 +15,7 @@ class Especialista(db.Model):
     email = db.Column(db.String(150), nullable=False)
     n_licencia = db.Column(db.String(11), nullable=False)
     anio_graduacion = db.Column(db.Integer, nullable=False)
+    contrasenia = db.Column(db.String(255), nullable=False)
 
     especialidad = relationship('Especialidad', backref='especialista1')
     genero = relationship('Genero', backref='especialista2')

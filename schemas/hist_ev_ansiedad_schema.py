@@ -2,7 +2,7 @@ from utils.ma import ma
 from models.hist_ev_ansiedad import Hist_Ev_Ansiedad
 from marshmallow import fields
 from schemas.expp_estudiante_schema import ExpP_Estudiante_Schema
-from schemas.eval_ansiedad_schema import Eval_Ansiedad_Schema
+from schemas.evaluacion_schema import Eval_Ansiedad_Schema
 
 
 class Hist_Ev_Ansiedad_Schema(ma.Schema):
