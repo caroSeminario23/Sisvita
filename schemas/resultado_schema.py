@@ -17,5 +17,5 @@ class Resultado_Schema(ma.Schema):
     especialista = fields.Nested(Especialista_Schema)
 
 
-resultaco_schema = Resultado_Schema()
+resultado_schema = Resultado_Schema()
 resultados_schema = Resultado_Schema(many=True)
