@@ -11,4 +11,4 @@ class Especialidad_Schema(ma.Schema):
                   )
         
 especialidad_schema = Especialidad_Schema()
-especialidad_schema = Especialidad_Schema(many=True)
+especialidades_schema = Especialidad_Schema(many=True)
