@@ -1,4 +1,5 @@
 # insert / update / delete / select / select_all
+import bcrypt
 
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
@@ -20,6 +21,8 @@ def create_estudiante():
     anio_ingreso = request.json.get('anio_ingreso')
     id_carrera = request.json.get('id_carrera')
     contrasenia = request.json.get('contrasenia')
+
+    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
 
     new_estudiante = Estudiante(doc_identidad=doc_identidad, nombres=nombres, apellidos=apellidos, fec_nacimiento=fec_nacimiento, id_genero=id_genero, email=email, direccion=direccion, num_telefono=num_telefono, anio_ingreso=anio_ingreso, id_carrera=id_carrera, contrasenia=contrasenia)
 
@@ -91,6 +94,9 @@ def update_estudiante(id):
     numero_telefono = request.json.get('numero_telefono')
     carrera_universitaria = request.json.get('carrera_universitaria')
     año_ingreso = request.json.get('año_ingreso')
+    contrasenia = request.json.get('contrasenia')
+
+    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
 
     estudiante.doc_identificacion = doc_identificacion
     estudiante.nombres = nombres
@@ -102,6 +108,7 @@ def update_estudiante(id):
     estudiante.numero_telefono = numero_telefono
     estudiante.carrera_universitaria = carrera_universitaria
     estudiante.año_ingreso = año_ingreso
+    estudiante.contrasenia = contrasenia
 
     db.session.commit()
 

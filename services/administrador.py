@@ -1,5 +1,6 @@
 # insert / update / delete / select / select_all
 
+import bcrypt
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
 from models.administrador import Administrador
@@ -14,6 +15,8 @@ def create_administrador():
     email = request.json.get('email')
     num_telefono = request.json.get('num_telefono')
     contrasenia = request.json.get('contrasenia')
+
+    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
 
     new_administrador = Administrador(nombres=nombres, apellidos=apellidos, email=email, num_telefono=num_telefono, contrasenia=contrasenia)
 
@@ -80,6 +83,8 @@ def update_administrador(id):
     email = request.json.get('email')
     num_telefono = request.json.get('num_telefono')
     contrasenia = request.json.get('contrasenia')
+
+    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
 
     administrador.nombres = nombres
     administrador.apellidos = apellidos

@@ -40,9 +40,9 @@ def get_resultados():
 
     return make_response(jsonify(data), 200)
 
-@resultado_routes.route('/get_resultado/<int:id>', methods=['GET'])
-def get_resultado(id):
-    resultado = Resultado.query.get(id)
+@resultado_routes.route('/get_resultado/<int:id1>/<int:id2>', methods=['GET'])
+def get_resultado(id1, id2):
+    resultado = Resultado.query.get(id1, id2)
 
     if not resultado:
         data = {
@@ -61,9 +61,9 @@ def get_resultado(id):
 
     return make_response(jsonify(data), 200)
 
-@resultado_routes.route('/update_resultado/<int:id>', methods=['PUT'])
-def update_resultado(id):
-    resultado = Resultado.query.get(id)
+@resultado_routes.route('/update_resultado/<int:id1>/<int:id2>', methods=['PUT'])
+def update_resultado(id1, id2):
+    resultado = Resultado.query.get(id1, id2)
 
     if not resultado:
         data = {
@@ -89,9 +89,9 @@ def update_resultado(id):
 
     return make_response(jsonify(data), 200)
 
-@resultado_routes.route('/delete_resultado/<int:id>', methods=['DELETE'])
-def delete_resultado(id):
-    resultado = Resultado.query.get(id)
+@resultado_routes.route('/delete_resultado/<int:id1>/<int:id2>', methods=['DELETE'])
+def delete_resultado(id1, id2):
+    resultado = Resultado.query.get(id1, id2)
 
     if not resultado:
         data = {

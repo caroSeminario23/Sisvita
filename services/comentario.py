@@ -44,9 +44,9 @@ def get_comentarios():
 
     return make_response(jsonify(data), 200)
 
-@comentario_routes.route('/get_comentario/<int:id>', methods=['GET'])
-def get_comentario(id):
-    comentario = Comentario.query.get(id)
+@comentario_routes.route('/get_comentario/<int:id1>/<int:id2>', methods=['GET'])
+def get_comentario(id1, id2):
+    comentario = Comentario.query.get(id1, id2)
 
     if not comentario:
         data = {
@@ -65,9 +65,9 @@ def get_comentario(id):
 
     return make_response(jsonify(data), 200)
 
-@comentario_routes.route('/update_comentario/<int:id>', methods=['PUT'])
-def update_comentario(id):
-    comentario = Comentario.query.get(id)
+@comentario_routes.route('/update_comentario/<int:id1>/<int:id2>', methods=['PUT'])
+def update_comentario(id1, id2):
+    comentario = Comentario.query.get(id1, id2)
 
     if not comentario:
         data = {
@@ -102,9 +102,9 @@ def update_comentario(id):
 
     return make_response(jsonify(data), 200)
 
-@comentario_routes.route('/delete_comentario/<int:id>', methods=['DELETE'])
-def delete_comentario(id):
-    comentario = Comentario.query.get(id)
+@comentario_routes.route('/delete_comentario/<int:id1>/<int:id2>', methods=['DELETE'])
+def delete_comentario(id1, id2):
+    comentario = Comentario.query.get(id1, id2)
 
     if not comentario:
         data = {

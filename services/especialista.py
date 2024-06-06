@@ -1,3 +1,5 @@
+import bcrypt
+
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
 from models.especialista import Especialista
@@ -17,6 +19,8 @@ def create_especialista():
     n_licencia = request.json.get('n_licencia')
     anio_ingreso = request.json.get('anio_ingreso')
     contrasenia = request.json.get('contrasenia')
+
+    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
 
     new_especialista = Especialista(id_especialidad=id_especialidad, doc_identidad=doc_identidad, nombres=nombres, apellidos=apellidos, fec_nacimiento=fec_nacimiento, id_genero=id_genero, email=email, n_licencia=n_licencia, anio_ingreso=anio_ingreso, contrasenia=contrasenia)
 
@@ -87,7 +91,9 @@ def update_especialista(id):
     especialista.email = request.json.get('email')
     especialista.n_licencia = request.json.get('n_licencia')
     especialista.anio_ingreso = request.json.get('anio_ingreso')
-    especialista.contrasenia = request.json.get('contrasenia')
+    contrasenia = request.json.get('contrasenia')
+    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
+    especialista.contrasenia = contrasenia
 
     db.session.commit()
 
