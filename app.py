@@ -6,6 +6,7 @@ from services.exp_psi_estudiante import exp_psi_estudiante_routes
 from services.test_ansiedad import test_ansiedad_routes
 from services.eval_ansiedad import eval_ansiedad_routes
 from services.hist_eval_ansiedad import hist_eval_ansiedad_routes'''
+from services.administrador import administrador_routes
 from services.genero import genero_routes
 #from functions.realizar_test_ansiedad import cus
 
@@ -25,8 +26,8 @@ app.register_blueprint(test_ansiedad_routes)
 app.register_blueprint(eval_ansiedad_routes)
 app.register_blueprint(hist_eval_ansiedad_routes)
 app.register_blueprint(cus, url_prefix='/cus')'''
+app.register_blueprint(administrador_routes, url_prefix='/administrador_routes')
 app.register_blueprint(genero_routes, url_prefix='/genero_routes')
-
 
 
 with app.app_context():
