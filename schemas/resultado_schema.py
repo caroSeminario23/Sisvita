@@ -1,23 +1,21 @@
 from utils.ma import ma
-from models.recurso import Recurso
+from models.resultado import Resultado
 from marshmallow import fields
 from schemas.especialista_schema import Especialista_Schema
 
 class Resultado_Schema(ma.Schema):
     class Meta:
-        model = Recurso
-        fields = ('id_recurso',
+        model = Resultado
+        fields = ('id_resultado',
                   'id_especialista',
-                  'ttulo',
-                  'descripcion',
-                  'palabras_clave',
-                  'fec_publicacion',
-                  'fec_edicion',
+                  'puntaje',
+                  'interpretacion',
+                  'fec_resultado',
                   'especialista'
                  )
     
     especialista = fields.Nested(Especialista_Schema)
 
 
-recurso_schema = Recurso_Schema()
-recursos_schema = Recurso_Schema(many=True)
+resultaco_schema = Resultado_Schema()
+resultados_schema = Resultado_Schema(many=True)

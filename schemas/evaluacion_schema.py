@@ -1,7 +1,7 @@
 from utils.ma import ma
 from models.evaluacion import Evaluacion
 from marshmallow import fields
-from schemas.test_ansiedad_schema import Test_Ansiedad_Schema
+from schemas.test_schema import Test_Ansiedad_Schema
 from schemas.estudiante_schema import Estudiante_Schema
 
 class Evaluacion_Schema(ma.Schema):

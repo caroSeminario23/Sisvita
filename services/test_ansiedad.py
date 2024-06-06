@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
 from models.test import Test_Ansiedad
-from schemas.test_ansiedad_schema import test_ansiedad_schema, tests_ansiedad_schema
+from schemas.test_schema import test_ansiedad_schema, tests_ansiedad_schema
 
 test_ansiedad_routes = Blueprint("test_ansiedad_routes", __name__)
 
