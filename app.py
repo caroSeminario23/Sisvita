@@ -57,12 +57,6 @@ app.register_blueprint(post_routes, url_prefix='/post_routes')
 app.register_blueprint(comentario_routes, url_prefix='/comentario_routes')
 
 
-
-
-
-
-
-
 with app.app_context():
     db.create_all()
 
