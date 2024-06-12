@@ -13,9 +13,9 @@ class Post(db.Model):
     anonimo = db.Column(db.Boolean, nullable=False)
     n_comentarios = db.Column(db.Integer, nullable=False)
 
-    estudiante = relationship('Estudiante', backref='post')
+    estudiante = relationship('Estudiante', back_populates='posts')
 
-    comentarios = relationship('Comentario', backref='post1', cascade='all, delete-orphan')
+    comentarios = relationship('Comentario', back_populates='post', cascade='all, delete-orphan')
     
     # constructor de la clase
     def __init__(self, id_estudiante, descripcion, fec_publicacion, fec_edicion, anonimo, n_comentarios):

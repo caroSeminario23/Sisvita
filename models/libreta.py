@@ -11,7 +11,7 @@ class Libreta(db.Model):
     nota_promedio = db.Column(db.Float, nullable=False)
     observaciones = db.Column(db.String(250), nullable=False)
 
-    estudiante = relationship('Estudiante', backref='libreta1')
+    estudiante = relationship('Estudiante', back_populates='libretas')
     
     # constructor de la clase
     def __init__(self, id_estudiante, per_academico, nota_promedio, observaciones):

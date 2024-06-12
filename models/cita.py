@@ -12,8 +12,8 @@ class Cita(db.Model):
     id_modalidad = db.Column(db.Integer, db.ForeignKey('modalidad.id_modalidad'), nullable=False)
     fec_programada = db.Column(db.DateTime, nullable=False)
 
-    estudiante = relationship('Estudiante', backref='cita1')
-    especialista = relationship('Especialista', backref='cita2')
+    estudiante = relationship('Estudiante', back_populates='citas')
+    especialista = relationship('Especialista', back_populates='citas')
     estado = relationship('Estado', backref='cita3')
     modalidad = relationship('Modalidad', backref='cita4')
     

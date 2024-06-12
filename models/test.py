@@ -11,9 +11,9 @@ class Test(db.Model):
     version = db.Column(db.String(20), nullable=False)
     idioma = db.Column(db.String(20), nullable=False)
 
-    evaluaciones = db.relationship('Evaluacion', backref='test1', cascade='all, delete-orphan')
-    preguntas = db.relationship('Pregunta', backref='test2', cascade='all, delete-orphan')
-    escalas = db.relationship('Escala', backref='test3', cascade='all, delete-orphan')
+    evaluaciones = db.relationship('Evaluacion', back_populates='test', cascade='all, delete-orphan')
+    preguntas = db.relationship('Pregunta', back_populates='test', cascade='all, delete-orphan')
+    escalas = db.relationship('Escala', back_populates='test', cascade='all, delete-orphan')
 
     # constructor de la clase
     def __init__(self, nombre, descripcion, n_preguntas, version, idioma):

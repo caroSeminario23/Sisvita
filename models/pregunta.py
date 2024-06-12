@@ -10,7 +10,7 @@ class Pregunta(db.Model):
     interrogante = db.Column(db.String(150), nullable=False)
     descripcion = db.Column(db.String(250), nullable=False)
 
-    test = relationship('Test', backref='pregunta1')
+    test = relationship('Test', back_populates='preguntas')
     
     # constructor de la clase
     def __init__(self, id_test, interrogante, descripcion):

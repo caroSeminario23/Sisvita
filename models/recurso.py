@@ -13,7 +13,7 @@ class Recurso(db.Model):
     fec_publicacion = db.Column(db.Date, nullable=False)
     fec_edicion = db.Column(db.Date, nullable=True)
 
-    especialista = relationship('Especialista', backref='recurso1')
+    especialista = relationship('Especialista', back_populates='recursos')
 
     # constructor de la clase
     def __init__(self, id_especialista, titulo, descripcion, palabras_clave, fec_publicacion, fec_edicion):

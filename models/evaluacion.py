@@ -9,8 +9,8 @@ class Evaluacion(db.Model):
     respuestas = db.Column(db.String(300), nullable=False)
     fec_realizacion = db.Column(db.Date, nullable=False)
 
-    estudiante = db.relationship('Estudiante', backref='evaluacion1')
-    test = db.relationship('Test', backref='evaluacion2')
+    estudiante = db.relationship('Estudiante', back_populates='evaluaciones')
+    test = db.relationship('Test', back_populates='evaluaciones')
 
     resultados = db.relationship('Resultado', backref='evaluacion', cascade='all, delete-orphan')
     

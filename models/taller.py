@@ -11,10 +11,10 @@ class Taller(db.Model):
     fec_inicio = db.Column(db.DateTime, nullable=False)
     fec_fin = db.Column(db.DateTime, nullable=False)
 
-    especialista = relationship('Especialista', backref='taller1')
+    especialista = relationship('Especialista', back_populates='talleres')
 
-    asistencias = relationship('Asistencia', backref='taller2', cascade='all, delete-orphan')
-    horarios = relationship('Horario', backref='taller3', cascade='all, delete-orphan')
+    asistencias = relationship('Asistencia', back_populates='taller', cascade='all, delete-orphan')
+    horarios = relationship('Horario', back_populates='taller', cascade='all, delete-orphan')
     
     # constructor de la clase
     def __init__(self, id_especialista, n_vacantes, fec_inicio, fec_fin):

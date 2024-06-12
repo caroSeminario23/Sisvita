@@ -20,11 +20,11 @@ class Especialista(db.Model):
     especialidad = relationship('Especialidad', backref='especialista1')
     genero = relationship('Genero', backref='especialista2')
 
-    citas = relationship('Cita', backref='especialista3', cascade='all, delete-orphan')
-    resultados = relationship('Resultado', backref='especialista4', cascade='all, delete-orphan')
-    talleres = relationship('Taller', backref='especialista5', cascade='all, delete-orphan')
-    recursos = relationship('Recurso', backref='especialista6', cascade='all, delete-orphan')
-    tratamientos = relationship('Tratamiento', backref='especialista7', cascade='all, delete-orphan')
+    citas = relationship('Cita', back_populates='especialista', cascade='all, delete-orphan')
+    resultados = relationship('Resultado', back_populates='especialista', cascade='all, delete-orphan')
+    talleres = relationship('Taller', back_populates='especialista', cascade='all, delete-orphan')
+    recursos = relationship('Recurso', back_populates='especialista', cascade='all, delete-orphan')
+    tratamientos = relationship('Tratamiento', back_populates='especialista', cascade='all, delete-orphan')
 
     # constructor de la clase
     def __init__(self, id_especialidad, doc_identidad, nombres, apellidos, fec_nacimiento, id_genero, email, n_licencia, anio_graduacion):

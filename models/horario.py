@@ -11,7 +11,7 @@ class Horario(db.Model):
     hora_inicio = db.Column(db.Time, nullable=False)
     hora_fin = db.Column(db.Time, nullable=False)
 
-    taller = relationship('Taller', backref='horario1')
+    taller = relationship('Taller', back_populates='horarios')
     
     # constructor de la clase
     def __init__(self, id_taller, dia, hora_inicio, hora_fin):

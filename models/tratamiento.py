@@ -1,5 +1,4 @@
 from sqlalchemy.orm import relationship
-
 from utils.db import db
 
 class Tratamiento(db.Model):
@@ -13,12 +12,14 @@ class Tratamiento(db.Model):
     fec_asignacion = db.Column(db.DateTime, nullable=False)
     fec_inicio = db.Column(db.DateTime, nullable=False)
     fec_fin = db.Column(db.DateTime, nullable=False)
-    id_estado = db.Column(db.Boolean, db.ForeignKey('estado.id_estado'), nullable=False)
+    id_estado = db.Column(db.Integer, db.ForeignKey('estado.id_estado'), nullable=False)
     
-    resultado1 = relationship('Resultado', back_populates='tratamiento1')
-    resultado2 = relationship('Resultado', back_populates='tratamiento2')
-    especialista = relationship('Especialista', back_populates='tratamiento3')
-    estado = relationship('Estado', back_populates='tratamiento4')
+    resultado = relationship('Resultado', 
+                             primaryjoin='and_(Tratamiento.id_resultado1 == Resultado.id_evaluacion, Tratamiento.id_resultado2 == Resultado.id_especialista)',
+                             foreign_keys='[Tratamiento.id_resultado1, Tratamiento.id_resultado2]', 
+                             back_populates='tratamientos')
+    especialista = relationship('Especialista', back_populates='tratamientos')
+    estado = relationship('Estado', backref='tratamiento4')
 
     # constructor de la clase
     def __init__(self, id_resultado1, id_resultado2, id_especialista, objetivo, indicaciones, fec_asignacion, fec_inicio, fec_fin, id_estado):

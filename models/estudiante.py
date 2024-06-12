@@ -21,12 +21,12 @@ class Estudiante(db.Model):
     genero = relationship('Genero', backref='estudiante1')
     carrera = relationship('Carrera', backref='estudiante2')
 
-    citas = relationship('Cita', backref='estudiante3', cascade='all, delete-orphan')
-    libretas = relationship('Libreta', backref='estudiante4', cascade='all, delete-orphan')
-    posts = relationship('Post', backref='estudiante5', cascade='all, delete-orphan')
-    comentarios = relationship('Comentario', backref='estudiante6', cascade='all, delete-orphan')
-    evaluaciones = relationship('Evaluacion', backref='estudiante7', cascade='all, delete-orphan')
-    asistencias = relationship('Asistencia', backref='estudiante8', cascade='all, delete-orphan')
+    citas = relationship('Cita', back_populates='estudiante', cascade='all, delete-orphan')
+    libretas = relationship('Libreta', back_populates='estudiante', cascade='all, delete-orphan')
+    posts = relationship('Post', back_populates='estudiante', cascade='all, delete-orphan')
+    comentarios = relationship('Comentario', back_populates='estudiante', cascade='all, delete-orphan')
+    evaluaciones = relationship('Evaluacion', back_populates='estudiante', cascade='all, delete-orphan')
+    asistencias = relationship('Asistencia', back_populates='estudiante', cascade='all, delete-orphan')
     
     # constructor de la clase
     def __init__(self, doc_identidad, nombres, apellidos, fec_nacimiento, id_genero, email, direccion, num_telefono, anio_ingreso, id_carrera):

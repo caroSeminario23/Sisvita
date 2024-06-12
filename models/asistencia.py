@@ -10,8 +10,8 @@ class Asistencia(db.Model):
     id_taller = db.Column(db.Integer, db.ForeignKey('taller.id_taller'), nullable=False)
     id_estudiante = db.Column(db.Integer, db.ForeignKey('estudiante.id_estudiante'), nullable=False)
 
-    taller = relationship('Taller', backref='asistencia1')
-    estudiante = relationship('Estudiante', backref='asistencia2')
+    taller = relationship('Taller', back_populates='asistencias')
+    estudiante = relationship('Estudiante', back_populates='asistencias')
     
     # constructor de la clase
     def __init__(self, fecha, id_taller, id_estudiante):

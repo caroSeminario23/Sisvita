@@ -10,7 +10,7 @@ class Escala(db.Model):
     descripcion = db.Column(db.String(200), nullable=False)
     id_test = db.Column(db.Integer, db.ForeignKey('test.id_test'), nullable=False)
 
-    test = relationship('Test', backref='escala1')
+    test = relationship('Test', back_populates='escalas')
     
     # constructor de la clase
     def __init__(self, nombre, descripcion, id_test):
