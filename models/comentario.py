@@ -13,8 +13,8 @@ class Comentario(db.Model):
     fec_edicion = db.Column(db.Date, nullable=True)
     anonimo = db.Column(db.Boolean, nullable=False)
 
-    post = relationship('Post', back_populates='comentarios')
-    estudiante = relationship('Estudiante', back_populates='comentarios')
+    post = relationship('Post', back_populates='comentarios', lazy='joined')
+    estudiante = relationship('Estudiante', back_populates='comentarios', lazy='joined')
     
     # constructor de la clase
     def __init__(self, id_post, id_estudiante, descripcion, fec_publicacion, fec_edicion, anonimo):

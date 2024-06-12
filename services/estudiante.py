@@ -22,7 +22,8 @@ def create_estudiante():
     id_carrera = request.json.get('id_carrera')
     contrasenia = request.json.get('contrasenia')
 
-    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
+    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    print(contrasenia)
 
     new_estudiante = Estudiante(doc_identidad=doc_identidad, nombres=nombres, apellidos=apellidos, fec_nacimiento=fec_nacimiento, id_genero=id_genero, email=email, direccion=direccion, num_telefono=num_telefono, anio_ingreso=anio_ingreso, id_carrera=id_carrera, contrasenia=contrasenia)
 

@@ -7,12 +7,13 @@ resultado_routes = Blueprint("resultado_routes", __name__)
 
 @resultado_routes.route('/create_resultado', methods=['POST'])
 def create_resultado():
+    id_evaluacion = request.json.get('id_evaluacion')
     id_especialista = request.json.get('id_especialista')
     puntaje = request.json.get('puntaje')
     interpretacion = request.json.get('interpretacion')
     fec_resultado = request.json.get('fec_resultado')
 
-    new_resultado = Resultado(id_especialista=id_especialista, puntaje=puntaje, interpretacion=interpretacion, fec_resultado=fec_resultado)
+    new_resultado = Resultado(id_evaluacion=id_evaluacion ,id_especialista=id_especialista, puntaje=puntaje, interpretacion=interpretacion, fec_resultado=fec_resultado)
 
     db.session.add(new_resultado)
     db.session.commit()
@@ -40,9 +41,9 @@ def get_resultados():
 
     return make_response(jsonify(data), 200)
 
-@resultado_routes.route('/get_resultado/<int:id1>/<int:id2>', methods=['GET'])
-def get_resultado(id1, id2):
-    resultado = Resultado.query.get(id1, id2)
+@resultado_routes.route('/get_resultado/<int:id>', methods=['GET'])
+def get_resultado(id):
+    resultado = Resultado.query.get(id)
 
     if not resultado:
         data = {
@@ -61,9 +62,9 @@ def get_resultado(id1, id2):
 
     return make_response(jsonify(data), 200)
 
-@resultado_routes.route('/update_resultado/<int:id1>/<int:id2>', methods=['PUT'])
-def update_resultado(id1, id2):
-    resultado = Resultado.query.get(id1, id2)
+@resultado_routes.route('/update_resultado/<int:id>', methods=['PUT'])
+def update_resultado(id):
+    resultado = Resultado.query.get(id)
 
     if not resultado:
         data = {
@@ -89,9 +90,9 @@ def update_resultado(id1, id2):
 
     return make_response(jsonify(data), 200)
 
-@resultado_routes.route('/delete_resultado/<int:id1>/<int:id2>', methods=['DELETE'])
-def delete_resultado(id1, id2):
-    resultado = Resultado.query.get(id1, id2)
+@resultado_routes.route('/delete_resultado/<int:id>', methods=['DELETE'])
+def delete_resultado(id):
+    resultado = Resultado.query.get(id)
 
     if not resultado:
         data = {

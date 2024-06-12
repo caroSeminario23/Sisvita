@@ -15,10 +15,10 @@ Content-Type: application/json
 GET http://127.0.0.1:5000/comentario_routes/get_comentarios
 #####
 
-GET http://127.0.0.1:5000/comentario_routes/get_comentario/14
+GET http://127.0.0.1:5000/comentario_routes/get_comentario/18
 #####
 
-PUT http://127.0.0.1:5000/comentario_routes/update_comentario/14
+PUT http://127.0.0.1:5000/comentario_routes/update_comentario/18
 Content-Type: application/json
 
 {
@@ -31,5 +31,6 @@ Content-Type: application/json
 }
 #####
 
-DELETE http://127.0.0.1:5000/comentario_routes/delete_comentario/14
+## corregir
+DELETE http://127.0.0.1:5000/comentario_routes/delete_comentario/18
 #####

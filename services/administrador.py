@@ -16,7 +16,7 @@ def create_administrador():
     num_telefono = request.json.get('num_telefono')
     contrasenia = request.json.get('contrasenia')
 
-    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
+    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
     new_administrador = Administrador(nombres=nombres, apellidos=apellidos, email=email, num_telefono=num_telefono, contrasenia=contrasenia)
 

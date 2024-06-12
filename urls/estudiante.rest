@@ -1,0 +1,45 @@
+# ENLACES DE ESTUDIANTE
+POST http://127.0.0.1:5000/estudiante_routes/create_estudiante
+Content-Type: application/json
+
+{
+    "doc_identidad": "11111111",
+    "nombres": "Camila Luisa",
+    "apellidos":"Oroya Paz",
+    "fec_nacimiento":"2001-01-01",
+    "id_genero":2,
+    "email":"camila@hotmail.com",
+    "direccion":"Jr. Los Pinos 123",
+    "num_telefono":"987987654",
+    "anio_ingreso": 2021,
+    "id_carrera": 2,
+    "contrasenia":"camilita"
+}
+#####
+
+GET http://127.0.0.1:5000/estudiante_routes/get_estudiantes
+#####
+
+GET http://127.0.0.1:5000/estudiante_routes/get_estudiante/1
+#####
+
+PUT http://127.0.0.1:5000/estudiante_routes/update_estudiante/1
+Content-Type: application/json
+
+{
+    "doc_identidad": "11111111",
+    "nombres": "Camila Luisa",
+    "apellidos":"Oroya Paz",
+    "fec_nacimiento":"2001-01-01",
+    "id_genero":2,
+    "email":"camila@hotmail.com",
+    "direccion":"Jr. Los Pinos 123",
+    "num_telefono":"987987654",
+    "anio_ingreso": 2021,
+    "id_carrera": 2,
+    "contrasenia":"camilita"
+}
+#####
+
+DELETE http://127.0.0.1:5000/estudiante_routes/delete_estudiante/1
+#####

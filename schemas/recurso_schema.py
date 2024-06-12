@@ -8,7 +8,7 @@ class Recurso_Schema(ma.Schema):
         model = Recurso
         fields = ('id_recurso',
                   'id_especialista',
-                  'ttulo',
+                  'titulo',
                   'descripcion',
                   'palabras_clave',
                   'fec_publicacion',

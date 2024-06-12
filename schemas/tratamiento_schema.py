@@ -8,8 +8,8 @@ from schemas.estado_schema import Estado_Schema
 class Tratamiento_Schema(ma.Schema):
     class Meta:
         model = Tratamiento
-        fields = ('id_resultado1',
-                  'id_resultado2',
+        fields = ('id_tratamiento',
+                  'id_resultado',
                   'id_especialista',
                   'objetivo',
                   'indicaciones',
@@ -17,14 +17,12 @@ class Tratamiento_Schema(ma.Schema):
                   'fec_inicio',
                   'fec_fin',
                   'id_estado',
-                  'resultado1',
-                  'resultado2',
+                  'resultado',
                   'especialista',
                   'estado'
                  )
     
-    resultado1 = fields.Nested(Evaluacion_Schema)
-    resultado2 = fields.Nested(Especialista_Schema)
+    resultado = fields.Nested(Evaluacion_Schema)
     especialista = fields.Nested(Especialista_Schema)
     estado = fields.Nested(Estado_Schema)
 

@@ -7,8 +7,7 @@ tratamiento_routes = Blueprint("tratamiento_routes", __name__)
 
 @tratamiento_routes.route('/create_tratamiento', methods=['POST'])
 def create_tratamiento():
-    id_resultado1 = request.json.get('id_resultado1')
-    id_resultado2 = request.json.get('id_resultado2')
+    id_resultado = request.json.get('id_resultado0')
     id_especialista = request.json.get('id_especialista')
     objetivo = request.json.get('objetivo')
     indicaciones = request.json.get('indicaciones')
@@ -17,7 +16,7 @@ def create_tratamiento():
     fec_fin = request.json.get('fec_fin')
     id_estado = request.json.get('id_estado')
 
-    new_tratamiento = Tratamiento(id_resultado1=id_resultado1, id_resultado2=id_resultado2, id_especialista=id_especialista, objetivo=objetivo, indicaciones=indicaciones, fec_asignacion=fec_asignacion, fec_inicio=fec_inicio, fec_fin=fec_fin, id_estado=id_estado)
+    new_tratamiento = Tratamiento(id_resultado=id_resultado, id_especialista=id_especialista, objetivo=objetivo, indicaciones=indicaciones, fec_asignacion=fec_asignacion, fec_inicio=fec_inicio, fec_fin=fec_fin, id_estado=id_estado)
 
     db.session.add(new_tratamiento)
     db.session.commit()
@@ -45,9 +44,9 @@ def get_tratamientos():
 
     return make_response(jsonify(data), 200)
 
-@tratamiento_routes.route('/get_tratamiento/<int:id1>/<int:id2>/<int:id3>', methods=['GET'])
-def get_tratamiento(id1, id2, id3):
-    tratamiento = Tratamiento.query.get(id1, id2, id3)
+@tratamiento_routes.route('/get_tratamiento/<int:id>', methods=['GET'])
+def get_tratamiento(id):
+    tratamiento = Tratamiento.query.get(id)
 
     if not tratamiento:
         data = {
@@ -66,9 +65,9 @@ def get_tratamiento(id1, id2, id3):
 
     return make_response(jsonify(data), 200)
 
-@tratamiento_routes.route('/update_tratamiento/<int:id1>/<int:id2>/<int:id3>', methods=['PUT'])
-def update_tratamiento(id1, id2, id3):
-    tratamiento = Tratamiento.query.get(id1, id2, id3)
+@tratamiento_routes.route('/update_tratamiento/<int:id>', methods=['PUT'])
+def update_tratamiento(id):
+    tratamiento = Tratamiento.query.get(id)
 
     if not tratamiento:
         data = {
@@ -109,9 +108,9 @@ def update_tratamiento(id1, id2, id3):
 
     return make_response(jsonify(data), 200)
 
-@tratamiento_routes.route('/delete_tratamiento/<int:id1>/<int:id2>/<int:id3>', methods=['DELETE'])
-def delete_tratamiento(id1, id2, id3):
-    tratamiento = Tratamiento.query.get(id1, id2, id3)
+@tratamiento_routes.route('/delete_tratamiento/<int:id>', methods=['DELETE'])
+def delete_tratamiento(id):
+    tratamiento = Tratamiento.query.get(id)
 
     if not tratamiento:
         data = {
