@@ -104,26 +104,22 @@ def update_comentario(id):
 
 @comentario_routes.route('/delete_comentario/<int:id>', methods=['DELETE'])
 def delete_comentario(id):
-    with db.session.begin_nested():  # Comienza una transacción anidada para asegurar que estemos dentro de una sesión activa
-        comentario = db.session.query(Comentario).get(id)
-        #comentario = Comentario.query.get(id)
+    #comentario = db.session.query(Comentario).get(id)
+    comentario = Comentario.query.get(id)
 
-        if not comentario:
-            data = {
-                'message': 'Comentario no encontrado',
-                'status': 404
-            }
-            return make_response(jsonify(data), 404)
-
-        db.session.delete(comentario)
-        db.session.commit()
-
-        result = comentario_schema.dump(comentario)
-
+    if not comentario:
         data = {
-            'message': 'Comentario eliminado',
-            'status': 200,
-            'data': result
+            'message': 'Comentario no encontrado',
+            'status': 404
         }
+        return make_response(jsonify(data), 404)
 
-        return make_response(jsonify(data), 200)
+    db.session.delete(comentario)
+    db.session.commit()
+
+    data = {
+        'message': 'Comentario eliminado',
+        'status': 200
+    }
+
+    return make_response(jsonify(data), 200)

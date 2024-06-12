@@ -7,7 +7,7 @@ tratamiento_routes = Blueprint("tratamiento_routes", __name__)
 
 @tratamiento_routes.route('/create_tratamiento', methods=['POST'])
 def create_tratamiento():
-    id_resultado = request.json.get('id_resultado0')
+    id_resultado = request.json.get('id_resultado')
     id_especialista = request.json.get('id_especialista')
     objetivo = request.json.get('objetivo')
     indicaciones = request.json.get('indicaciones')

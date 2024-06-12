@@ -1,31 +1,33 @@
 # ENLACES DE TEST 
-POST http://127.0.0.1:5000/taller_routes/create_taller
+POST http://127.0.0.1:5000/test_routes/create_test
 Content-Type: application/json
 
 {
-    "id_especialista": 7,
-    "n_vacantes": 15,
-    "fec_inicio": "2024-07-07",
-    "fec_fin": "2024-08-07"
+    "nombre": "Test 3",
+    "descripcion": "Test de prueba",
+    "n_preguntas": 15,
+    "version": "1.0",
+    "idioma": "Español"
 }
 #####
 
-GET http://127.0.0.1:5000/taller_routes/get_talleres
+GET http://127.0.0.1:5000/test_routes/get_tests
 #####
 
-GET http://127.0.0.1:5000/taller_routes/get_taller/8
+GET http://127.0.0.1:5000/test_routes/get_test/5
 #####
 
-PUT http://127.0.0.1:5000/taller_routes/update_taller/9
+PUT http://127.0.0.1:5000/test_routes/update_test/5
 Content-Type: application/json
 
 {
-    "id_especialista": 7,
-    "n_vacantes": 20,
-    "fec_inicio": "2024-07-07",
-    "fec_fin": "2024-08-07"
+    "nombre": "Test 4",
+    "descripcion": "Test de prueba",
+    "n_preguntas": 15,
+    "version": "1.0",
+    "idioma": "Español"
 }
 #####
 
-DELETE http://127.0.0.1:5000/taller_routes/delete_taller/8
+DELETE http://127.0.0.1:5000/test_routes/delete_test/5
 #####
