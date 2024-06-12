@@ -1,0 +1,33 @@
+# ENLACES DE ADMINISTRADOR
+POST http://127.0.0.1:5000/administrador_routes/create_administrador
+Content-Type: application/json
+
+{
+    "nombres": "Carlos Juan",
+    "apellidos": "Savaleta Quispe",
+    "email": "carlos.zavaleta@hotmail.com",
+    "num_telefono": "987654321",
+    "contrasenia": "administradorCarlos"
+}
+#####
+
+GET http://127.0.0.1:5000/administrador_routes/get_administradores
+#####
+
+GET http://127.0.0.1:5000/administrador_routes/get_administrador/5
+#####
+
+PUT http://127.0.0.1:5000/administrador_routes/update_administrador/7
+Content-Type: application/json
+
+{
+    "nombres": "Carlos Juan",
+    "apellidos": "Salvador Quispe",
+    "email": "carlos.salvador@hotmail.com",
+    "num_telefono": "987654321",
+    "contrasenia": "administradorCarlos"
+}
+#####
+
+DELETE http://127.0.0.1:5000/administrador_routes/delete_administrador/7
+#####
