@@ -44,9 +44,9 @@ def get_comentarios():
 
     return make_response(jsonify(data), 200)
 
-@comentario_routes.route('/get_comentario/<int:id1>/<int:id2>', methods=['GET'])
-def get_comentario(id1, id2):
-    comentario = Comentario.query.get(id1, id2)
+@comentario_routes.route('/get_comentario/<int:id>', methods=['GET'])
+def get_comentario(id):
+    comentario = Comentario.query.get(id)
 
     if not comentario:
         data = {
@@ -65,9 +65,9 @@ def get_comentario(id1, id2):
 
     return make_response(jsonify(data), 200)
 
-@comentario_routes.route('/update_comentario/<int:id1>/<int:id2>', methods=['PUT'])
-def update_comentario(id1, id2):
-    comentario = Comentario.query.get(id1, id2)
+@comentario_routes.route('/update_comentario/<int:id>', methods=['PUT'])
+def update_comentario(id):
+    comentario = Comentario.query.get(id)
 
     if not comentario:
         data = {
@@ -102,26 +102,28 @@ def update_comentario(id1, id2):
 
     return make_response(jsonify(data), 200)
 
-@comentario_routes.route('/delete_comentario/<int:id1>/<int:id2>', methods=['DELETE'])
-def delete_comentario(id1, id2):
-    comentario = Comentario.query.get(id1, id2)
+@comentario_routes.route('/delete_comentario/<int:id>', methods=['DELETE'])
+def delete_comentario(id):
+    with db.session.begin_nested():  # Comienza una transacción anidada para asegurar que estemos dentro de una sesión activa
+        comentario = db.session.query(Comentario).get(id)
+        #comentario = Comentario.query.get(id)
 
-    if not comentario:
+        if not comentario:
+            data = {
+                'message': 'Comentario no encontrado',
+                'status': 404
+            }
+            return make_response(jsonify(data), 404)
+
+        db.session.delete(comentario)
+        db.session.commit()
+
+        result = comentario_schema.dump(comentario)
+
         data = {
-            'message': 'Comentario no encontrado',
-            'status': 404
+            'message': 'Comentario eliminado',
+            'status': 200,
+            'data': result
         }
-        return make_response(jsonify(data), 404)
 
-    db.session.delete(comentario)
-    db.session.commit()
-
-    result = comentario_schema.dump(comentario)
-
-    data = {
-        'message': 'Comentario eliminado',
-        'status': 200,
-        'data': result
-    }
-
-    return make_response(jsonify(data), 200)
+        return make_response(jsonify(data), 200)

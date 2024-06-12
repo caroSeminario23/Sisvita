@@ -9,7 +9,8 @@ from schemas.modalidad_schema import Modalidad_Schema
 class Cita_Schema(ma.Schema):
     class Meta:
         model=Cita
-        fields = ('id_estudiante',
+        fields = ('id_cita',
+                  'id_estudiante',
                   'id_especialista',
                   'motivo',
                   'id_estado',

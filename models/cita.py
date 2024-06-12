@@ -5,8 +5,9 @@ from utils.db import db
 class Cita(db.Model):
     __tablename__ = 'cita'
 
-    id_estudiante = db.Column(db.Integer, db.ForeignKey('estudiante.id_estudiante'), primary_key=True, nullable=False)
-    id_especialista = db.Column(db.Integer, db.ForeignKey('especialista.id_especialista'), primary_key=True, nullable=False)
+    id_cita = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id_estudiante = db.Column(db.Integer, db.ForeignKey('estudiante.id_estudiante'), nullable=False)
+    id_especialista = db.Column(db.Integer, db.ForeignKey('especialista.id_especialista'), nullable=False)
     motivo = db.Column(db.String(50), nullable=False)
     id_estado = db.Column(db.Integer, db.ForeignKey('estado.id_estado'), nullable=False)
     id_modalidad = db.Column(db.Integer, db.ForeignKey('modalidad.id_modalidad'), nullable=False)

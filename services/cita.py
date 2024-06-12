@@ -44,9 +44,9 @@ def get_citas():
 
     return make_response(jsonify(data), 200)
 
-@cita_routes.route('/get_cita/<int:id1>/<int:id2>', methods=['GET'])
-def get_cita(id1, id2):
-    cita = Cita.query.get(id1, id2)
+@cita_routes.route('/get_cita/<int:id>', methods=['GET'])
+def get_cita(id):
+    cita = Cita.query.get(id)
 
     if not cita:
         data = {
@@ -65,9 +65,9 @@ def get_cita(id1, id2):
 
     return make_response(jsonify(data), 200)
 
-@cita_routes.route('/update_cita/<int:id1>/<int:id2>', methods=['PUT'])
-def update_cita(id1, id2):
-    cita = Cita.query.get(id1, id2)
+@cita_routes.route('/update_cita/<int:id>', methods=['PUT'])
+def update_cita(id):
+    cita = Cita.query.get(id)
 
     if not cita:
         data = {
@@ -102,9 +102,9 @@ def update_cita(id1, id2):
 
     return make_response(jsonify(data), 200)
 
-@cita_routes.route('/delete_cita/<int:id1>/<int:id2>', methods=['DELETE'])
-def delete_cita(id1, id2):
-    cita = Cita.query.get(id1, id2)
+@cita_routes.route('/delete_cita/<int:id>', methods=['DELETE'])
+def delete_cita(id):
+    cita = Cita.query.get(id)
 
     if not cita:
         data = {

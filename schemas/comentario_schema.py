@@ -7,7 +7,8 @@ from schemas.estudiante_schema import Estudiante_Schema
 class Comentario_Schema(ma.Schema):
     class Meta:
         model=Comentario
-        fields = ('id_post',
+        fields = ('id_comentario',
+                  'id_post',
                   'id_estudiante',
                   'descripcion',
                   'fec_publicacion',
