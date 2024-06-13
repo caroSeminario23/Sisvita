@@ -3,9 +3,9 @@ from models.administrador import Administrador
 from models.especialista import Especialista
 from models.estudiante import Estudiante
 
-cus_routes = Blueprint('cus_routes', __name__)
+cus_routes1 = Blueprint('cus_routes1', __name__)
 
-@cus_routes.route('/login', methods=['POST'])
+@cus_routes1.route('/login', methods=['POST'])
 def login():
     print('Solicitud de inicio de sesión recibida')
     data = request.get_json()
@@ -13,11 +13,11 @@ def login():
     contrasenia = data.get('contrasenia')
     user_type = data.get('user_type')  # 'estudiante', 'especialista', 'administrador'
 
-    if user_type == 'Estudiante':
+    if user_type == 'estudiante':
         user = Estudiante.query.filter_by(email=email, contrasenia=contrasenia).first()
-    elif user_type == 'Especialista':
+    elif user_type == 'especialista':
         user = Especialista.query.filter_by(email=email, contrasenia=contrasenia).first()
-    elif user_type == 'Edministrador':
+    elif user_type == 'administrador':
         user = Administrador.query.filter_by(email=email, contrasenia=contrasenia).first()
     else:
         data = {

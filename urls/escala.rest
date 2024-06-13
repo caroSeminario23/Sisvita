@@ -12,7 +12,7 @@ Content-Type: application/json
 GET http://127.0.0.1:5000/escala_routes/get_escalas
 #####
 
-GET http://127.0.0.1:5000/escala_routes/get_escala/13
+GET http://127.0.0.1:5000/escala_routes/get_escala/1
 #####
 
 PUT http://127.0.0.1:5000/escala_routes/update_escala/13

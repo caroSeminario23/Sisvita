@@ -1,10 +1,30 @@
 # ENLACES DE ADMINISTRADOR
-POST http://127.0.0.1:5000/cus_routes/login
+POST http://127.0.0.1:5000/cus_routes1/login
 Content-Type: application/json
 
 {
-    "email": "laura.diaz@example.com",
-    "contrasenia": "$2b$12$8PISqG45fhbxwmLfwiZEOeGdthnGBFVjbDLEt./nM2l2XD2J8J/MO",
-    "user_type": "Estudiante"
+    "email": "lucia.hernandez@example.com",
+    "contrasenia": "$2b$12$GlT1uYqDHhOFxUuQRra1xeo2Iqz31uJqJNRC68D4EdgYULAcAqiOe",
+    "user_type": "estudiante"
 }
-#####
+##########
+
+
+POST http://127.0.0.1:5000/cus_routes/realizar_test
+Content-Type: application/json
+
+{
+    "id_estudiante": 1,
+    "id_test": 1,
+    "respuestas": "1, 0, 1, 2, 1, 0, 1, 0",
+    "fec_realizacion": "2021-06-01"
+}
+##########
+
+
+POST http://127.0.0.1:5000/cus_routes/calcular_puntaje
+Content-Type: application/json
+
+{
+    "id_evaluacion": 14
+}
