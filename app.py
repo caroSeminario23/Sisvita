@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from utils.db import db
 from services.administrador import administrador_routes
 from services.genero import genero_routes
@@ -29,6 +30,13 @@ from config import DATABASE_CONNECTION
 
 
 app=Flask(__name__)
+
+CORS(app, origins=['http://localhost:4200'], 
+     methods=['GET', 'POST', 'PUT', 'DELETE'], 
+     allow_headers=['Content-Type', 'Authorization'])
+
+
+
 app.config['SQLALCHEMY_DATABASE_URI']=DATABASE_CONNECTION
 
 #SQLAlchemy(app)

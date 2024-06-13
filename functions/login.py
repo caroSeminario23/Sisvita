@@ -7,16 +7,17 @@ cus_routes = Blueprint('cus_routes', __name__)
 
 @cus_routes.route('/login', methods=['POST'])
 def login():
+    print('Solicitud de inicio de sesión recibida')
     data = request.get_json()
     email = data.get('email')
     contrasenia = data.get('contrasenia')
     user_type = data.get('user_type')  # 'estudiante', 'especialista', 'administrador'
 
-    if user_type == 'estudiante':
+    if user_type == 'Estudiante':
         user = Estudiante.query.filter_by(email=email, contrasenia=contrasenia).first()
-    elif user_type == 'especialista':
+    elif user_type == 'Especialista':
         user = Especialista.query.filter_by(email=email, contrasenia=contrasenia).first()
-    elif user_type == 'administrador':
+    elif user_type == 'Edministrador':
         user = Administrador.query.filter_by(email=email, contrasenia=contrasenia).first()
     else:
         data = {

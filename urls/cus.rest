@@ -5,6 +5,6 @@ Content-Type: application/json
 {
     "email": "laura.diaz@example.com",
     "contrasenia": "$2b$12$8PISqG45fhbxwmLfwiZEOeGdthnGBFVjbDLEt./nM2l2XD2J8J/MO",
-    "user_type": "estudiante"
+    "user_type": "Estudiante"
 }
 #####
