@@ -1,0 +1,10 @@
+# ENLACES DE ADMINISTRADOR
+POST http://127.0.0.1:5000/cus_routes/login
+Content-Type: application/json
+
+{
+    "email": "laura.diaz@example.com",
+    "contrasenia": "$2b$12$8PISqG45fhbxwmLfwiZEOeGdthnGBFVjbDLEt./nM2l2XD2J8J/MO",
+    "user_type": "estudiante"
+}
+#####

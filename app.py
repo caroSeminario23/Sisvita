@@ -22,6 +22,7 @@ from services.resultado import resultado_routes
 from services.tratamiento import tratamiento_routes
 from services.post import post_routes
 from services.comentario import comentario_routes
+from functions.login import cus_routes
 
 from flask_sqlalchemy import SQLAlchemy
 from config import DATABASE_CONNECTION
@@ -55,6 +56,7 @@ app.register_blueprint(resultado_routes, url_prefix='/resultado_routes')
 app.register_blueprint(tratamiento_routes, url_prefix='/tratamiento_routes')
 app.register_blueprint(post_routes, url_prefix='/post_routes')
 app.register_blueprint(comentario_routes, url_prefix='/comentario_routes')
+app.register_blueprint(cus_routes, url_prefix='/cus_routes')
 
 
 with app.app_context():
