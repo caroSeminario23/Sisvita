@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, make_response, request
 from models.administrador import Administrador
 from models.especialista import Especialista
-from models.estudiante import Estudiante
+from models.paciente import Estudiante
 
 cus_routes1 = Blueprint('cus_routes1', __name__)
 

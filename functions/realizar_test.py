@@ -4,7 +4,7 @@ from utils.db import db
 from flask import Blueprint, jsonify, make_response, request
 from models.administrador import Administrador
 from models.especialista import Especialista
-from models.estudiante import Estudiante
+from models.paciente import Estudiante
 from models.evaluacion import Evaluacion
 from models.test import Test
 

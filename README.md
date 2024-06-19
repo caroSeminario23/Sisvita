@@ -1,2 +1,2 @@
 # SISVITA - DSW
-## 3er avance - Grupo 4
+## 2er sprint - Grupo 4

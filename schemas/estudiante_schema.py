@@ -1,5 +1,5 @@
 from utils.ma import ma
-from models.estudiante import Estudiante
+from models.paciente import Estudiante
 from marshmallow import fields
 from schemas.genero_schema import Genero_Schema
 from schemas.carrera_schema import Carrera_Schema

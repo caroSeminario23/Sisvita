@@ -2,11 +2,11 @@ from sqlalchemy.orm import relationship
 
 from utils.db import db
 
-class Modalidad(db.Model):
-    __tablename__ = 'modalidad'
+class Periodo(db.Model):
+    __tablename__ = 'periodo'
 
-    id_modalidad = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
-    nombre = db.Column(db.String(20), nullable=False, unique=True)
+    id_periodo = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
+    nombre = db.Column(db.String(50), nullable=False, unique=True)
     descripcion = db.Column(db.String(200), nullable=True)
     
     # constructor de la clase

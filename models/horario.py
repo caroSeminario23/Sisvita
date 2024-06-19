@@ -5,7 +5,7 @@ from utils.db import db
 class Horario(db.Model):
     __tablename__ = 'horario'
 
-    id_horario = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id_horario = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     id_taller = db.Column(db.Integer, db.ForeignKey('taller.id_taller'), nullable=False)
     dia = db.Column(db.Integer, nullable=False)
     hora_inicio = db.Column(db.Time, nullable=False)

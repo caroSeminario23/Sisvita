@@ -4,7 +4,7 @@ from utils.db import db
 class Resultado(db.Model):
     __tablename__ = 'resultado'
     
-    id_resultado = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id_resultado = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     id_evaluacion = db.Column(db.Integer, db.ForeignKey('evaluacion.id_evaluacion'), nullable=False)
     id_especialista = db.Column(db.Integer, db.ForeignKey('especialista.id_especialista'), nullable=False)
     puntaje = db.Column(db.Float, nullable=False)
