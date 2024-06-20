@@ -10,8 +10,8 @@ class Horario_Schema(ma.Schema):
         fields=('id_horario',
                 'id_taller',
                 'id_dia',
-                'hora_inicio',
-                'hora_fin',
+                'horario_inicio',
+                'horario_fin',
                 'taller',
                 'dia'
                 )

@@ -9,10 +9,10 @@ horario_routes = Blueprint("horario_routes", __name__)
 def create_horario():
     id_taller = request.json.get('id_taller')
     id_dia = request.json.get('dia')
-    hora_inicio = request.json.get('hora_inicio')
-    hora_fin = request.json.get('hora_fin')
+    horario_inicio = request.json.get('horario_inicio')
+    horario_fin = request.json.get('horario_fin')
 
-    new_horario = Horario(id_taller=id_taller, id_dia=id_dia, hora_inicio=hora_inicio, hora_fin=hora_fin)
+    new_horario = Horario(id_taller=id_taller, id_dia=id_dia, horario_inicio=horario_inicio, horario_fin=horario_fin)
 
     db.session.add(new_horario)
     db.session.commit()
@@ -74,13 +74,13 @@ def update_horario(id):
 
     id_taller = request.json.get('id_taller')
     id_dia = request.json.get('id_dia')
-    hora_inicio = request.json.get('hora_inicio')
-    hora_fin = request.json.get('hora_fin')
+    horario_inicio = request.json.get('horario_inicio')
+    horario_fin = request.json.get('horario_fin')
 
     horario.id_taller = id_taller
     horario.dia = id_dia
-    horario.hora_inicio = hora_inicio
-    horario.hora_fin = hora_fin
+    horario.hora_inicio = horario_inicio
+    horario.hora_fin = horario_fin
 
     db.session.commit()
 

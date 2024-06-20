@@ -23,7 +23,8 @@ class Taller(db.Model):
     horarios = relationship('Horario', back_populates='taller', cascade='all, delete-orphan')
     
     # constructor de la clase
-    def __init__(self, id_especialista, n_vacantes, fec_inicio, fec_fin, id_modalidad, id_estado):
+    def __init__(self, nombre, id_especialista, n_vacantes, fec_inicio, fec_fin, id_modalidad, id_estado):
+        self.nombre = nombre
         self.id_especialista = id_especialista
         self.n_vacantes = n_vacantes
         self.fec_inicio = fec_inicio
