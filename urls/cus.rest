@@ -27,3 +27,12 @@ Content-Type: application/json
 {
     "id_evaluacion": 25
 }
+##########
+
+POST http://127.0.0.1:5000/cus_routes2/determinar_escala
+Content-Type: application/json
+
+{
+    "id_evaluacion": 25,
+    "id_especialista": 1
+}
