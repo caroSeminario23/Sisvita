@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, make_response, request
+'''from flask import Blueprint, jsonify, make_response, request
 from models.administrador import Administrador
 from models.especialista import Especialista
 from models.paciente import Estudiante
@@ -40,3 +40,4 @@ def login():
     }
 
     return make_response(jsonify(data), 200)
+'''

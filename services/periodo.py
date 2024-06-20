@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
-from models.periodo import Horario
+from models.periodo import Periodo
 from schemas.periodo_schema import periodo_schema, periodos_schema
 
 periodo_routes = Blueprint("periodo_routes", __name__)
@@ -10,7 +10,7 @@ def create_periodo():
     nombre = request.json.get('nombre')
     descripcion = request.json.get('descripcion')
 
-    new_periodo = Horario(nombre=nombre, descripcion=descripcio)
+    new_periodo = Periodo(nombre=nombre, descripcion=descripcion)
 
     db.session.add(new_periodo)
     db.session.commit()
@@ -27,7 +27,7 @@ def create_periodo():
 
 @periodo_routes.route('/get_periodos', methods=['GET'])
 def get_periodos():
-    periodos = Horario.query.all()
+    periodos = Periodo.query.all()
     result = periodos_schema.dump(periodos)
 
     data = {
@@ -40,7 +40,7 @@ def get_periodos():
 
 @periodo_routes.route('/get_periodo/<int:id>', methods=['GET'])
 def get_periodo(id):
-    periodo = Horario.query.get(id)
+    periodo = Periodo.query.get(id)
 
     if not periodo:
         data = {
@@ -61,7 +61,7 @@ def get_periodo(id):
 
 @periodo_routes.route('/update_periodo/<int:id>', methods=['PUT'])
 def update_periodo(id):
-    periodo = Horario.query.get(id)
+    periodo = Periodo.query.get(id)
 
     if not periodo:
         data = {
@@ -90,7 +90,7 @@ def update_periodo(id):
 
 @periodo_routes.route('/delete_periodo/<int:id>', methods=['DELETE'])
 def delete_periodo(id):
-    periodo = Horario.query.get(id)
+    periodo = Periodo.query.get(id)
 
     if not periodo:
         data = {

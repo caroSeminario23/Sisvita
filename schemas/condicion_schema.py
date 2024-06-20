@@ -1,7 +1,6 @@
 from utils.ma import ma
 from models.condicion import Condicion
 from marshmallow import fields
-from schemas.condicion_schema import Condicion_Schema
 
 class Condicion_Schema(ma.Schema):
     class Meta:

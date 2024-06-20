@@ -2,7 +2,7 @@
 
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
-from models.genero import Grado
+from models.grado import Grado
 from schemas.grado_schema import grado_schema, grados_schema
 
 grado_routes = Blueprint("grado_routes", __name__)

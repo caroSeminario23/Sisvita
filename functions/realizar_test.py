@@ -1,10 +1,10 @@
-import datetime
+'''import datetime
 from utils.db import db
 
 from flask import Blueprint, jsonify, make_response, request
 from models.administrador import Administrador
 from models.especialista import Especialista
-from models.paciente import Estudiante
+from models.paciente import Paciente
 from models.evaluacion import Evaluacion
 from models.test import Test
 
@@ -12,9 +12,9 @@ cus_routes = Blueprint('cus_routes', __name__)
 
 @cus_routes.route('/realizar_test', methods=['POST'])
 def realizar_test():
-    # Verificar estudiante y seleccionar test
+    # Verificar paciente y seleccionar test
     data = request.get_json()
-    id_estudiante = data.get('id_estudiante')
+    id_paciente = data.get('id_paciente')
     id_test = data.get('id_test')
     respuestas = data.get('respuestas')
     fec_realizacion = data.get('fec_realizacion')
@@ -22,10 +22,10 @@ def realizar_test():
     # Guardar la fecha actual
     #fec_realizacion = datetime.now()
 
-    estudiante = Estudiante.query.filter_by(id_estudiante = id_estudiante).first()
-    if not estudiante:
+    paciente = Paciente.query.filter_by(id_paciente = id_paciente).first()
+    if not paciente:
         data = {
-            'message': 'Estudiante no encontrado',
+            'message': 'Paciente no encontrado',
             'status': 404
         }
         return make_response(jsonify(data), 404)
@@ -91,4 +91,4 @@ def calcular_puntaje():
 def determinar_escala():
     ###
 
-    return 0
+    return 0'''
