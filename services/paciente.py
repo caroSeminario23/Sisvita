@@ -9,7 +9,7 @@ from schemas.paciente_schema import paciente_schema, pacientes_schema
 paciente_routes = Blueprint("paciente_routes", __name__)
 
 @paciente_routes.route('/create_paciente', methods=['POST'])
-def create_estudiante():
+def create_paciente():
     doc_identidad = request.json.get('doc_identidad')
     nombres = request.json.get('nombres')
     apellidos = request.json.get('apellidos')
@@ -76,7 +76,7 @@ def get_paciente(id):
     return make_response(jsonify(data), 200)
 
 @paciente_routes.route('/update_paciente/<int:id>', methods=['PUT'])
-def update_estudiante(id):
+def update_paciente(id):
     paciente = Paciente.query.get(id)
 
     if not paciente:
@@ -116,7 +116,7 @@ def update_estudiante(id):
 
     db.session.commit()
 
-    result = estudiante_schema.dump(estudiante)
+    result = paciente_schema.dump(paciente)
 
     data = {
         'message': 'Paciente actualizado',
