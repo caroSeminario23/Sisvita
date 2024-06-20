@@ -1,11 +1,11 @@
-# ENLACES DE ADMINISTRADOR
+# ENLACES DE INICIAR SESION
 POST http://127.0.0.1:5000/cus_routes1/login
 Content-Type: application/json
 
 {
-    "email": "lucia.hernandez@example.com",
-    "contrasenia": "$2b$12$GlT1uYqDHhOFxUuQRra1xeo2Iqz31uJqJNRC68D4EdgYULAcAqiOe",
-    "user_type": "estudiante"
+    "email": "david.fernandez6@unmsm.edu.pe",
+    "contrasenia": "david2024",
+    "id_tipo_usuario": 3
 }
 ##########
 
