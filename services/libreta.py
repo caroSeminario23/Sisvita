@@ -7,12 +7,13 @@ libreta_routes = Blueprint("libreta_routes", __name__)
 
 @libreta_routes.route('/create_libreta', methods=['POST'])
 def create_libreta():
-    id_estudiante = request.json.get('id_estudiante')
-    per_academico = request.json.get('per_academico')
+    id_paciente = request.json.get('id_paciente')
+    id_periodo = request.json.get('id_periodo')
+    id_grado = request.json.get('id_grado')
     nota_promedio = request.json.get('nota_promedio')
     observaciones = request.json.get('observaciones')
 
-    new_libreta = Libreta(id_estudiante=id_estudiante, per_academico=per_academico, nota_promedio=nota_promedio, observaciones=observaciones)
+    new_libreta = Libreta(id_paciente=id_paciente, id_periodo=id_periodo, id_grado=id_grado, nota_promedio=nota_promedio, observaciones=observaciones)
 
     db.session.add(new_libreta)
     db.session.commit()
@@ -72,8 +73,9 @@ def update_libreta(id):
         }
         return make_response(jsonify(data), 404)
 
-    libreta.id_estudiante = request.json.get('id_estudiante')
-    libreta.per_academico = request.json.get('per_academico')
+    libreta.id_paciente = request.json.get('id_paciente')
+    libreta.id_periodo = request.json.get('id_periodo')
+    libreta.id_grado = request.json.get('id_grado')
     libreta.nota_promedio = request.json.get('nota_promedio')
     libreta.observaciones = request.json.get('observaciones')
 

@@ -7,12 +7,15 @@ taller_routes = Blueprint("taller_routes", __name__)
 
 @taller_routes.route('/create_taller', methods=['POST'])
 def create_taller():
+    nombre = request.json.get('nombre')
     id_especialista = request.json.get('id_especialista')
     n_vacantes = request.json.get('n_vacantes')
     fec_inicio = request.json.get('fec_inicio')
     fec_fin = request.json.get('fec_fin')
+    id_modalidad = request.json.get('id_modalidad')
+    id_estado = request.json.get('id_estado')
 
-    new_taller = Taller(id_especialista=id_especialista, n_vacantes=n_vacantes, fec_inicio=fec_inicio, fec_fin=fec_fin)
+    new_taller = Taller(nombre=nombre, id_especialista=id_especialista, n_vacantes=n_vacantes, fec_inicio=fec_inicio, fec_fin=fec_fin, id_modalidad=id_modalidad, id_estado=id_estado)
 
     db.session.add(new_taller)
     db.session.commit()
@@ -57,15 +60,21 @@ def get_taller(id):
 def update_taller(id):
     taller = Taller.query.get(id)
 
+    nombre = request.json.get('nombre')
     id_especialista = request.json.get('id_especialista')
     n_vacantes = request.json.get('n_vacantes')
     fec_inicio = request.json.get('fec_inicio')
     fec_fin = request.json.get('fec_fin')
+    id_modalidad = request.json.get('id_modalidad')
+    id_estado = request.json.get('id_estado')
 
+    taller.nombre = nombre
     taller.id_especialista = id_especialista
     taller.n_vacantes = n_vacantes
     taller.fec_inicio = fec_inicio
     taller.fec_fin = fec_fin
+    taller.id_modalidad = id_modalidad
+    taller.id_estado = id_estado
 
     db.session.commit()
 

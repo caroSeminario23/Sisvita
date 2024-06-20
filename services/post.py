@@ -7,14 +7,14 @@ post_routes = Blueprint("post_routes", __name__)
 
 @post_routes.route('/create_post', methods=['POST'])
 def create_post():
-    id_estudiante = request.json.get('id_estudiante')
+    id_paciente = request.json.get('id_paciente')
     descripcion = request.json.get('descripcion')
     fec_publicacion = request.json.get('fec_publicacion')
     fec_edicion = request.json.get('fec_edicion')
     anonimo = request.json.get('anonimo')
     n_comentarios = request.json.get('n_comentarios')
 
-    new_post = Post(id_estudiante=id_estudiante, descripcion=descripcion, fec_publicacion=fec_publicacion, fec_edicion=fec_edicion, anonimo=anonimo, n_comentarios=n_comentarios)
+    new_post = Post(id_paciente=id_paciente, descripcion=descripcion, fec_publicacion=fec_publicacion, fec_edicion=fec_edicion, anonimo=anonimo, n_comentarios=n_comentarios)
 
     db.session.add(new_post)
     db.session.commit()
@@ -59,7 +59,7 @@ def get_post(id):
 def update_post(id):
     post = Post.query.get(id)
 
-    post.id_estudiante = request.json.get('id_estudiante')
+    post.id_paciente = request.json.get('id_paciente')
     post.descripcion = request.json.get('descripcion')
     post.fec_publicacion = request.json.get('fec_publicacion')
     post.fec_edicion = request.json.get('fec_edicion')

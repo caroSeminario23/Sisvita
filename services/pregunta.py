@@ -9,9 +9,10 @@ pregunta_routes = Blueprint("pregunta_routes", __name__)
 def create_pregunta():
     id_test = request.json.get('id_test')
     interrogante = request.json.get('interrogante')
+    orden = request.json.get('orden')
     descripcion = request.json.get('descripcion')
 
-    new_pregunta = Pregunta(id_test=id_test, interrogante=interrogante, descripcion=descripcion)
+    new_pregunta = Pregunta(id_test=id_test, interrogante=interrogante, orden=orden, descripcion=descripcion)
 
     db.session.add(new_pregunta)
     db.session.commit()
@@ -73,6 +74,7 @@ def update_pregunta(id):
 
     pregunta.id_test = request.json.get('id_test')
     pregunta.interrogante = request.json.get('interrogante')
+    pregunta.orden = request.json.get('orden')
     pregunta.descripcion = request.json.get('descripcion')
 
     db.session.commit()

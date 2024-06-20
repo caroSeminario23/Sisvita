@@ -10,10 +10,10 @@ def create_test():
     nombre = request.json.get('nombre')
     descripcion = request.json.get('descripcion')
     n_preguntas = request.json.get('n_preguntas')
-    version = request.json.get('version')
-    idioma = request.json.get('idioma')
+    n_version = request.json.get('n_version')
+    id_idioma = request.json.get('id_idioma')
 
-    new_test = Test(nombre=nombre, descripcion=descripcion, n_preguntas=n_preguntas, version=version, idioma=idioma)
+    new_test = Test(nombre=nombre, descripcion=descripcion, n_preguntas=n_preguntas, n_version=n_version, id_idioma=id_idioma)
 
     db.session.add(new_test)
     db.session.commit()
@@ -61,8 +61,8 @@ def update_test(id):
     test.nombre = request.json.get('nombre')
     test.descripcion = request.json.get('descripcion')
     test.n_preguntas = request.json.get('n_preguntas')
-    test.version = request.json.get('version')
-    test.idioma = request.json.get('idioma')
+    test.n_version = request.json.get('n_version')
+    test.id_idioma = request.json.get('id_idioma')
 
     db.session.commit()
 

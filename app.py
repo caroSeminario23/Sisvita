@@ -8,7 +8,7 @@ from services.especialidad import especialidad_routes
 from services.estado import estado_routes
 from services.especialista import especialista_routes
 from services.carrera import carrera_routes
-from services.estudiante import estudiante_routes
+from services.paciente import estudiante_routes
 from services.libreta import libreta_routes
 from services.cita import cita_routes
 from services.taller import taller_routes

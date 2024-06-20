@@ -9,12 +9,12 @@ recurso_routes = Blueprint("recurso_routes", __name__)
 def create_recurso():
     id_especialista = request.json.get('id_especialista')
     titulo = request.json.get('titulo')
-    descripcion = request.json.get('descripcion')
+    contenido = request.json.get('contenido')
     palabras_clave = request.json.get('palabras_clave')
     fec_publicacion = request.json.get('fec_publicacion')
     fec_edicion = request.json.get('fec_edicion')
 
-    new_recurso = Recurso(id_especialista=id_especialista, titulo=titulo, descripcion=descripcion, palabras_clave=palabras_clave, fec_publicacion=fec_publicacion, fec_edicion=fec_edicion)
+    new_recurso = Recurso(id_especialista=id_especialista, titulo=titulo, contenido=contenido, palabras_clave=palabras_clave, fec_publicacion=fec_publicacion, fec_edicion=fec_edicion)
 
     db.session.add(new_recurso)
     db.session.commit()
@@ -61,14 +61,14 @@ def update_recurso(id):
 
     id_especialista = request.json.get('id_especialista')
     titulo = request.json.get('titulo')
-    descripcion = request.json.get('descripcion')
+    contenido = request.json.get('contenido')
     palabras_clave = request.json.get('palabras_clave')
     fec_publicacion = request.json.get('fec_publicacion')
     fec_edicion = request.json.get('fec_edicion')
 
     recurso.id_especialista = id_especialista
     recurso.titulo = titulo
-    recurso.descripcion = descripcion
+    recurso.contenido = contenido
     recurso.palabras_clave = palabras_clave
     recurso.fec_publicacion = fec_publicacion
     recurso.fec_edicion = fec_edicion

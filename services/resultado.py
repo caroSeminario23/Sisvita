@@ -10,10 +10,12 @@ def create_resultado():
     id_evaluacion = request.json.get('id_evaluacion')
     id_especialista = request.json.get('id_especialista')
     puntaje = request.json.get('puntaje')
+    id_escala = request.json.get('id_escala')
+    id_estado = request.json.get('id_estado')
     interpretacion = request.json.get('interpretacion')
     fec_resultado = request.json.get('fec_resultado')
 
-    new_resultado = Resultado(id_evaluacion=id_evaluacion ,id_especialista=id_especialista, puntaje=puntaje, interpretacion=interpretacion, fec_resultado=fec_resultado)
+    new_resultado = Resultado(id_evaluacion=id_evaluacion ,id_especialista=id_especialista, puntaje=puntaje, id_escala=id_escala, id_estado=id_estado, interpretacion=interpretacion, fec_resultado=fec_resultado)
 
     db.session.add(new_resultado)
     db.session.commit()
@@ -75,6 +77,8 @@ def update_resultado(id):
 
     resultado.id_especialista = request.json.get('id_especialista')
     resultado.puntaje = request.json.get('puntaje')
+    resultado.id_escala = request.json.get('id_escala')
+    resultado.id_estado = request.json.get('id_estado')
     resultado.interpretacion = request.json.get('interpretacion')
     resultado.fec_resultado = request.json.get('fec_resultado')
 
