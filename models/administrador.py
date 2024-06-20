@@ -14,8 +14,8 @@ class Administrador(db.Model):
     usuario = relationship('Usuario', back_populates='administradores')
     
     # constructor de la clase
-    def __init__(self, nombres, apellidos, num_telefono, usuario):
+    def __init__(self, nombres, apellidos, num_telefono, id_usuario):
         self.nombres = nombres
         self.apellidos = apellidos
         self.num_telefono = num_telefono
-        self.usuario = usuario
+        self.id_usuario = id_usuario

@@ -10,13 +10,13 @@ comentario_routes = Blueprint("comentario_routes", __name__)
 @comentario_routes.route('/create_comentario', methods=['POST'])
 def create_comentario():
     id_post = request.json.get('id_post')
-    id_estudiante = request.json.get('id_estudiante')
+    id_paciente = request.json.get('id_paciente')
     descripcion = request.json.get('descripcion')
     fec_publicacion = request.json.get('fec_publicacion')
     fec_edicion = request.json.get('fec_edicion')
     anonimo = request.json.get('anonimo')
 
-    new_comentario = Comentario(id_post=id_post, id_estudiante=id_estudiante, descripcion=descripcion, fec_publicacion=fec_publicacion, fec_edicion=fec_edicion, anonimo=anonimo)
+    new_comentario = Comentario(id_post=id_post, id_paciente=id_paciente, descripcion=descripcion, fec_publicacion=fec_publicacion, fec_edicion=fec_edicion, anonimo=anonimo)
 
     db.session.add(new_comentario)
     db.session.commit()
@@ -77,14 +77,14 @@ def update_comentario(id):
         return make_response(jsonify(data), 404)
 
     id_post = request.json.get('id_post')
-    id_estudiante = request.json.get('id_estudiante')
+    id_paciente = request.json.get('id_paciente')
     descripcion = request.json.get('descripcion')
     fec_publicacion = request.json.get('fec_publicacion')
     fec_edicion = request.json.get('fec_edicion')
     anonimo = request.json.get('anonimo')
 
     comentario.id_post = id_post
-    comentario.id_estudiante = id_estudiante
+    comentario.id_paciente = id_paciente
     comentario.descripcion = descripcion
     comentario.fec_publicacion = fec_publicacion
     comentario.fec_edicion = fec_edicion
@@ -95,7 +95,7 @@ def update_comentario(id):
     result = comentario_schema.dump(comentario)
 
     data = {
-        'message': 'Comentario actualizado!',
+        'message': '¡Comentario actualizado!',
         'status': 200,
         'data': result
     }

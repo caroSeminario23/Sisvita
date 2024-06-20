@@ -12,13 +12,12 @@ administrador_routes = Blueprint("administrador_routes", __name__)
 def create_administrador():
     nombres = request.json.get('nombres')
     apellidos = request.json.get('apellidos')
-    email = request.json.get('email')
     num_telefono = request.json.get('num_telefono')
-    contrasenia = request.json.get('contrasenia')
+    id_usuario = request.json.get('id_usuario')
 
-    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    #contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-    new_administrador = Administrador(nombres=nombres, apellidos=apellidos, email=email, num_telefono=num_telefono, contrasenia=contrasenia)
+    new_administrador = Administrador(nombres=nombres, apellidos=apellidos, num_telefono=num_telefono, id_usuario=id_usuario)
 
     db.session.add(new_administrador)
     db.session.commit()
@@ -80,24 +79,22 @@ def update_administrador(id):
 
     nombres = request.json.get('nombres')
     apellidos = request.json.get('apellidos')
-    email = request.json.get('email')
     num_telefono = request.json.get('num_telefono')
-    contrasenia = request.json.get('contrasenia')
+    id_usuario = request.json.get('id_usuario')
 
-    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
+    #contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
 
     administrador.nombres = nombres
     administrador.apellidos = apellidos
-    administrador.email = email
     administrador.num_telefono = num_telefono
-    administrador.contrasenia = contrasenia
+    administrador.id_usuario = id_usuario
 
     db.session.commit()
 
     result = administrador_schema.dump(administrador)
 
     data = {
-        'message': 'Administrador actualizado!',
+        'message': '¡Administrador actualizado!',
         'status': 200,
         'data': result
     }

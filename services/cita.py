@@ -9,14 +9,16 @@ cita_routes = Blueprint("cita_routes", __name__)
 
 @cita_routes.route('/create_cita', methods=['POST'])
 def create_cita():
-    id_estudiante = request.json.get('id_estudiante')
+    id_paciente = request.json.get('id_paciente')
     id_especialista = request.json.get('id_especialista')
     motivo = request.json.get('motivo')
     id_estado = request.json.get('id_estado')
     id_modalidad = request.json.get('id_modalidad')
     fec_programada = request.json.get('fec_programada')
+    hora_inicio = request.json.get('hora_inicio')
+    hora_fin = request.json.get('hora_fin')
 
-    new_cita = Cita(id_estudiante=id_estudiante, id_especialista=id_especialista, motivo=motivo, id_estado=id_estado, id_modalidad=id_modalidad, fec_programada=fec_programada)
+    new_cita = Cita(id_paciente=id_paciente, id_especialista=id_especialista, motivo=motivo, id_estado=id_estado, id_modalidad=id_modalidad, fec_programada=fec_programada, hora_inicio=hora_inicio, hora_fin=hora_fin)
 
     db.session.add(new_cita)
     db.session.commit()
@@ -76,26 +78,30 @@ def update_cita(id):
         }
         return make_response(jsonify(data), 404)
 
-    id_estudiante = request.json.get('id_estudiante')
+    id_paciente = request.json.get('id_paciente')
     id_especialista = request.json.get('id_especialista')
     motivo = request.json.get('motivo')
     id_estado = request.json.get('id_estado')
     id_modalidad = request.json.get('id_modalidad')
     fec_programada = request.json.get('fec_programada')
+    hora_inicio = request.json.get('hora_inicio')
+    hora_fin = request.json.get('hora_fin')
 
-    cita.id_estudiante = id_estudiante
+    cita.id_paciente = id_paciente
     cita.id_especialista = id_especialista
     cita.motivo = motivo
     cita.id_estado = id_estado
     cita.id_modalidad = id_modalidad
     cita.fec_programada = fec_programada
+    cita.hora_inicio = hora_inicio
+    cita.hora_fin = hora_fin
 
     db.session.commit()
 
     result = cita_schema.dump(cita)
 
     data = {
-        'message': 'Cita actualizada!',
+        'message': '¡Cita actualizada!',
         'status': 200,
         'data': result
     }

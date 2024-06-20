@@ -11,9 +11,9 @@ asistencia_routes = Blueprint("asistencia_routes", __name__)
 def create_asistencia():
     fecha = request.json.get('fecha')
     id_taller = request.json.get('id_taller')
-    id_estudiante = request.json.get('id_estudiante')
+    id_paciente = request.json.get('id_paciente')
 
-    new_asistencia = Asistencia(fecha=fecha, id_taller=id_taller, id_estudiante=id_estudiante)
+    new_asistencia = Asistencia(fecha=fecha, id_taller=id_taller, id_paciente=id_paciente)
 
     db.session.add(new_asistencia)
     db.session.commit()
@@ -21,7 +21,7 @@ def create_asistencia():
     result = asistencia_schema.dump(new_asistencia)
 
     data = {
-        'message': 'Nueva asistencia registrada!',
+        'message': '¡Nueva asistencia registrada!',
         'status': 201,
         'data': result
     }
@@ -75,18 +75,18 @@ def update_asistencia(id):
 
     fecha = request.json.get('fecha')
     id_taller = request.json.get('id_taller')
-    id_estudiante = request.json.get('id_estudiante')
+    id_paciente = request.json.get('id_paciente')
 
     asistencia.fecha = fecha
     asistencia.id_taller = id_taller
-    asistencia.id_estudiante = id_estudiante
+    asistencia.id_paciente = id_paciente
 
     db.session.commit()
 
     result = asistencia_schema.dump(asistencia)
 
     data = {
-        'message': 'Asistencia actualizada',
+        'message': '¡Asistencia actualizada',
         'status': 200,
         'data': result
     }

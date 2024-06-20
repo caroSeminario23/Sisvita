@@ -15,15 +15,15 @@ def create_especialista():
     apellidos = request.json.get('apellidos')
     fec_nacimiento = request.json.get('fec_nacimiento')
     id_genero = request.json.get('id_genero')
-    email = request.json.get('email')
     n_licencia = request.json.get('n_licencia')
     anio_graduacion = request.json.get('anio_graduacion')
-    contrasenia = request.json.get('contrasenia')
+    activo = request.json.get('activo')
+    id_usuario = request.json.get('id_usuario')
 
-    contrasenia2 = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-    print(contrasenia2)
+    #contrasenia2 = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    #print(contrasenia2)
 
-    new_especialista = Especialista(id_especialidad=id_especialidad, doc_identidad=doc_identidad, nombres=nombres, apellidos=apellidos, fec_nacimiento=fec_nacimiento, id_genero=id_genero, email=email, n_licencia=n_licencia, anio_graduacion=anio_graduacion, contrasenia=contrasenia2)
+    new_especialista = Especialista(id_especialidad=id_especialidad, doc_identidad=doc_identidad, nombres=nombres, apellidos=apellidos, fec_nacimiento=fec_nacimiento, id_genero=id_genero, n_licencia=n_licencia, anio_graduacion=anio_graduacion, activo=activo, id_usuario=id_usuario)
 
     db.session.add(new_especialista)
     db.session.commit()
@@ -89,12 +89,13 @@ def update_especialista(id):
     especialista.apellidos = request.json.get('apellidos')
     especialista.fec_nacimiento = request.json.get('fec_nacimiento')
     especialista.id_genero = request.json.get('id_genero')
-    especialista.email = request.json.get('email')
     especialista.n_licencia = request.json.get('n_licencia')
     especialista.anio_graduacion = request.json.get('anio_graduacion')
-    contrasenia = request.json.get('contrasenia')
-    contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
-    especialista.contrasenia = contrasenia
+    especialista.activo = request.json.get('activo')
+    especialista.id_usuario = request.json.get('id_usuario')
+
+    #contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
+
 
     db.session.commit()
 

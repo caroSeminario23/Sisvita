@@ -10,8 +10,10 @@ def create_escala():
     nombre = request.json.get('nombre')
     descripcion = request.json.get('descripcion')
     id_test = request.json.get('id_test')
+    puntaje_min = request.json.get('puntaje_min')
+    puntaje_max = request.json.get('puntaje_max')
 
-    new_escala = Escala(nombre=nombre, descripcion=descripcion, id_test=id_test)
+    new_escala = Escala(nombre=nombre, descripcion=descripcion, id_test=id_test, puntaje_min=puntaje_min, puntaje_max=puntaje_max)
 
     db.session.add(new_escala)
     db.session.commit()
@@ -66,6 +68,8 @@ def update_escala(id):
     escala.nombre = request.json.get('nombre')
     escala.descripcion = request.json.get('descripcion')
     escala.id_test = request.json.get('id_test')
+    escala.puntaje_min = request.json.get('puntaje_min')
+    escala.puntaje_max = request.json.get('puntaje_max')
 
     db.session.commit()
 
