@@ -16,6 +16,7 @@ class Test(db.Model):
     evaluaciones = db.relationship('Evaluacion', back_populates='test', cascade='all, delete-orphan')
     preguntas = db.relationship('Pregunta', back_populates='test', cascade='all, delete-orphan')
     escalas = db.relationship('Escala', back_populates='test', cascade='all, delete-orphan')
+    opciones = db.relationship('Opcion', back_populates='test', cascade='all, delete-orphan')
 
     # constructor de la clase
     def __init__(self, nombre, descripcion, n_preguntas, n_version, id_idioma):

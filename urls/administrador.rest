@@ -5,16 +5,15 @@ Content-Type: application/json
 {
     "nombres": "Carlos Juan",
     "apellidos": "Savaleta Quispe",
-    "email": "carlos.zavaleta@hotmail.com",
     "num_telefono": "987654321",
-    "contrasenia": "administradorCarlos"
+    "id_usuario": 6
 }
 #####
 
 GET http://127.0.0.1:5000/administrador_routes/get_administradores
 #####
 
-GET http://127.0.0.1:5000/administrador_routes/get_administrador/5
+GET http://127.0.0.1:5000/administrador_routes/get_administrador/1
 #####
 
 PUT http://127.0.0.1:5000/administrador_routes/update_administrador/7

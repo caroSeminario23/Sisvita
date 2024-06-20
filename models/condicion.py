@@ -8,6 +8,8 @@ class Condicion(db.Model):
     id_condicion = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     nombre = db.Column(db.String(50), nullable=False, unique=True)
     descripcion = db.Column(db.String(200), nullable=True)
+
+    grados = relationship('Grado', back_populates='condicion')
     
     # constructor de la clase
     def __init__(self, nombre, descripcion=None):
