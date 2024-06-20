@@ -36,3 +36,12 @@ Content-Type: application/json
     "id_evaluacion": 25,
     "id_especialista": 1
 }
+##########
+
+POST http://127.0.0.1:5000/cus_routes3/mapear_casos
+Content-Type: application/json
+
+{
+    "lista_pacientes": "1 2 3",
+    "id_test": 1
+}
