@@ -3,6 +3,7 @@ from models.especialista import Especialista
 from marshmallow import fields
 from schemas.especialidad_schema import Especialidad_Schema
 from schemas.genero_schema import Genero_Schema
+from schemas.usuario_schema import Usuario_Schema
 
 class Especialista_Schema(ma.Schema):
     class Meta:
@@ -14,16 +15,18 @@ class Especialista_Schema(ma.Schema):
                   'apellidos',
                   'fec_nacimiento',
                   'id_genero',
-                  'email',
                   'n_licencia',
                   'anio_graduacion',
-                  'contrasenia',
+                  'activo',
+                  'id_usuario',
                   'especialidad',
-                  'genero'
+                  'genero',
+                  'usuario'
                   )
         
     especialidad=ma.Nested(Especialidad_Schema)
     genero=ma.Nested(Genero_Schema)
+    usuario=ma.Nested(Usuario_Schema)
 
 
 especialista_schema = Especialista_Schema()

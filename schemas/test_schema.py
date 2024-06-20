@@ -1,6 +1,7 @@
 from utils.ma import ma
 from models.test import Test
 from marshmallow import fields
+from schemas.idioma_schema import Idioma_Schema
 
 class Test_Schema(ma.Schema):
     class Meta:
@@ -9,9 +10,12 @@ class Test_Schema(ma.Schema):
                'nombre',
                'descripcion',
                'n_preguntas',
-               'version',
+               'n_version',
+               'id_idioma',
                'idioma'
                )
+        
+    idioma = fields.Nested(Idioma_Schema)
 
 test_schema = Test_Schema()
 tests_schema = Test_Schema(many=True)

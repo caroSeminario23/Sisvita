@@ -10,6 +10,8 @@ class Escala_Schema(ma.Schema):
                 'nombre',
                 'descripcion',
                 'id_test',
+                'puntaje_min',
+                'puntaje_max',
                 'test'
                 )
         

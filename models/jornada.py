@@ -10,6 +10,9 @@ class Jornada(db.Model):
     id_dia = db.Column(db.Integer, db.ForeignKey('dia.id_dia'), nullable=False)
     hora_inicio = db.Column(db.Time, nullable=False)
     hora_fin = db.Column(db.Time, nullable=False)
+
+    especialista = relationship('Especialista', back_populates='jornadas')
+    dia = relationship('Dia', backref='jornada1')
     
     # constructor de la clase
     def __init__(self, id_especialista, id_dia, hora_inicio, hora_fin):

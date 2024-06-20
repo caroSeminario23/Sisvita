@@ -9,7 +9,7 @@ class Recurso_Schema(ma.Schema):
         fields = ('id_recurso',
                   'id_especialista',
                   'titulo',
-                  'descripcion',
+                  'contenido',
                   'palabras_clave',
                   'fec_publicacion',
                   'fec_edicion',

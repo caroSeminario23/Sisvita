@@ -27,7 +27,7 @@ class Especialista(db.Model):
     talleres = relationship('Taller', back_populates='especialista', cascade='all, delete-orphan')
     recursos = relationship('Recurso', back_populates='especialista', cascade='all, delete-orphan')
     tratamientos = relationship('Tratamiento', back_populates='especialista', cascade='all, delete-orphan')
-    jornada = relationship('Jornada', back_populates='especialista', cascade='all, delete-orphan')
+    jornadas = relationship('Jornada', back_populates='especialista', cascade='all, delete-orphan')
 
     # constructor de la clase
     def __init__(self, id_especialidad, doc_identidad, nombres, apellidos, fec_nacimiento, id_genero, n_licencia, anio_graduacion, activo, id_usuario):

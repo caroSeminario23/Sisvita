@@ -3,6 +3,8 @@ from models.resultado import Resultado
 from marshmallow import fields
 from schemas.especialista_schema import Especialista_Schema
 from schemas.evaluacion_schema import Evaluacion_Schema
+from schemas.escala_schema import Escala_Schema
+from schemas.estado_schema import Estado_Schema
 
 class Resultado_Schema(ma.Schema):
     class Meta:
@@ -11,14 +13,20 @@ class Resultado_Schema(ma.Schema):
                   'id_evaluacion',
                   'id_especialista',
                   'puntaje',
+                  'id_escala',
+                  'id_estado',
                   'interpretacion',
                   'fec_resultado',
                   'evaluacion',
-                  'especialista'
+                  'especialista',
+                  'escala',
+                  'estado'
                  )
     
     evaluacion = fields.Nested(Evaluacion_Schema)
     especialista = fields.Nested(Especialista_Schema)
+    escala = fields.Nested(Escala_Schema)
+    estado = fields.Nested(Estado_Schema)
 
 
 resultado_schema = Resultado_Schema()
