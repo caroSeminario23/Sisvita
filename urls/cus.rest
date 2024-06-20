@@ -10,21 +10,20 @@ Content-Type: application/json
 ##########
 
 
-POST http://127.0.0.1:5000/cus_routes/realizar_test
+POST http://127.0.0.1:5000/cus_routes2/realizar_test
 Content-Type: application/json
 
 {
-    "id_estudiante": 1,
+    "id_paciente": 1,
     "id_test": 1,
-    "respuestas": "1, 0, 1, 2, 1, 0, 1, 0",
-    "fec_realizacion": "2021-06-01"
+    "respuestas": "1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2"
 }
 ##########
 
 
-POST http://127.0.0.1:5000/cus_routes/calcular_puntaje
+POST http://127.0.0.1:5000/cus_routes2/calcular_puntaje
 Content-Type: application/json
 
 {
-    "id_evaluacion": 14
+    "id_evaluacion": 25
 }
