@@ -1,0 +1,29 @@
+# ENLACES DE USUARIO (COMPLETO)
+POST http://127.0.0.1:5000/usuario_routes/create_usuario
+Content-Type: application/json
+
+{
+    "email": "venom@gmail.com",
+    "contrasenia": "venom2024",
+    "id_tipo_usuario": 1
+}
+#####
+
+GET http://127.0.0.1:5000/usuario_routes/get_usuarios
+#####
+
+GET http://127.0.0.1:5000/usuario_routes/get_usuario/6
+#####
+
+PUT http://127.0.0.1:5000/usuario_routes/update_usuario/6
+Content-Type: application/json
+
+{
+    "email": "venom123@gmail.com",
+    "contrasenia": "venom2024",
+    "id_tipo_usuario": 1
+}
+#####
+
+DELETE http://127.0.0.1:5000/usuario_routes/delete_usuario/6
+#####

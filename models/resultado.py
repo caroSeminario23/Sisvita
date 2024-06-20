@@ -11,7 +11,7 @@ class Resultado(db.Model):
     id_escala = db.Column(db.Integer, db.ForeignKey('escala.id_escala'), nullable=False)
     id_estado = db.Column(db.Integer, db.ForeignKey('estado.id_estado'), nullable=False)
     interpretacion = db.Column(db.String(300), nullable=True)
-    fec_resultado = db.Column(db.Date, nullable=True)
+    fec_interpretacion = db.Column(db.Date, nullable=True)
 
     escala = relationship('Escala', backref='resultado1')
     estado = relationship('Estado', backref='resultado2')
@@ -22,11 +22,11 @@ class Resultado(db.Model):
     tratamientos = relationship('Tratamiento', back_populates='resultado', cascade='all, delete-orphan')
 
     # constructor de la clase
-    def __init__(self, id_evaluacion, id_especialista, puntaje, id_escala, id_estado, interpretacion, fec_resultado):
+    def __init__(self, id_evaluacion, id_especialista, puntaje, id_escala, id_estado, interpretacion, fec_interpretacion):
         self.id_evaluacion = id_evaluacion
         self.id_especialista = id_especialista
         self.puntaje = puntaje
         self.id_escala = id_escala
         self.id_estado = id_estado
         self.interpretacion = interpretacion
-        self.fec_resultado = fec_resultado
+        self.fec_interpretacion = fec_interpretacion

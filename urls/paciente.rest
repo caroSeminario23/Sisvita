@@ -1,5 +1,5 @@
-# ENLACES DE ESTUDIANTE
-POST http://127.0.0.1:5000/estudiante_routes/create_estudiante
+# ENLACES DE ESTUDIANTE (COMPLETO PERO OJITO)
+POST http://127.0.0.1:5000/paciente_routes/create_paciente
 Content-Type: application/json
 
 {
@@ -8,38 +8,40 @@ Content-Type: application/json
     "apellidos":"Oroya Paz",
     "fec_nacimiento":"2001-01-01",
     "id_genero":2,
-    "email":"camila@hotmail.com",
+    "ubigeo":"150101",
     "direccion":"Jr. Los Pinos 123",
     "num_telefono":"987987654",
+    "id_condicion": 1,
     "anio_ingreso": 2021,
     "id_carrera": 2,
-    "contrasenia":"camilita"
+    "id_usuario": 8
 }
 #####
 
-GET http://127.0.0.1:5000/estudiante_routes/get_estudiantes
+GET http://127.0.0.1:5000/paciente_routes/get_pacientes
 #####
 
-GET http://127.0.0.1:5000/estudiante_routes/get_estudiante/1
+GET http://127.0.0.1:5000/paciente_routes/get_paciente/2
 #####
 
-PUT http://127.0.0.1:5000/estudiante_routes/update_estudiante/1
+PUT http://127.0.0.1:5000/paciente_routes/update_paciente/2
 Content-Type: application/json
 
 {
     "doc_identidad": "11111111",
     "nombres": "Camila Luisa",
-    "apellidos":"Oroya Paz",
+    "apellidos":"Oroya Quiroz",
     "fec_nacimiento":"2001-01-01",
     "id_genero":2,
-    "email":"camila@hotmail.com",
+    "ubigeo":"150101",
     "direccion":"Jr. Los Pinos 123",
     "num_telefono":"987987654",
+    "id_condicion": 1,
     "anio_ingreso": 2021,
     "id_carrera": 2,
-    "contrasenia":"camilita"
+    "id_usuario": 9
 }
 #####
 
-DELETE http://127.0.0.1:5000/estudiante_routes/delete_estudiante/1
+DELETE http://127.0.0.1:5000/paciente_routes/delete_paciente/2
 #####

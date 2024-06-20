@@ -1,4 +1,4 @@
-# ENLACES DE ADMINISTRADOR
+# ENLACES DE ADMINISTRADOR (COMPLETO)
 POST http://127.0.0.1:5000/administrador_routes/create_administrador
 Content-Type: application/json
 
@@ -6,27 +6,26 @@ Content-Type: application/json
     "nombres": "Carlos Juan",
     "apellidos": "Savaleta Quispe",
     "num_telefono": "987654321",
-    "id_usuario": 6
+    "id_usuario": 8
 }
 #####
 
 GET http://127.0.0.1:5000/administrador_routes/get_administradores
 #####
 
-GET http://127.0.0.1:5000/administrador_routes/get_administrador/1
+GET http://127.0.0.1:5000/administrador_routes/get_administrador/3
 #####
 
-PUT http://127.0.0.1:5000/administrador_routes/update_administrador/7
+PUT http://127.0.0.1:5000/administrador_routes/update_administrador/4
 Content-Type: application/json
 
 {
-    "nombres": "Carlos Juan",
-    "apellidos": "Salvador Quispe",
-    "email": "carlos.salvador@hotmail.com",
+    "nombres": "Carlos Miguel",
+    "apellidos": "Savaleta Quispe",
     "num_telefono": "987654321",
-    "contrasenia": "administradorCarlos"
+    "id_usuario": 8
 }
 #####
 
-DELETE http://127.0.0.1:5000/administrador_routes/delete_administrador/7
+DELETE http://127.0.0.1:5000/administrador_routes/delete_administrador/4
 #####

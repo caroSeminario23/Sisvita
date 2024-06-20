@@ -1,4 +1,4 @@
-# ENLACES DE ESPECIALISTA
+# ENLACES DE ESPECIALISTA (COMPLETO)
 POST http://127.0.0.1:5000/especialista_routes/create_especialista
 Content-Type: application/json
 
@@ -9,35 +9,35 @@ Content-Type: application/json
     "apellidos": "Seminario Valdivia",
     "fec_nacimiento": "2000-02-01",
     "id_genero": 2,
-    "email": "maria.seminario@gmail.com",
     "n_licencia": "123456",
     "anio_graduacion": 2018,
-    "contrasenia": "marianicolle"
+    "activo": true,
+    "id_usuario": 9
 }
 #####
 
 GET http://127.0.0.1:5000/especialista_routes/get_especialistas
 #####
 
-GET http://127.0.0.1:5000/especialista_routes/get_especialista/16
+GET http://127.0.0.1:5000/especialista_routes/get_especialista/2
 #####
 
-PUT http://127.0.0.1:5000/especialista_routes/update_especialista/17
+PUT http://127.0.0.1:5000/especialista_routes/update_especialista/2
 Content-Type: application/json
 
 {
-    "id_especialidad": 2,
+    "id_especialidad": 1,
     "doc_identidad": "76542988",
-    "nombres": "María Nicolle",
+    "nombres": "María Luisa",
     "apellidos": "Seminario Valdivia",
     "fec_nacimiento": "2000-02-01",
     "id_genero": 2,
-    "email": "maria.seminario@gmail.com",
     "n_licencia": "123456",
     "anio_graduacion": 2018,
-    "contrasenia": "123456"
+    "activo": true,
+    "id_usuario": 9
 }
 #####
 
-DELETE http://127.0.0.1:5000/especialista_routes/delete_especialista/16
+DELETE http://127.0.0.1:5000/especialista_routes/delete_especialista/2
 #####

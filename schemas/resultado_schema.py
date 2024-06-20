@@ -16,7 +16,7 @@ class Resultado_Schema(ma.Schema):
                   'id_escala',
                   'id_estado',
                   'interpretacion',
-                  'fec_resultado',
+                  'fec_interpretacion',
                   'evaluacion',
                   'especialista',
                   'escala',

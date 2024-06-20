@@ -17,7 +17,7 @@ class Usuario(db.Model):
     pacientes = relationship('Paciente', back_populates='usuario', cascade='all, delete-orphan')
 
     # constructor de la clase
-    def __init__(self, email, contrasenia, tipo_usuario):
+    def __init__(self, email, contrasenia, id_tipo_usuario):
         self.email = email
         self.contrasenia = contrasenia
-        self.tipo_usuario = tipo_usuario
+        self.id_tipo_usuario = id_tipo_usuario
