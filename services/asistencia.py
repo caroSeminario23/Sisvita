@@ -31,6 +31,14 @@ def create_asistencia():
 @asistencia_routes.route('/get_asistencias', methods=['GET'])
 def get_asistencias():
     all_asistencias = Asistencia.query.all()
+    
+    if all_asistencias == []:
+        data = {
+            'message': 'No hay registros de asistencias',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+
     result = asistencias_schema.dump(all_asistencias)
 
     data = {

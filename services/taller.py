@@ -46,6 +46,14 @@ def get_talleres():
 @taller_routes.route('/get_taller/<int:id>', methods=['GET'])
 def get_taller(id):
     taller = Taller.query.get(id)
+
+    if not taller:
+        data = {
+            'message': 'Taller no encontrado',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+
     result = taller_schema.dump(taller)
 
     data = {
@@ -59,6 +67,13 @@ def get_taller(id):
 @taller_routes.route('/update_taller/<int:id>', methods=['PUT'])
 def update_taller(id):
     taller = Taller.query.get(id)
+
+    if not taller:
+        data = {
+            'message': 'Taller no encontrado',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
 
     nombre = request.json.get('nombre')
     id_especialista = request.json.get('id_especialista')
