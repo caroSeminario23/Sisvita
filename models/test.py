@@ -11,6 +11,8 @@ class Test(db.Model):
     n_version = db.Column(db.String(20), nullable=False)
     id_idioma = db.Column(db.Integer, db.ForeignKey('idioma.id_idioma'), nullable=False)
 
+    idioma = db.relationship('Idioma', backref='test1')
+
     evaluaciones = db.relationship('Evaluacion', back_populates='test', cascade='all, delete-orphan')
     preguntas = db.relationship('Pregunta', back_populates='test', cascade='all, delete-orphan')
     escalas = db.relationship('Escala', back_populates='test', cascade='all, delete-orphan')

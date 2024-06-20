@@ -14,20 +14,23 @@ class Especialista(db.Model):
     id_genero = db.Column(db.Integer, db.ForeignKey('genero.id_genero'), nullable=False)
     n_licencia = db.Column(db.String(11), nullable=False, unique=True)
     anio_graduacion = db.Column(db.Integer, nullable=False)
+    activo = db.Column(db.Boolean, nullable=False, default=True)
     id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id_usuario'), nullable=False)
 
     especialidad = relationship('Especialidad', backref='especialista1')
     genero = relationship('Genero', backref='especialista2')
-    usuario = relationship('Usuario', backref='especialista3')
+
+    usuario = relationship('Usuario', back_populates='especialistas')
 
     citas = relationship('Cita', back_populates='especialista', cascade='all, delete-orphan')
     resultados = relationship('Resultado', back_populates='especialista', cascade='all, delete-orphan')
     talleres = relationship('Taller', back_populates='especialista', cascade='all, delete-orphan')
     recursos = relationship('Recurso', back_populates='especialista', cascade='all, delete-orphan')
     tratamientos = relationship('Tratamiento', back_populates='especialista', cascade='all, delete-orphan')
+    jornada = relationship('Jornada', back_populates='especialista', cascade='all, delete-orphan')
 
     # constructor de la clase
-    def __init__(self, id_especialidad, doc_identidad, nombres, apellidos, fec_nacimiento, id_genero, n_licencia, anio_graduacion, id_usuario):
+    def __init__(self, id_especialidad, doc_identidad, nombres, apellidos, fec_nacimiento, id_genero, n_licencia, anio_graduacion, activo, id_usuario):
         self.id_especialidad = id_especialidad
         self.doc_identidad = doc_identidad
         self.nombres = nombres
@@ -36,4 +39,5 @@ class Especialista(db.Model):
         self.id_genero = id_genero
         self.n_licencia = n_licencia
         self.anio_graduacion = anio_graduacion
+        self.activo = activo
         self.id_usuario = id_usuario

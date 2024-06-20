@@ -10,7 +10,7 @@ class Libreta(db.Model):
     id_periodo = db.Column(db.Integer, db.ForeignKey('periodo.id_periodo'), nullable=False)
     id_grado = db.Column(db.Integer, db.ForeignKey('grado.id_grado'), nullable=False)
     nota_promedio = db.Column(db.Float, nullable=False)
-    observaciones = db.Column(db.String(250), nullable=False)
+    observaciones = db.Column(db.String(200), nullable=False)
 
     periodo = relationship('Periodo', backref='libreta1')
     grado = relationship('Grado', backref='libreta2')

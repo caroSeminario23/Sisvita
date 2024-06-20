@@ -11,7 +11,7 @@ class Administrador(db.Model):
     num_telefono = db.Column(db.Numeric(9), nullable=False)
     id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id_usuario'), nullable=False)
 
-    usuario = relationship('Usuario', backref='administrador')
+    usuario = relationship('Usuario', back_populates='administradores')
     
     # constructor de la clase
     def __init__(self, nombres, apellidos, num_telefono, usuario):

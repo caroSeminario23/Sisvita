@@ -10,7 +10,7 @@ class Grado(db.Model):
     descripcion = db.Column(db.String(200), nullable=True)
     id_condicion = db.Column(db.Integer, db.ForeignKey('condicion.id_condicion'), nullable=False)
 
-    condicion = relationship('Condicion', backref='grados')
+    condicion = relationship('Condicion', back_populates='grados')
     
     # constructor de la clase
     def __init__(self, nombre, id_condicion, descripcion=None):

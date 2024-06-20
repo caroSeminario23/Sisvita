@@ -16,14 +16,17 @@ class Taller(db.Model):
 
     modalidad = relationship('Modalidad', backref='taller1')
     estado = relationship('Estado', backref='taller2')
-    especialista = relationship('Especialista', backref='taller3')
 
+    especialista = relationship('Especialista', back_populates='talleres')
+    
     asistencias = relationship('Asistencia', back_populates='taller', cascade='all, delete-orphan')
     horarios = relationship('Horario', back_populates='taller', cascade='all, delete-orphan')
     
     # constructor de la clase
-    def __init__(self, id_especialista, n_vacantes, fec_inicio, fec_fin):
+    def __init__(self, id_especialista, n_vacantes, fec_inicio, fec_fin, id_modalidad, id_estado):
         self.id_especialista = id_especialista
         self.n_vacantes = n_vacantes
         self.fec_inicio = fec_inicio
         self.fec_fin = fec_fin
+        self.id_modalidad = id_modalidad
+        self.id_estado = id_estado
