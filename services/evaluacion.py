@@ -9,12 +9,12 @@ evaluacion_routes = Blueprint("evaluacion_routes", __name__)
 
 @evaluacion_routes.route('/create_evaluacion', methods=['POST'])
 def create_evaluacion():
-    id_estudiante = request.json.get('id_estudiante')
+    id_paciente = request.json.get('id_paciente')
     id_test = request.json.get('id_test')
     respuestas = request.json.get('respuestas')
     fec_realizacion = request.json.get('fec_realizacion')
 
-    new_evaluacion = Evaluacion(id_estudiante=id_estudiante, id_test=id_test, respuestas=respuestas, fec_realizacion=fec_realizacion)
+    new_evaluacion = Evaluacion(id_paciente=id_paciente, id_test=id_test, respuestas=respuestas, fec_realizacion=fec_realizacion)
 
     db.session.add(new_evaluacion)
     db.session.commit()
@@ -74,12 +74,12 @@ def update_evaluacion(id):
         }
         return make_response(jsonify(data), 404)
 
-    id_estudiante = request.json.get('id_estudiante')
+    id_paciente = request.json.get('id_paciente')
     id_test = request.json.get('id_test')
     respuestas = request.json.get('respuestas')
     fec_realizacion = request.json.get('fec_realizacion')
 
-    evaluacion.id_estudiante = id_estudiante
+    evaluacion.id_paciente = id_paciente
     evaluacion.id_test = id_test
     evaluacion.respuestas = respuestas
     evaluacion.fec_realizacion = fec_realizacion

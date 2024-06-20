@@ -1,7 +1,7 @@
 from utils.ma import ma
 from models.usuario import Usuario
 from marshmallow import fields
-from schemas.usuario_schema import Usuario_Schema
+from schemas.tipo_usuario_schema import Tipo_usuario_schema
 
 class Usuario_Schema(ma.Schema):
     class Meta:
@@ -13,7 +13,7 @@ class Usuario_Schema(ma.Schema):
                 'tipo_usuario'
                 )
         
-    usuario=ma.Nested(Usuario_Schema)
+    tipo_usuario=ma.Nested(Tipo_usuario_schema)
         
 usuario_schema = Usuario_Schema()
 usuarios_schema = Usuario_Schema(many=True)
