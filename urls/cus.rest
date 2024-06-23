@@ -25,7 +25,7 @@ POST http://127.0.0.1:5000/cus_routes2/calcular_puntaje
 Content-Type: application/json
 
 {
-    "id_evaluacion": 25
+    "id_evaluacion": 31
 }
 ##########
 
@@ -33,7 +33,7 @@ POST http://127.0.0.1:5000/cus_routes2/determinar_escala
 Content-Type: application/json
 
 {
-    "id_evaluacion": 25,
+    "id_evaluacion": 36,
     "id_especialista": 1
 }
 ##########
@@ -42,6 +42,6 @@ POST http://127.0.0.1:5000/cus_routes3/mapear_casos
 Content-Type: application/json
 
 {
-    "lista_pacientes": "1 2 3",
+    "lista_pacientes": "1",
     "id_test": 1
 }

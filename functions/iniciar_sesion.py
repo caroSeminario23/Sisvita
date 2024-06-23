@@ -23,7 +23,8 @@ def login():
     
     data = {
         'message': 'Usuario autenticado correctamente',
-        'status': 200
+        'status': 200,
+        'id_tipo_usuario': usuario.id_tipo_usuario
     }
 
     return make_response(jsonify(data), 200)
