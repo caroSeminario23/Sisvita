@@ -9,8 +9,9 @@ estado_routes = Blueprint("estado_routes", __name__)
 def create_estado():
     nombre = request.json.get('nombre')
     descripcion = request.json.get('descripcion')
+    id_tipo_estado = request.json.get('id_tipo_estado')
 
-    new_estado = Estado(nombre=nombre, descripcion=descripcion)
+    new_estado = Estado(nombre=nombre, descripcion=descripcion, id_tipo_estado=id_tipo_estado)
 
     db.session.add(new_estado)
     db.session.commit()
@@ -28,6 +29,14 @@ def create_estado():
 @estado_routes.route('/get_estados', methods=['GET'])
 def get_estados():
     all_estados = Estado.query.all()
+
+    if not all_estados:
+        data = {
+            'message': 'No se encontraron registros de estados',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = estados_schema.dump(all_estados)
 
     data = {
@@ -72,6 +81,7 @@ def update_estado(id):
 
     estado.nombre = request.json.get('nombre')
     estado.descripcion = request.json.get('descripcion')
+    estado.id_tipo_estado = request.json.get('id_tipo_estado')
 
     db.session.commit()
 

@@ -8,15 +8,14 @@ tratamiento_routes = Blueprint("tratamiento_routes", __name__)
 @tratamiento_routes.route('/create_tratamiento', methods=['POST'])
 def create_tratamiento():
     id_resultado = request.json.get('id_resultado')
-    id_especialista = request.json.get('id_especialista')
     objetivo = request.json.get('objetivo')
-    indicaciones = request.json.get('indicaciones')
     fec_asignacion = request.json.get('fec_asignacion')
     fec_inicio = request.json.get('fec_inicio')
     fec_fin = request.json.get('fec_fin')
     id_estado = request.json.get('id_estado')
+    observaciones = request.json.get('observaciones')
 
-    new_tratamiento = Tratamiento(id_resultado=id_resultado, id_especialista=id_especialista, objetivo=objetivo, indicaciones=indicaciones, fec_asignacion=fec_asignacion, fec_inicio=fec_inicio, fec_fin=fec_fin, id_estado=id_estado)
+    new_tratamiento = Tratamiento(id_resultado=id_resultado, objetivo=objetivo, fec_asignacion=fec_asignacion, fec_inicio=fec_inicio, fec_fin=fec_fin, id_estado=id_estado, observaciones=observaciones)
 
     db.session.add(new_tratamiento)
     db.session.commit()
@@ -34,6 +33,14 @@ def create_tratamiento():
 @tratamiento_routes.route('/get_tratamientos', methods=['GET'])
 def get_tratamientos():
     all_tratamientos = Tratamiento.query.all()
+
+    if not all_tratamientos:
+        data = {
+            'message': 'No se encontraron registros de tratamientos',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = tratamientos_schema.dump(all_tratamientos)
 
     data = {
@@ -76,25 +83,21 @@ def update_tratamiento(id):
         }
         return make_response(jsonify(data), 404)
 
-    id_resultado1 = request.json.get('id_resultado1')
-    id_resultado2 = request.json.get('id_resultado2')
-    id_especialista = request.json.get('id_especialista')
+    id_resultado = request.json.get('id_resultado')
     objetivo = request.json.get('objetivo')
-    indicaciones = request.json.get('indicaciones')
     fec_asignacion = request.json.get('fec_asignacion')
     fec_inicio = request.json.get('fec_inicio')
     fec_fin = request.json.get('fec_fin')
     id_estado = request.json.get('id_estado')
+    observaciones = request.json.get('observaciones')
 
-    tratamiento.id_resultado1 = id_resultado1
-    tratamiento.id_resultado2 = id_resultado2
-    tratamiento.id_especialista = id_especialista
+    tratamiento.id_resultado = id_resultado
     tratamiento.objetivo = objetivo
-    tratamiento.indicaciones = indicaciones
     tratamiento.fec_asignacion = fec_asignacion
     tratamiento.fec_inicio = fec_inicio
     tratamiento.fec_fin = fec_fin
     tratamiento.id_estado = id_estado
+    tratamiento.observaciones = observaciones
 
     db.session.commit()
 

@@ -30,6 +30,14 @@ def create_usuario():
 @usuario_routes.route('/get_usuarios', methods=['GET'])
 def get_usuarios():
     all_usuarios = Usuario.query.all()
+
+    if not all_usuarios:
+        data = {
+            'message': 'No se encontraron usuarios',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = usuarios_schema.dump(all_usuarios)
 
     data = {

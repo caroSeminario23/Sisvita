@@ -28,6 +28,14 @@ def create_tipo_usuario():
 @tipo_usuario_routes.route('/get_tipos_usuario', methods=['GET'])
 def get_tipos_usuario():
     all_tipos_usuario = Tipo_usuario.query.all()
+
+    if not all_tipos_usuario:
+        data = {
+            'message': 'No se encontraron registros de tipos de usuario',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = tipos_usuario_schema.dump(all_tipos_usuario)
 
     data = {

@@ -36,6 +36,14 @@ def create_cita():
 @cita_routes.route('/get_citas', methods=['GET'])
 def get_citas():
     all_citas = Cita.query.all()
+
+    if not all_citas:
+        data = {
+            'message': 'No se encontraron registros de citas',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = citas_schema.dump(all_citas)
 
     data = {

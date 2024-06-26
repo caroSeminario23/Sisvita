@@ -30,6 +30,14 @@ def create_genero():
 @genero_routes.route('/get_generos', methods=['GET'])
 def get_generos():
     all_generos = Genero.query.all()
+
+    if not all_generos:
+        data = {
+            'message': 'No se encontraron registros de géneros',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = generos_schema.dump(all_generos)
 
     data = {

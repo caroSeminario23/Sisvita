@@ -31,6 +31,14 @@ def create_escala():
 @escala_routes.route('/get_escalas', methods=['GET'])
 def get_escalas():
     all_escalas = Escala.query.all()
+
+    if not all_escalas:
+        data = {
+            'message': 'No se encontraron registros de escalas',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = escalas_schema.dump(all_escalas)
 
     data = {

@@ -31,6 +31,14 @@ def create_opcion():
 @opcion_routes.route('/get_opciones', methods=['GET'])
 def get_opciones():
     opciones = Opcion.query.all()
+
+    if not opciones:
+        data = {
+            'message': 'No se encontraron registros de opciones',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = opciones_schema.dump(opciones)
 
     data = {

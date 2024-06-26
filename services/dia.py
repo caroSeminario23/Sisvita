@@ -30,6 +30,14 @@ def create_dia():
 @dia_routes.route('/get_dias', methods=['GET'])
 def get_dias():
     all_dias = Dia.query.all()
+
+    if not all_dias:
+        data = {
+            'message': 'No se encontraron registros de dias',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = dias_schema.dump(all_dias)
 
     data = {

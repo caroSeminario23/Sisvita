@@ -30,6 +30,14 @@ def create_condicion():
 @condicion_routes.route('/get_condiciones', methods=['GET'])
 def get_condiciones():
     all_condiciones = Condicion.query.all()
+
+    if not all_condiciones:
+        data = {
+            'message': 'No se encontraron registros de condiciones',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = condiciones_schema.dump(all_condiciones)
 
     data = {

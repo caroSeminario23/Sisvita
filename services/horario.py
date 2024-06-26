@@ -30,6 +30,14 @@ def create_horario():
 @horario_routes.route('/get_horarios', methods=['GET'])
 def get_horarios():
     horarios = Horario.query.all()
+
+    if not horarios:
+        data = {
+            'message': 'No se encontraron registros de horarios',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = horarios_schema.dump(horarios)
 
     data = {

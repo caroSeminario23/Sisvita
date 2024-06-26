@@ -28,6 +28,14 @@ def create_modalidad():
 @modalidad_routes.route('/get_modalidades', methods=['GET'])
 def get_modalidades():
     all_modalidades = Modalidad.query.all()
+
+    if not all_modalidades:
+        data = {
+            'message': 'No se encontraron registros de modalidades',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = modalidades_schema.dump(all_modalidades)
 
     data = {

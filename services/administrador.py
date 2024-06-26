@@ -1,6 +1,5 @@
-# insert / update / delete / select / select_all
-
 import bcrypt
+
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
 from models.administrador import Administrador
@@ -10,14 +9,12 @@ administrador_routes = Blueprint("administrador_routes", __name__)
 
 @administrador_routes.route('/create_administrador', methods=['POST'])
 def create_administrador():
-    nombres = request.json.get('nombres')
-    apellidos = request.json.get('apellidos')
-    num_telefono = request.json.get('num_telefono')
+    id_persona = request.json.get('id_persona')
     id_usuario = request.json.get('id_usuario')
 
     #contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
-    new_administrador = Administrador(nombres=nombres, apellidos=apellidos, num_telefono=num_telefono, id_usuario=id_usuario)
+    new_administrador = Administrador(id_persona=id_persona, id_usuario=id_usuario)
 
     db.session.add(new_administrador)
     db.session.commit()
@@ -35,6 +32,14 @@ def create_administrador():
 @administrador_routes.route('/get_administradores', methods=['GET'])
 def get_administradores():
     all_administradores = Administrador.query.all()
+
+    if not all_administradores:
+        data = {
+            'message': 'No se encontraron registros de administradores',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = administradores_schema.dump(all_administradores)
 
     data = {
@@ -77,16 +82,12 @@ def update_administrador(id):
         }
         return make_response(jsonify(data), 404)
 
-    nombres = request.json.get('nombres')
-    apellidos = request.json.get('apellidos')
-    num_telefono = request.json.get('num_telefono')
+    id_persona = request.json.get('id_persona')
     id_usuario = request.json.get('id_usuario')
 
     #contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
 
-    administrador.nombres = nombres
-    administrador.apellidos = apellidos
-    administrador.num_telefono = num_telefono
+    administrador.id_persona = id_persona
     administrador.id_usuario = id_usuario
 
     db.session.commit()
@@ -116,7 +117,7 @@ def delete_administrador(id):
     db.session.commit()
 
     data = {
-        'message': 'Administrador eliminado!',
+        'message': '¡Administrador eliminado!',
         'status': 200
     }
 

@@ -13,8 +13,10 @@ def create_evaluacion():
     id_test = request.json.get('id_test')
     respuestas = request.json.get('respuestas')
     fec_realizacion = request.json.get('fec_realizacion')
+    puntaje = request.json.get('puntaje')
+    id_escala = request.json.get('id_escala')
 
-    new_evaluacion = Evaluacion(id_paciente=id_paciente, id_test=id_test, respuestas=respuestas, fec_realizacion=fec_realizacion)
+    new_evaluacion = Evaluacion(id_paciente=id_paciente, id_test=id_test, respuestas=respuestas, fec_realizacion=fec_realizacion, puntaje=puntaje, id_escala=id_escala)
 
     db.session.add(new_evaluacion)
     db.session.commit()
@@ -32,6 +34,14 @@ def create_evaluacion():
 @evaluacion_routes.route('/get_evaluaciones', methods=['GET'])
 def get_evaluaciones():
     all_evaluaciones = Evaluacion.query.all()
+
+    if not all_evaluaciones:
+        data = {
+            'message': 'No se encontraron registros de evaluaciones',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = evaluaciones_schema.dump(all_evaluaciones)
 
     data = {
@@ -78,11 +88,15 @@ def update_evaluacion(id):
     id_test = request.json.get('id_test')
     respuestas = request.json.get('respuestas')
     fec_realizacion = request.json.get('fec_realizacion')
+    puntaje = request.json.get('puntaje')
+    id_escala = request.json.get('id_escala')
 
     evaluacion.id_paciente = id_paciente
     evaluacion.id_test = id_test
     evaluacion.respuestas = respuestas
     evaluacion.fec_realizacion = fec_realizacion
+    evaluacion.puntaje = puntaje
+    evaluacion.id_escala = id_escala
 
     db.session.commit()
 

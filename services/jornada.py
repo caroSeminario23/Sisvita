@@ -30,6 +30,14 @@ def create_jornada():
 @jornada_routes.route('/get_jornadas', methods=['GET'])
 def get_jornadas():
     jornadas = Jornada.query.all()
+
+    if not jornadas:
+        data = {
+            'message': 'No se encontraron registros de jornadas',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = jornadas_schema.dump(jornadas)
 
     data = {

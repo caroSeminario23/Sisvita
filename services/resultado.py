@@ -9,13 +9,12 @@ resultado_routes = Blueprint("resultado_routes", __name__)
 def create_resultado():
     id_evaluacion = request.json.get('id_evaluacion')
     id_especialista = request.json.get('id_especialista')
-    puntaje = request.json.get('puntaje')
-    id_escala = request.json.get('id_escala')
     id_estado = request.json.get('id_estado')
-    interpretacion = request.json.get('interpretacion')
+    id_escala = request.json.get('id_escala')
     fec_interpretacion = request.json.get('fec_interpretacion')
-
-    new_resultado = Resultado(id_evaluacion=id_evaluacion ,id_especialista=id_especialista, puntaje=puntaje, id_escala=id_escala, id_estado=id_estado, interpretacion=interpretacion, fec_interpretacion=fec_interpretacion)
+    observacion = request.json.get('observacion')
+    
+    new_resultado = Resultado(id_evaluacion=id_evaluacion, id_especialista=id_especialista, id_estado=id_estado, id_escala=id_escala, fec_interpretacion=fec_interpretacion, observacion=observacion)
 
     db.session.add(new_resultado)
     db.session.commit()
@@ -33,6 +32,14 @@ def create_resultado():
 @resultado_routes.route('/get_resultados', methods=['GET'])
 def get_resultados():
     all_resultados = Resultado.query.all()
+
+    if not all_resultados:
+        data = {
+            'message': 'No se encontraron registros de resultados',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = resultados_schema.dump(all_resultados)
 
     data = {
@@ -75,12 +82,12 @@ def update_resultado(id):
         }
         return make_response(jsonify(data), 404)
 
+    resultado.id_evaluacion = request.json.get('id_evaluacion')
     resultado.id_especialista = request.json.get('id_especialista')
-    resultado.puntaje = request.json.get('puntaje')
-    resultado.id_escala = request.json.get('id_escala')
     resultado.id_estado = request.json.get('id_estado')
-    resultado.interpretacion = request.json.get('interpretacion')
+    resultado.id_escala = request.json.get('id_escala')
     resultado.fec_interpretacion = request.json.get('fec_interpretacion')
+    resultado.observacion = request.json.get('observacion')
 
     db.session.commit()
 

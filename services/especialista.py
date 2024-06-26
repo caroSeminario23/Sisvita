@@ -10,20 +10,15 @@ especialista_routes = Blueprint("especialista_routes", __name__)
 @especialista_routes.route('/create_especialista', methods=['POST'])
 def create_especialista():
     id_especialidad = request.json.get('id_especialidad')
-    doc_identidad = request.json.get('doc_identidad')
-    nombres = request.json.get('nombres')
-    apellidos = request.json.get('apellidos')
-    fec_nacimiento = request.json.get('fec_nacimiento')
-    id_genero = request.json.get('id_genero')
     n_licencia = request.json.get('n_licencia')
-    anio_graduacion = request.json.get('anio_graduacion')
     activo = request.json.get('activo')
+    id_persona = request.json.get('id_persona')
     id_usuario = request.json.get('id_usuario')
 
     #contrasenia2 = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
     #print(contrasenia2)
 
-    new_especialista = Especialista(id_especialidad=id_especialidad, doc_identidad=doc_identidad, nombres=nombres, apellidos=apellidos, fec_nacimiento=fec_nacimiento, id_genero=id_genero, n_licencia=n_licencia, anio_graduacion=anio_graduacion, activo=activo, id_usuario=id_usuario)
+    new_especialista = Especialista(id_especialidad=id_especialidad, n_licencia=n_licencia, activo=activo, id_persona=id_persona, id_usuario=id_usuario)
 
     db.session.add(new_especialista)
     db.session.commit()
@@ -41,6 +36,14 @@ def create_especialista():
 @especialista_routes.route('/get_especialistas', methods=['GET'])
 def get_especialistas():
     all_especialistas = Especialista.query.all()
+
+    if not all_especialistas:
+        data = {
+            'message': 'No se encontraron registros de especialistas',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = especialistas_schema.dump(all_especialistas)
 
     data = {
@@ -84,18 +87,12 @@ def update_especialista(id):
         return make_response(jsonify(data), 404)
 
     especialista.id_especialidad = request.json.get('id_especialidad')
-    especialista.doc_identidad = request.json.get('doc_identidad')
-    especialista.nombres = request.json.get('nombres')
-    especialista.apellidos = request.json.get('apellidos')
-    especialista.fec_nacimiento = request.json.get('fec_nacimiento')
-    especialista.id_genero = request.json.get('id_genero')
     especialista.n_licencia = request.json.get('n_licencia')
-    especialista.anio_graduacion = request.json.get('anio_graduacion')
     especialista.activo = request.json.get('activo')
+    especialista.id_persona = request.json.get('id_persona')
     especialista.id_usuario = request.json.get('id_usuario')
 
     #contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
-
 
     db.session.commit()
 

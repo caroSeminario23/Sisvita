@@ -12,9 +12,8 @@ def create_post():
     fec_publicacion = request.json.get('fec_publicacion')
     fec_edicion = request.json.get('fec_edicion')
     anonimo = request.json.get('anonimo')
-    n_comentarios = request.json.get('n_comentarios')
 
-    new_post = Post(id_paciente=id_paciente, descripcion=descripcion, fec_publicacion=fec_publicacion, fec_edicion=fec_edicion, anonimo=anonimo, n_comentarios=n_comentarios)
+    new_post = Post(id_paciente=id_paciente, descripcion=descripcion, fec_publicacion=fec_publicacion, fec_edicion=fec_edicion, anonimo=anonimo)
 
     db.session.add(new_post)
     db.session.commit()
@@ -32,6 +31,14 @@ def create_post():
 @post_routes.route('/get_posts', methods=['GET'])
 def get_posts():
     all_posts = Post.query.all()
+
+    if not all_posts:
+        data = {
+            'message': 'No se encontraron registros de posts',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+                                     
     result = posts_schema.dump(all_posts)
 
     data = {
@@ -45,6 +52,14 @@ def get_posts():
 @post_routes.route('/get_post/<int:id>', methods=['GET'])
 def get_post(id):
     post = Post.query.get(id)
+
+    if not post:
+        data = {
+            'message': 'Post no encontrado',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = post_schema.dump(post)
 
     data = {
@@ -64,7 +79,6 @@ def update_post(id):
     post.fec_publicacion = request.json.get('fec_publicacion')
     post.fec_edicion = request.json.get('fec_edicion')
     post.anonimo = request.json.get('anonimo')
-    post.n_comentarios = request.json.get('n_comentarios')
 
     db.session.commit()
 

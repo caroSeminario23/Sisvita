@@ -28,6 +28,14 @@ def create_idioma():
 @idioma_routes.route('/get_idiomas', methods=['GET'])
 def get_idiomas():
     all_idiomas = Idioma.query.all()
+
+    if not all_idiomas:
+        data = {
+            'message': 'No se encontraron registros de idiomas',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = idiomas_schema.dump(all_idiomas)
 
     data = {

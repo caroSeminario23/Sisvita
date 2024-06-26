@@ -34,6 +34,14 @@ def create_comentario():
 @comentario_routes.route('/get_comentarios', methods=['GET'])
 def get_comentarios():
     all_comentarios = Comentario.query.all()
+
+    if not all_comentarios:
+        data = {
+            'message': 'No se encontraron registros de comentarios',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = comentarios_schema.dump(all_comentarios)
 
     data = {

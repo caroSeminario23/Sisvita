@@ -10,11 +10,10 @@ def create_recurso():
     id_especialista = request.json.get('id_especialista')
     titulo = request.json.get('titulo')
     contenido = request.json.get('contenido')
-    palabras_clave = request.json.get('palabras_clave')
     fec_publicacion = request.json.get('fec_publicacion')
     fec_edicion = request.json.get('fec_edicion')
 
-    new_recurso = Recurso(id_especialista=id_especialista, titulo=titulo, contenido=contenido, palabras_clave=palabras_clave, fec_publicacion=fec_publicacion, fec_edicion=fec_edicion)
+    new_recurso = Recurso(id_especialista=id_especialista, titulo=titulo, contenido=contenido, fec_publicacion=fec_publicacion, fec_edicion=fec_edicion)
 
     db.session.add(new_recurso)
     db.session.commit()
@@ -32,6 +31,14 @@ def create_recurso():
 @recurso_routes.route('/get_recursos', methods=['GET'])
 def get_recursos():
     all_recursos = Recurso.query.all()
+
+    if not all_recursos:
+        data = {
+            'message': 'No se encontraron registros de recursos',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = recursos_schema.dump(all_recursos)
 
     data = {
@@ -62,14 +69,12 @@ def update_recurso(id):
     id_especialista = request.json.get('id_especialista')
     titulo = request.json.get('titulo')
     contenido = request.json.get('contenido')
-    palabras_clave = request.json.get('palabras_clave')
     fec_publicacion = request.json.get('fec_publicacion')
     fec_edicion = request.json.get('fec_edicion')
 
     recurso.id_especialista = id_especialista
     recurso.titulo = titulo
     recurso.contenido = contenido
-    recurso.palabras_clave = palabras_clave
     recurso.fec_publicacion = fec_publicacion
     recurso.fec_edicion = fec_edicion
 

@@ -32,7 +32,7 @@ def create_asistencia():
 def get_asistencias():
     all_asistencias = Asistencia.query.all()
     
-    if all_asistencias == []:
+    if not all_asistencias:
         data = {
             'message': 'No hay registros de asistencias',
             'status': 404
@@ -94,7 +94,7 @@ def update_asistencia(id):
     result = asistencia_schema.dump(asistencia)
 
     data = {
-        'message': '¡Asistencia actualizada',
+        'message': '¡Asistencia actualizada!',
         'status': 200,
         'data': result
     }

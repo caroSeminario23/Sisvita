@@ -28,6 +28,14 @@ def create_especialidad():
 @especialidad_routes.route('/get_especialidades', methods=['GET'])
 def get_especialidades():
     all_especialidades = Especialidad.query.all()
+
+    if not all_especialidades:
+        data = {
+            'message': 'No se encontraron registros de especialidades',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = especialidades_schema.dump(all_especialidades)
 
     data = {

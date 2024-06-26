@@ -8,12 +8,13 @@ test_routes = Blueprint("test_routes", __name__)
 @test_routes.route('/create_test', methods=['POST'])
 def create_test():
     nombre = request.json.get('nombre')
-    descripcion = request.json.get('descripcion')
+    id_tipo_test = request.json.get('id_tipo_test')
     n_preguntas = request.json.get('n_preguntas')
-    n_version = request.json.get('n_version')
     id_idioma = request.json.get('id_idioma')
+    n_version = request.json.get('n_version')
+    descripcion = request.json.get('descripcion')
 
-    new_test = Test(nombre=nombre, descripcion=descripcion, n_preguntas=n_preguntas, n_version=n_version, id_idioma=id_idioma)
+    new_test = Test(nombre=nombre, id_tipo_test=id_tipo_test, n_preguntas=n_preguntas, id_idioma=id_idioma, n_version=n_version, descripcion=descripcion)
 
     db.session.add(new_test)
     db.session.commit()
@@ -31,6 +32,14 @@ def create_test():
 @test_routes.route('/get_tests', methods=['GET'])
 def get_tests():
     all_tests = Test.query.all()
+
+    if not all_tests:
+        data = {
+            'message': 'No se encontraron tests',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = tests_schema.dump(all_tests)
 
     data = {
@@ -44,6 +53,14 @@ def get_tests():
 @test_routes.route('/get_test/<int:id>', methods=['GET'])
 def get_test(id):
     test = Test.query.get(id)
+
+    if not test:
+        data = {
+            'message': 'Test no encontrado',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = test_schema.dump(test)
 
     data = {
@@ -59,10 +76,11 @@ def update_test(id):
     test = Test.query.get(id)
 
     test.nombre = request.json.get('nombre')
-    test.descripcion = request.json.get('descripcion')
+    test.id_tipo_test = request.json.get('id_tipo_test')
     test.n_preguntas = request.json.get('n_preguntas')
-    test.n_version = request.json.get('n_version')
     test.id_idioma = request.json.get('id_idioma')
+    test.n_version = request.json.get('n_version')
+    test.descripcion = request.json.get('descripcion')
 
     db.session.commit()
 

@@ -33,6 +33,14 @@ def create_taller():
 @taller_routes.route('/get_talleres', methods=['GET'])
 def get_talleres():
     all_talleres = Taller.query.all()
+
+    if not all_talleres:
+        data = {
+            'message': 'No se encontraron registros de talleres',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = talleres_schema.dump(all_talleres)
 
     data = {

@@ -30,6 +30,14 @@ def create_pregunta():
 @pregunta_routes.route('/get_preguntas', methods=['GET'])
 def get_preguntas():
     preguntas = Pregunta.query.all()
+
+    if not preguntas:
+        data = {
+            'message': 'No se encontraron registros de preguntas',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = preguntas_schema.dump(preguntas)
 
     data = {

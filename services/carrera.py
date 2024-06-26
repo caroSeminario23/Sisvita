@@ -30,6 +30,14 @@ def create_carrera():
 @carrera_routes.route('/get_carreras', methods=['GET'])
 def get_carreras():
     all_carreras = Carrera.query.all()
+
+    if not all_carreras:
+        data = {
+            'message': 'No se encontraron registros de carreras',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
     result = carreras_schema.dump(all_carreras)
 
     data = {
