@@ -12,15 +12,14 @@ class Resultado_Schema(ma.Schema):
         fields = ('id_resultado',
                   'id_evaluacion',
                   'id_especialista',
-                  'puntaje',
-                  'id_escala',
                   'id_estado',
-                  'interpretacion',
+                  'id_escala',
                   'fec_interpretacion',
+                  'observacion',
                   'evaluacion',
                   'especialista',
-                  'escala',
-                  'estado'
+                  'estado',
+                  'escala'
                  )
     
     evaluacion = fields.Nested(Evaluacion_Schema)

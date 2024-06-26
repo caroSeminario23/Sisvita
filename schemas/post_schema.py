@@ -12,7 +12,6 @@ class Post_Schema(ma.Schema):
                 'fec_publicacion',
                 'fec_edicion',
                 'anonimo',
-                'n_comentarios',
                 'paciente'
                )
     

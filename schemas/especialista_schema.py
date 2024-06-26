@@ -10,14 +10,9 @@ class Especialista_Schema(ma.Schema):
         model=Especialista
         fields = ('id_especialista',
                   'id_especialidad',
-                  'doc_identidad',
-                  'nombres',
-                  'apellidos',
-                  'fec_nacimiento',
-                  'id_genero',
                   'n_licencia',
-                  'anio_graduacion',
                   'activo',
+                  'id_persona',
                   'id_usuario',
                   'especialidad',
                   'genero',
@@ -27,7 +22,6 @@ class Especialista_Schema(ma.Schema):
     especialidad=ma.Nested(Especialidad_Schema)
     genero=ma.Nested(Genero_Schema)
     usuario=ma.Nested(Usuario_Schema)
-
 
 especialista_schema = Especialista_Schema()
 especialistas_schema = Especialista_Schema(many=True)

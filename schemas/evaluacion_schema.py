@@ -12,12 +12,16 @@ class Evaluacion_Schema(ma.Schema):
                 'id_test',
                 'respuestas',
                 'fec_realizacion',
+                'puntaje',
+                'id_escala',
                 'paciente',
-                'test'
+                'test',
+                'escala'
                )
 
     paciente=ma.Nested(Paciente_Schema)
     test=ma.Nested(Test_Schema)  
+    escala=ma.Nested(Test_Schema)
 
 evaluacion_schema = Evaluacion_Schema()
 evaluaciones_schema = Evaluacion_Schema(many=True)

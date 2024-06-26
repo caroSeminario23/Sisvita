@@ -7,14 +7,13 @@ class Administrador_Schema(ma.Schema):
     class Meta:
         model=Administrador
         fields = ('id_administrador',
-                'nombres',
-                'apellidos',
-                'email',
-                'num_telefono',
+                'id_persona',
                 'id_usuario',
+                'persona',
                 'usuario'
                 )
-        
+    
+    persona=ma.Nested(Usuario_Schema)
     usuario=ma.Nested(Usuario_Schema)
         
 administrador_schema = Administrador_Schema()

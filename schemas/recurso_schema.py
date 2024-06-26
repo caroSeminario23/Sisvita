@@ -10,14 +10,12 @@ class Recurso_Schema(ma.Schema):
                   'id_especialista',
                   'titulo',
                   'contenido',
-                  'palabras_clave',
                   'fec_publicacion',
                   'fec_edicion',
                   'especialista'
                  )
     
     especialista = fields.Nested(Especialista_Schema)
-
 
 recurso_schema = Recurso_Schema()
 recursos_schema = Recurso_Schema(many=True)

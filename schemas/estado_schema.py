@@ -8,9 +8,12 @@ class Estado_Schema(ma.Schema):
         model=Estado
         fields = ('id_estado',
                   'nombre',
-                  'descripcion'
+                  'descripcion',
+                  'id_tipo_estado',
+                  'tipo_estado'
                   )
 
+    tipo_estado=ma.Nested('Tipo_Estado_Schema')
 
 estado_schema = Estado_Schema()
 estados_schema = Estado_Schema(many=True)
