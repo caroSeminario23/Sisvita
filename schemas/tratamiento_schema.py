@@ -12,7 +12,6 @@ class Tratamiento_Schema(ma.Schema):
                   'id_resultado',
                   'id_especialista',
                   'objetivo',
-                  'indicaciones',
                   'fec_asignacion',
                   'fec_inicio',
                   'fec_fin',
