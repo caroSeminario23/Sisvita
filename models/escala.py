@@ -12,6 +12,7 @@ class Escala(db.Model):
     puntaje_min = db.Column(db.Integer, nullable=False)
     puntaje_max = db.Column(db.Integer, nullable=False)
 
+    # relaciones
     test = relationship('Test', back_populates='escalas')
     
     # constructor de la clase

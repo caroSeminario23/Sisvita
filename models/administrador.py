@@ -6,16 +6,14 @@ class Administrador(db.Model):
     __tablename__ = 'administrador'
 
     id_administrador = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
-    nombres = db.Column(db.String(150), nullable=False)
-    apellidos = db.Column(db.String(200), nullable=False)
-    num_telefono = db.Column(db.Numeric(9), nullable=False)
-    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id_usuario'), nullable=False)
+    id_persona = db.Column(db.Integer, db.ForeignKey('persona.id_persona'), nullable=False, unique=True)
+    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id_usuario'), nullable=False, unique=True)
 
+    # relaciones
+    persona = relationship('Persona', back_populates='administradores')
     usuario = relationship('Usuario', back_populates='administradores')
     
     # constructor de la clase
-    def __init__(self, nombres, apellidos, num_telefono, id_usuario):
-        self.nombres = nombres
-        self.apellidos = apellidos
-        self.num_telefono = num_telefono
+    def __init__(self, id_persona, id_usuario):
+        self.id_persona = id_persona
         self.id_usuario = id_usuario

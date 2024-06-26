@@ -10,6 +10,7 @@ class Usuario(db.Model):
     contrasenia = db.Column(db.String(255), nullable=False)
     id_tipo_usuario = db.Column(db.Integer, db.ForeignKey('tipo_usuario.id_tipo_usuario'), nullable=False)
 
+    # relaciones
     tipo_usuario = relationship('Tipo_usuario', back_populates='usuarios')
 
     administradores = relationship('Administrador', back_populates='usuario', cascade='all, delete-orphan')

@@ -11,6 +11,7 @@ class Jornada(db.Model):
     hora_inicio = db.Column(db.Time, nullable=False)
     hora_fin = db.Column(db.Time, nullable=False)
 
+    # relaciones
     especialista = relationship('Especialista', back_populates='jornadas')
     dia = relationship('Dia', backref='jornada1')
     

@@ -12,6 +12,7 @@ class Opcion(db.Model):
     orden = db.Column(db.Integer, nullable=False)
     descripcion = db.Column(db.String(200), nullable=True)
 
+    # relaciones
     test = relationship('Test', back_populates='opciones')
     
     # constructor de la clase

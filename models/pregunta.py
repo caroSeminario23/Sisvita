@@ -11,6 +11,7 @@ class Pregunta(db.Model):
     orden = db.Column(db.Integer, nullable=False)
     descripcion = db.Column(db.String(250), nullable=True)
 
+    # relaciones
     test = relationship('Test', back_populates='preguntas')
     
     # constructor de la clase

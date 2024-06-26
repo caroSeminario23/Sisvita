@@ -15,6 +15,7 @@ class Cita(db.Model):
     hora_inicio = db.Column(db.Time, nullable=False)
     hora_fin = db.Column(db.Time, nullable=False)
 
+    # relaciones
     paciente = relationship('Paciente', back_populates='citas')
     especialista = relationship('Especialista', back_populates='citas')
 

@@ -13,13 +13,14 @@ class Comentario(db.Model):
     fec_edicion = db.Column(db.Date, nullable=True)
     anonimo = db.Column(db.Boolean, nullable=False)
 
+    # relaciones
     post = relationship('Post', back_populates='comentarios') #lazy='joined'
     paciente = relationship('Paciente', back_populates='comentarios') #lazy='joined'
     
     # constructor de la clase
-    def __init__(self, id_post, id_estudiante, descripcion, fec_publicacion, anonimo, fec_edicion=None):
+    def __init__(self, id_post, id_paciente, descripcion, fec_publicacion, anonimo, fec_edicion=None):
         self.id_post = id_post
-        self.id_estudiante = id_estudiante
+        self.id_paciente = id_paciente
         self.descripcion = descripcion
         self.fec_publicacion = fec_publicacion
         if fec_edicion is not None:

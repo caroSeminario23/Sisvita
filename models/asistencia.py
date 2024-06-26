@@ -10,6 +10,7 @@ class Asistencia(db.Model):
     id_taller = db.Column(db.Integer, db.ForeignKey('taller.id_taller'), nullable=False)
     id_paciente = db.Column(db.Integer, db.ForeignKey('paciente.id_paciente'), nullable=False)
 
+    # relaciones
     taller = relationship('Taller', back_populates='asistencias')
     paciente = relationship('Paciente', back_populates='asistencias')
     
