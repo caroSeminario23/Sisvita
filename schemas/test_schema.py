@@ -2,7 +2,7 @@ from utils.ma import ma
 from models.test import Test
 from marshmallow import fields
 from schemas.idioma_schema import Idioma_Schema
-from schemas.tipo_estado_schema import Tipo_test_Schema
+from schemas.tipo_test_schema import Tipo_test_Schema
 
 class Test_Schema(ma.Schema):
     class Meta:

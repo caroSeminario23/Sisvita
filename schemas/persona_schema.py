@@ -1,5 +1,5 @@
 from utils.ma import ma
-from models.periodo import Persona
+from models.persona import Persona
 from schemas.genero_schema import Genero_Schema
 from marshmallow import fields
 
@@ -19,4 +19,4 @@ class Persona_Schema(ma.Schema):
     genero=ma.Nested(Genero_Schema)
 
 persona_schema = Persona_Schema()
-persona_schema = Persona_Schema(many=True)
+personas_schema = Persona_Schema(many=True)
