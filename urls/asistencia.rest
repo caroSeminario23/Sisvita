@@ -19,7 +19,7 @@ PUT http://127.0.0.1:5000/asistencia_routes/update_asistencia/11
 Content-Type: application/json
 
 {
-    "fecha": "11/06/2023",
+    "fecha": "2024-06-14",
     "id_taller": 1,
     "id_paciente": 2
 }

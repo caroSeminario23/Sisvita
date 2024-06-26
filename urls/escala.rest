@@ -5,7 +5,9 @@ Content-Type: application/json
 {
     "nombre": "Ansiedad extrema",
     "descripcion": "Escala para medir la ansiedad extrema",
-    "id_test": 3
+    "id_test": 3,
+    "puntaje_min": 0,
+    "puntaje_max": 100
 }
 #####
 
@@ -21,7 +23,9 @@ Content-Type: application/json
 {
     "nombre": "Ansiedad extrema",
     "descripcion": "Escala para medir la ansiedad extrema",
-    "id_test": 2
+    "id_test": 2,
+    "puntaje_min": 0,
+    "puntaje_max": 100
 }
 #####
 

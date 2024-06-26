@@ -3,12 +3,14 @@ POST http://127.0.0.1:5000/cita_routes/create_cita
 Content-Type: application/json
 
 {
-    "id_estudiante": 1,
+    "id_paciente": 1,
     "id_especialista": 1,
     "motivo": "Conversación profunda",
     "id_estado": 1,
     "id_modalidad": 1,
-    "fec_programada": "2024-06-15"
+    "fec_programada": "2024-06-15",
+    "hora_inicio": "10:00",
+    "hora_fin": "11:00"
 }
 #####
 
@@ -22,12 +24,14 @@ PUT http://127.0.0.1:5000/cita_routes/update_cita/9
 Content-Type: application/json
 
 {
-    "id_estudiante": 1,
-    "id_especialista": 2,
+    "id_paciente": 1,
+    "id_especialista": 1,
     "motivo": "Conversación profunda",
     "id_estado": 1,
     "id_modalidad": 1,
-    "fec_programada": "2024-06-15"
+    "fec_programada": "2024-06-17",
+    "hora_inicio": "10:00",
+    "hora_fin": "11:00"
 }
 #####
 

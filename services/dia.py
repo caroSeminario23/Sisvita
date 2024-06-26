@@ -7,7 +7,7 @@ from schemas.dia_schema import dia_schema, dias_schema
 
 dia_routes = Blueprint("dia_routes", __name__)
 
-@dia_routes.route('/create_condicion', methods=['POST'])
+@dia_routes.route('/create_dia', methods=['POST'])
 def create_dia():
     nombre = request.json.get('nombre')
     descripcion = request.json.get('descripcion')

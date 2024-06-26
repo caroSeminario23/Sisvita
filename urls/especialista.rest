@@ -4,14 +4,9 @@ Content-Type: application/json
 
 {
     "id_especialidad": 1,
-    "doc_identidad": "76542988",
-    "nombres": "María Nicolle",
-    "apellidos": "Seminario Valdivia",
-    "fec_nacimiento": "2000-02-01",
-    "id_genero": 2,
-    "n_licencia": "123456",
-    "anio_graduacion": 2018,
+    "n_licencia": "12345612113",
     "activo": true,
+    "id_persona": 7,
     "id_usuario": 9
 }
 #####
@@ -27,14 +22,9 @@ Content-Type: application/json
 
 {
     "id_especialidad": 1,
-    "doc_identidad": "76542988",
-    "nombres": "María Luisa",
-    "apellidos": "Seminario Valdivia",
-    "fec_nacimiento": "2000-02-01",
-    "id_genero": 2,
-    "n_licencia": "123456",
-    "anio_graduacion": 2018,
+    "n_licencia": "34561234123",
     "activo": true,
+    "id_persona": 7,
     "id_usuario": 9
 }
 #####

@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "id_taller": 1,
-    "dia": 2,
+    "id_dia": 2,
     "hora_inicio": "10:00:00",
     "hora_fin": "12:00:00"
 }
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 {
     "id_taller": 1,
-    "dia": 3,
+    "id_dia": 3,
     "hora_inicio": "10:00:00",
     "hora_fin": "12:00:00"
 }

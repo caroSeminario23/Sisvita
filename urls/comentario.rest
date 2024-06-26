@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
     "id_post": 1,
-    "id_estudiante": 3,
+    "id_paciente": 3,
     "descripcion": "Me parece inspirador que compartas tu experiencia",
     "fec_publicacion": "2024-06-15",
     "fec_edicion": null,
@@ -23,7 +23,7 @@ Content-Type: application/json
 
 {
     "id_post": 1,
-    "id_estudiante": 3,
+    "id_paciente": 3,
     "descripcion": "Me parece inspirador que compartas esa experiencia",
     "fec_publicacion": "2024-06-15",
     "fec_edicion": null,

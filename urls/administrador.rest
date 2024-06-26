@@ -3,10 +3,8 @@ POST http://127.0.0.1:5000/administrador_routes/create_administrador
 Content-Type: application/json
 
 {
-    "nombres": "Carlos Juan",
-    "apellidos": "Savaleta Quispe",
-    "num_telefono": "987654321",
-    "id_usuario": 8
+    "id_persona": 3,
+    "id_usuario": 4
 }
 #####
 
@@ -20,10 +18,8 @@ PUT http://127.0.0.1:5000/administrador_routes/update_administrador/4
 Content-Type: application/json
 
 {
-    "nombres": "Carlos Miguel",
-    "apellidos": "Savaleta Quispe",
-    "num_telefono": "987654321",
-    "id_usuario": 8
+    "id_persona": 3,
+    "id_usuario": 4
 }
 #####
 

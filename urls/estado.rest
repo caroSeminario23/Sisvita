@@ -4,7 +4,8 @@ Content-Type: application/json
 
 {
     "nombre": "En revisión",
-    "descripcion": "El paciente se encuentra en revisión"
+    "descripcion": "El paciente se encuentra en revisión",
+    "id_tipo_estado": 1
 }
 #####
 
@@ -19,7 +20,8 @@ Content-Type: application/json
 
 {
     "nombre": "En revisión",
-    "descripcion": "Se encuentra en revisión"
+    "descripcion": "Se encuentra en revisión",
+    "id_tipo_estado": 1
 }
 #####
 
