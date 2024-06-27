@@ -36,7 +36,7 @@ from services.indicacion import indicacion_routes
 from services.post import post_routes
 from services.comentario import comentario_routes
 #from functions.iniciar_sesion import cus_routes1
-#from functions.cus_realizar_test import cus_realizar_test
+from functions.cus_realizar_test import cus_realizar_test
 #from functions.realizar_test2 import cus_routes2
 #from functions.cus_evaluar_resultados_test import cus_evaluar_resultados_test
 
@@ -90,7 +90,7 @@ app.register_blueprint(indicacion_routes, url_prefix='/indicacion_routes')
 app.register_blueprint(post_routes, url_prefix='/post_routes')
 app.register_blueprint(comentario_routes, url_prefix='/comentario_routes')
 #app.register_blueprint(cus_routes1, url_prefix='/cus_routes1')
-#app.register_blueprint(cus_realizar_test, url_prefix='/cus_realizar_test')
+app.register_blueprint(cus_realizar_test, url_prefix='/cus_realizar_test')
 #app.register_blueprint(cus_routes2, url_prefix='/cus_routes2')
 #app.register_blueprint(cus_evaluar_resultados_test, url_prefix='/cus_evaluar_resultados_test')
 

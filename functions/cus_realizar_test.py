@@ -6,6 +6,7 @@ from models.pregunta import Pregunta
 from models.test import Test
 from models.opcion import Opcion
 from models.evaluacion import Evaluacion
+from models.escala import Escala
 from schemas.evaluacion_schema import evaluacion_schema, evaluaciones_schema
 from schemas.opcion_schema import opcion_schema, opciones_schema
 from schemas.test_schema import test_schema, tests_schema
@@ -43,6 +44,25 @@ def get_opciones_por_test(id_test):
 
     return make_response(jsonify(data), 200)
 
+# PARA LA FUNCION DETERMINAR ESCALA
+def calcular_puntaje(respuestas):
+    puntaje = 0
+
+    # Convertir la cadena de texto en un arreglo evitando los espacios
+    respuestas = respuestas
+    
+    # Verificar si las respuestas están separadas por comas o espacios y limpiar espacios adicionales
+    if ',' in respuestas:
+        respuestas = [int(respuesta.strip()) for respuesta in respuestas.split(',') if respuesta.strip() != '']
+    else:
+        respuestas = [int(respuesta.strip()) for respuesta in respuestas.split() if respuesta.strip() != '']
+
+    for respuesta in respuestas:
+        puntaje += respuesta
+    
+    return puntaje
+
+
 @cus_realizar_test.route('/realizar_evaluacion', methods=['POST'])
 def realizar_evaluacion():
     data = request.json
@@ -53,24 +73,42 @@ def realizar_evaluacion():
    # Convertir la lista de respuestas a una cadena de números separados por espacios
     respuestas_str = ' '.join(map(str, respuestas_list))
 
+    # Calcular puntaje
+    puntaje = calcular_puntaje(respuestas_str)
+
+    # Buscar las escalas asociadas a ese test
+    escalas = Escala.query.filter_by(id_test=id_test)
+
+    # Comparar el puntaje con el rango de cada escala
+    for escala in escalas:
+        if puntaje >= escala.puntaje_min and puntaje <= escala.puntaje_max:
+            escala_elegida = escala
+            break
+        else:
+            escala_elegida = None
+    
+    if not escala_elegida:
+        data = {
+            'message': 'Escala no encontrada',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+
     # Crear una nueva instancia de Evaluacion
     new_evaluacion = Evaluacion(
         id_paciente=id_paciente,
         id_test=id_test,
         respuestas=respuestas_str,
-        fec_realizacion=datetime.date.today()
+        fec_realizacion=datetime.date.today(),
+        puntaje=puntaje,
+        id_escala=escala_elegida.id_escala
+
     )
 
     db.session.add(new_evaluacion)
     db.session.commit()
 
-    result = {
-        'id_evaluacion': new_evaluacion.id_evaluacion,
-        'id_paciente': new_evaluacion.id_paciente,
-        'id_test': new_evaluacion.id_test,
-        'respuestas': new_evaluacion.respuestas,
-        'fec_realizacion': new_evaluacion.fec_realizacion
-    }
+    result= evaluacion_schema.dump(new_evaluacion)
 
     data = {
         'message': 'Evaluación realizada con éxito',
@@ -79,3 +117,4 @@ def realizar_evaluacion():
     }
 
     return make_response(jsonify(data), 200)
+
