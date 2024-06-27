@@ -7,6 +7,8 @@ from models.test import Test
 from models.opcion import Opcion
 from models.evaluacion import Evaluacion
 from models.resultado import Resultado
+from models.invitacion import Invitacion
+from schemas.invitacion_schema import invitacion_schema, invitaciones_schema
 from schemas.resultado_schema import resultado_schema, resultados_schema
 from schemas.evaluacion_schema import evaluacion_schema, evaluaciones_schema
 from schemas.opcion_schema import opcion_schema, opciones_schema
@@ -50,6 +52,56 @@ def update_resultado(id):
 
     data = {
         'message': 'Resultado actualizado!',
+        'data': result,
+        'status': 200
+    }
+
+    return make_response(jsonify(data), 200)
+
+@cus_evaluar_resultados_test.route('/get_tests', methods=['GET'])
+def get_tests():
+    all_tests = Test.query.all()
+    result = tests_schema.dump(all_tests)
+
+    data = {
+        'message': 'Todos los tests han sido encontrados',
+        'status': 200,
+        'data': result
+    }
+    return make_response(jsonify(data), 200)
+
+@cus_evaluar_resultados_test.route('/invitar_test', methods=['POST'])
+def invitar_test():
+    data = request.get_json()
+    id_resultado = data.get('id_resultado')
+    id_test = data.get('id_test')
+    id_especialista = data.get('id_especialista')
+
+    print(id_especialista)
+    print(id_resultado)
+    print(id_test)
+
+    if not id_resultado or not id_test or not id_especialista:
+        return jsonify({
+            'message': 'Datos incompletos',
+            'status': 400
+        }), 400
+
+    # Lógica para crear una nueva invitación para el resultado con el test seleccionado
+    new_invitacion = Invitacion(
+        id_especialista=id_especialista,
+        id_resultado=id_resultado,
+        id_test=id_test,
+        fec_invitacion=datetime.date.today()
+    )
+
+    db.session.add(new_invitacion)
+    db.session.commit()
+
+    result = invitacion_schema.dump(new_invitacion)
+    
+    data = {
+        'message': 'Test invitado correctamente',
         'data': result,
         'status': 200
     }
