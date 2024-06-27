@@ -4,10 +4,11 @@ Content-Type: application/json
 
 {
     "nombre": "Test 3",
-    "descripcion": "Test de prueba",
+    "id_tipo_test": 1,
     "n_preguntas": 15,
-    "version": "1.0",
-    "idioma": "Español"
+    "id_idioma": 1,
+    "n_version": 1,
+    "descripcion": "Test de prueba",
 }
 #####
 
@@ -21,11 +22,12 @@ PUT http://127.0.0.1:5000/test_routes/update_test/5
 Content-Type: application/json
 
 {
-    "nombre": "Test 4",
-    "descripcion": "Test de prueba",
+    "nombre": "Test 3",
+    "id_tipo_test": 1,
     "n_preguntas": 15,
-    "version": "1.0",
-    "idioma": "Español"
+    "id_idioma": 1,
+    "n_version": 1,
+    "descripcion": "Test de prueba modificado",
 }
 #####
 

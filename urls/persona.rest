@@ -1,5 +1,5 @@
 # ENLACES DE ESTUDIANTE (COMPLETO PERO OJITO)
-POST http://127.0.0.1:5000/paciente_routes/create_paciente
+POST http://127.0.0.1:5000/persona_routes/create_persona
 Content-Type: application/json
 
 {
@@ -11,13 +11,13 @@ Content-Type: application/json
 }
 #####
 
-GET http://127.0.0.1:5000/paciente_routes/get_pacientes
+GET http://127.0.0.1:5000/persona_routes/get_personas
 #####
 
-GET http://127.0.0.1:5000/paciente_routes/get_paciente/2
+GET http://127.0.0.1:5000/persona_routes/get_persona/2
 #####
 
-PUT http://127.0.0.1:5000/paciente_routes/update_paciente/2
+PUT http://127.0.0.1:5000/persona_routes/update_persona/2
 Content-Type: application/json
 
 {
@@ -29,5 +29,5 @@ Content-Type: application/json
 }
 #####
 
-DELETE http://127.0.0.1:5000/paciente_routes/delete_paciente/2
+DELETE http://127.0.0.1:5000/paciente_routes/delete_persona/2
 #####

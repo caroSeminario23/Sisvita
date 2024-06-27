@@ -5,9 +5,10 @@ Content-Type: application/json
 {
     "id_evaluacion": 7,
     "id_especialista": 2,
-    "puntaje": 10.0,
-    "interpretacion": "Esta es la interpretacion",
-    "fec_resultado": "2021-09-01"
+    "id_estado": 1,
+    "id_escala": 1,
+    "fec_interpretacion": "2021-09-01",
+    "observacion": "Esta es la observacion",
 }
 #####
 
@@ -21,11 +22,12 @@ PUT http://127.0.0.1:5000/resultado_routes/update_resultado/6
 Content-Type: application/json
 
 {
-    "id_evaluacion": 7,
-    "id_especialista": 2,
-    "puntaje": 15.0,
-    "interpretacion": "Esta es la interpretacion",
-    "fec_resultado": "2021-09-01"
+     "id_evaluacion": 7,
+    "id_especialista": 3,
+    "id_estado": 1,
+    "id_escala": 2,
+    "fec_interpretacion": "2021-09-01",
+    "observacion": "Esta es la observacion 2",
 }
 #####
 

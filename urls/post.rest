@@ -3,12 +3,11 @@ POST http://127.0.0.1:5000/post_routes/create_post
 Content-Type: application/json
 
 {
-    "id_estudiante": 5,
+    "id_paciente": 5,
     "descripcion": "Estoy compartiendo este video sobre ansiedad. Es interesante",
     "fec_publicacion": "2023-10-10",
     "fec_edicion": null,
     "anonimo": false,
-    "n_comentarios": 0
 }
 #####
 
@@ -22,12 +21,11 @@ PUT http://127.0.0.1:5000/post_routes/update_post/12
 Content-Type: application/json
 
 {
-    "id_estudiante": 5,
+    "id_paciente": 5,
     "descripcion": "Estoy compartiendo este video. Es interesante",
     "fec_publicacion": "2023-10-10",
     "fec_edicion": null,
     "anonimo": false,
-    "n_comentarios": 0
 }
 #####
 

@@ -5,6 +5,7 @@ Content-Type: application/json
 {
     "id_test": 2,
     "interrogante": "Pregunta 1",
+    "orden": 1,
     "descripcion": "Esta es la pregunta 1"
 }
 #####
@@ -21,6 +22,7 @@ Content-Type: application/json
 {
     "id_test": 2,
     "interrogante": "Pregunta 2",
+    "orden": 1,
     "descripcion": "Esta es la pregunta 1"
 }
 #####
