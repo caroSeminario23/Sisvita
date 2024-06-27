@@ -12,16 +12,16 @@ Content-Type: application/json
 GET http://127.0.0.1:5000/usuario_routes/get_usuarios
 #####
 
-GET http://127.0.0.1:5000/usuario_routes/get_usuario/6
+GET http://127.0.0.1:5000/usuario_routes/get_usuario/1
 #####
 
-PUT http://127.0.0.1:5000/usuario_routes/update_usuario/6
+PUT http://127.0.0.1:5000/usuario_routes/update_usuario/1
 Content-Type: application/json
 
 {
-    "email": "venom123@gmail.com",
-    "contrasenia": "venom2024",
-    "id_tipo_usuario": 1
+    "email": "carolina.seminario@unmsm.edu.pe",
+    "contrasenia": "carolina2024",
+    "id_tipo_usuario": 3
 }
 #####
 
