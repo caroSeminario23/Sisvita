@@ -11,7 +11,7 @@ Content-Type: application/json
 GET http://127.0.0.1:5000/administrador_routes/get_administradores
 #####
 
-GET http://127.0.0.1:5000/administrador_routes/get_administrador/3
+GET http://127.0.0.1:5000/administrador_routes/get_administrador/1
 #####
 
 PUT http://127.0.0.1:5000/administrador_routes/update_administrador/4

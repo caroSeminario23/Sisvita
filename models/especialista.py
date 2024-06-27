@@ -14,7 +14,6 @@ class Especialista(db.Model):
 
     # relaciones
     especialidad = relationship('Especialidad', backref='especialista1')
-    genero = relationship('Genero', backref='especialista2')
 
     usuario = relationship('Usuario', back_populates='especialistas')
     persona = relationship('Persona', back_populates='especialistas')
@@ -23,7 +22,6 @@ class Especialista(db.Model):
     resultados = relationship('Resultado', back_populates='especialista', cascade='all, delete-orphan')
     talleres = relationship('Taller', back_populates='especialista', cascade='all, delete-orphan')
     recursos = relationship('Recurso', back_populates='especialista', cascade='all, delete-orphan')
-    tratamientos = relationship('Tratamiento', back_populates='especialista', cascade='all, delete-orphan')
     jornadas = relationship('Jornada', back_populates='especialista', cascade='all, delete-orphan')
 
     # constructor de la clase

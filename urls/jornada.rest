@@ -10,7 +10,7 @@ Content-Type: application/json
 }
 #####
 
-GET http://127.0.0.1:5000/jornada_routes/get_jornada
+GET http://127.0.0.1:5000/jornada_routes/get_jornadas
 #####
 
 GET http://127.0.0.1:5000/jornada_routes/get_jornada/11

@@ -21,7 +21,6 @@ class Paciente(db.Model):
     usuario = relationship('Usuario', back_populates='pacientes')
 
     citas = relationship('Cita', back_populates='paciente', cascade='all, delete-orphan')
-    libretas = relationship('Libreta', back_populates='paciente', cascade='all, delete-orphan')
     posts = relationship('Post', back_populates='paciente', cascade='all, delete-orphan')
     comentarios = relationship('Comentario', back_populates='paciente', cascade='all, delete-orphan')
     evaluaciones = relationship('Evaluacion', back_populates='paciente', cascade='all, delete-orphan')

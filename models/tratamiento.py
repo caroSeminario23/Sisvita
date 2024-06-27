@@ -15,8 +15,9 @@ class Tratamiento(db.Model):
     
     # relaciones
     resultado = relationship('Resultado', back_populates='tratamientos')
-    especialista = relationship('Especialista', back_populates='tratamientos')
     estado = relationship('Estado', backref='tratamiento1')
+
+    indicaciones = relationship('Indicacion', back_populates='tratamiento')
 
     # constructor de la clase
     def __init__(self, id_resultado, objetivo, fec_asignacion, fec_inicio, fec_fin, id_estado, observaciones=None):

@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
-from models.idioma import Idioma
+from models.indicacion import Indicacion
 from schemas.indicacion_schema import indicacion_schema, indicaciones_schema
 
 indicacion_routes = Blueprint("indicacion_routes", __name__)
@@ -11,7 +11,7 @@ def create_indicacion():
     orden = request.json.get('orden')
     descripcion = request.json.get('descripcion')
 
-    new_indicacion = Idioma(id_tratamiento=id_tratamiento, orden=orden, descripcion=descripcion)
+    new_indicacion = Indicacion(id_tratamiento=id_tratamiento, orden=orden, descripcion=descripcion)
 
     db.session.add(new_indicacion)
     db.session.commit()
@@ -28,7 +28,7 @@ def create_indicacion():
 
 @indicacion_routes.route('/get_indicaciones', methods=['GET'])
 def get_indicaciones():
-    all_indicaciones = Idioma.query.all()
+    all_indicaciones = Indicacion.query.all()
 
     if not all_indicaciones:
         data = {
@@ -49,7 +49,7 @@ def get_indicaciones():
 
 @indicacion_routes.route('/get_indicacion/<int:id>', methods=['GET'])
 def get_indicacion(id):
-    indicacion = Idioma.query.get(id)
+    indicacion = Indicacion.query.get(id)
 
     if not indicacion:
         data = {
@@ -70,7 +70,7 @@ def get_indicacion(id):
 
 @indicacion_routes.route('/update_indicacion/<int:id>', methods=['PUT'])
 def update_indicacion(id):
-    indicacion = Idioma.query.get(id)
+    indicacion = Indicacion.query.get(id)
 
     if not indicacion:
         data = {
@@ -97,7 +97,7 @@ def update_indicacion(id):
 
 @indicacion_routes.route('/delete_indicacion/<int:id>', methods=['DELETE'])
 def delete_indicacion(id):
-    indicacion = Idioma.query.get(id)
+    indicacion = Indicacion.query.get(id)
 
     if not indicacion:
         data = {

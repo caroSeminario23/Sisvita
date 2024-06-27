@@ -8,6 +8,8 @@ class Tipo_test(db.Model):
     id_tipo_test = db.Column(db.Integer, primary_key=True, autoincrement=True, nullable=False)
     nombre = db.Column(db.String(50), nullable=False, unique=True)
     descripcion = db.Column(db.String(200), nullable=True)
+
+    tests = relationship('Test', back_populates='tipo_test')
     
     # constructor de la clase
     def __init__(self, nombre, descripcion=None):

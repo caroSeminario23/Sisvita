@@ -16,6 +16,10 @@ class Persona(db.Model):
     # relaciones
     genero = relationship('Genero', backref='persona1')
 
+    administradores = relationship('Administrador', back_populates='persona')
+    pacientes = relationship('Paciente', back_populates='persona')
+    especialistas = relationship('Especialista', back_populates='persona')
+
     # constructor de la clase
     def __init__(self, doc_identidad, nombres, apellidos, fec_nacimiento, id_genero, num_telefono):
         self.doc_identidad = doc_identidad

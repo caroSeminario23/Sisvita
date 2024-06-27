@@ -11,7 +11,7 @@ class Estado(db.Model):
     id_tipo_estado = db.Column(db.Integer, db.ForeignKey('tipo_estado.id_tipo_estado'), nullable=False)
     
     # relaciones
-    tipo_estado = relationship('TipoEstado', back_populates='estados')
+    tipo_estado = relationship('Tipo_estado', back_populates='estados')
     
     # constructor de la clase
     def __init__(self, nombre, id_tipo_estado, descripcion=None):

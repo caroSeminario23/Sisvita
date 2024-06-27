@@ -2,6 +2,7 @@ from utils.ma import ma
 from models.administrador import Administrador
 from marshmallow import fields
 from schemas.usuario_schema import Usuario_Schema
+from schemas.persona_schema import Persona_Schema
 
 class Administrador_Schema(ma.Schema):
     class Meta:
@@ -13,7 +14,7 @@ class Administrador_Schema(ma.Schema):
                 'usuario'
                 )
     
-    persona=ma.Nested(Usuario_Schema)
+    persona=ma.Nested(Persona_Schema)
     usuario=ma.Nested(Usuario_Schema)
         
 administrador_schema = Administrador_Schema()

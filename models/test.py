@@ -13,7 +13,7 @@ class Test(db.Model):
     descripcion = db.Column(db.String(200), nullable=False)
     
     # relaciones
-    tipo_test = db.relationship('TipoTest', backref='test')
+    tipo_test = db.relationship('Tipo_test', back_populates='tests')
     idioma = db.relationship('Idioma', backref='test1')
 
     evaluaciones = db.relationship('Evaluacion', back_populates='test', cascade='all, delete-orphan')
