@@ -3,11 +3,11 @@ POST http://127.0.0.1:5000/paciente_routes/create_paciente
 Content-Type: application/json
 
 {
-    "id_ubigeo": 1,
-    "id_condicion": 1,
+    "id_ubigeo": 3322,
+    "id_condicion": 2,
     "id_carrera": 1,
-    "id_persona": 1,
-    "id_usuario": 1
+    "id_persona": 5,
+    "id_usuario": 7
 }
 #####
 

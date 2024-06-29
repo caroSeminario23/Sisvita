@@ -7,6 +7,7 @@ from models.test import Test
 from models.opcion import Opcion
 from models.evaluacion import Evaluacion
 from models.escala import Escala
+from models.resultado import Resultado
 from schemas.evaluacion_schema import evaluacion_schema, evaluaciones_schema
 from schemas.opcion_schema import opcion_schema, opciones_schema
 from schemas.test_schema import test_schema, tests_schema
@@ -66,8 +67,10 @@ def calcular_puntaje(respuestas):
 @cus_realizar_test.route('/realizar_evaluacion', methods=['POST'])
 def realizar_evaluacion():
     data = request.json
+    print(data)
     id_test = data.get('id_test')
     id_paciente = data.get('id_paciente')
+    id_especialista = data.get('id_especialista')  # Aceptar id_especialista desde el frontend
     respuestas_list = data.get('respuestas')
 
    # Convertir la lista de respuestas a una cadena de números separados por espacios
@@ -108,10 +111,24 @@ def realizar_evaluacion():
     db.session.add(new_evaluacion)
     db.session.commit()
 
+    # Asignar la evaluación a un especialista
+    nuevo_resultado = Resultado(
+        id_evaluacion=new_evaluacion.id_evaluacion,
+        id_especialista=id_especialista,  # Usar el id_especialista proporcionado
+        id_estado=4,  # Asume que el estado inicial es 1, resultado aun no revisado
+        id_escala=escala_elegida.id_escala,
+        fec_interpretacion=None,
+        observacion=None
+    )
+
+    db.session.add(nuevo_resultado)
+    db.session.commit()
+
     result= evaluacion_schema.dump(new_evaluacion)
 
     data = {
-        'message': 'Evaluación realizada con éxito',
+        'message': 'Evaluación realizada con éxito y asignada a un especialista',
+        'status': 200,
         'status': 200,
         'data': result
     }

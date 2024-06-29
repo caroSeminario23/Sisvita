@@ -3,11 +3,12 @@ POST http://127.0.0.1:5000/persona_routes/create_persona
 Content-Type: application/json
 
 {
-    "id_ubigeo": 1,
-    "id_condicion": 1,
-    "id_carrera": 1,
-    "id_persona": 1,
-    "id_usuario": 1
+  "doc_identidad": "72524600",
+  "nombres": "Richard Rafael",
+  "apellidos": "Quispe Gutierrez",
+  "fec_nacimiento": "2001-05-12",
+  "id_genero": 2,
+  "num_telefono": "923192527"
 }
 #####
 

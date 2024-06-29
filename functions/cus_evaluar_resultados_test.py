@@ -42,10 +42,11 @@ def update_resultado(id):
         }
         return make_response(jsonify(data), 404)
 
-    interpretacion = request.json.get('interpretacion')
+    observacion = request.json.get('observacion')
     
-    if interpretacion:
-        resultado.interpretacion = interpretacion
+    if observacion:
+        resultado.id_estado =5
+        resultado.observacion = observacion
         resultado.fec_interpretacion = datetime.date.today()
     db.session.commit()
     result = resultado_schema.dump(resultado)

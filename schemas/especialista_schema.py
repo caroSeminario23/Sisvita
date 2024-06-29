@@ -4,6 +4,7 @@ from marshmallow import fields
 from schemas.especialidad_schema import Especialidad_Schema
 from schemas.genero_schema import Genero_Schema
 from schemas.usuario_schema import Usuario_Schema
+from schemas.persona_schema import Persona_Schema
 
 class Especialista_Schema(ma.Schema):
     class Meta:
@@ -16,12 +17,14 @@ class Especialista_Schema(ma.Schema):
                   'id_usuario',
                   'especialidad',
                   'genero',
-                  'usuario'
+                  'usuario',
+                  'persona'
                   )
         
     especialidad=ma.Nested(Especialidad_Schema)
     genero=ma.Nested(Genero_Schema)
     usuario=ma.Nested(Usuario_Schema)
+    persona=ma.Nested(Persona_Schema)
 
 especialista_schema = Especialista_Schema()
 especialistas_schema = Especialista_Schema(many=True)

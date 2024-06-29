@@ -3,8 +3,8 @@ POST http://127.0.0.1:5000/usuario_routes/create_usuario
 Content-Type: application/json
 
 {
-    "email": "venom@gmail.com",
-    "contrasenia": "venom2024",
+    "email": "richard.quispe4@unmsm.edu.pe",
+    "contrasenia": "richard2024",
     "id_tipo_usuario": 1
 }
 #####

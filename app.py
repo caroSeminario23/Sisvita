@@ -38,6 +38,7 @@ from services.comentario import comentario_routes
 from functions.iniciar_sesion import cus_routes1
 from functions.cus_realizar_test import cus_realizar_test
 from functions.cus_evaluar_resultados_test import cus_evaluar_resultados_test
+from functions.results_paciente import results_paciente
 
 from flask_sqlalchemy import SQLAlchemy
 from config import DATABASE_CONNECTION
@@ -91,6 +92,7 @@ app.register_blueprint(comentario_routes, url_prefix='/comentario_routes')
 app.register_blueprint(cus_routes1, url_prefix='/cus_routes1')
 app.register_blueprint(cus_realizar_test, url_prefix='/cus_realizar_test')
 app.register_blueprint(cus_evaluar_resultados_test, url_prefix='/cus_evaluar_resultados_test')
+app.register_blueprint(results_paciente, url_prefix='/results_paciente')
 
 
 with app.app_context():
