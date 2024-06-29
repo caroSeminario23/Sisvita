@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
 from models.usuario import Usuario
 from schemas.usuario_schema import usuario_schema, usuarios_schema
+from functions.contrasena import hash_password
 
 usuario_routes = Blueprint("usuario_routes", __name__)
 
@@ -11,6 +12,9 @@ def create_usuario():
     email = request.json.get('email')
     contrasenia = request.json.get('contrasenia')
     id_tipo_usuario = request.json.get('id_tipo_usuario')
+
+    # Encriptar contrasenia
+    contrasenia = hash_password(contrasenia)
 
     new_usuario = Usuario(email=email, contrasenia=contrasenia, id_tipo_usuario=id_tipo_usuario)
 
@@ -81,7 +85,11 @@ def update_usuario(id):
         return make_response(jsonify(data), 404)
 
     usuario.email = request.json.get('email')
-    usuario.contrasenia = request.json.get('contrasenia')
+    contrasenia = request.json.get('contrasenia')
+
+    # Encriptar contrasenia
+    usuario.contrasenia = hash_password(contrasenia)
+    
     usuario.id_tipo_usuario = request.json.get('id_tipo_usuario')
 
     db.session.commit()

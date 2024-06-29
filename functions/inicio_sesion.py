@@ -5,10 +5,11 @@ from models.usuario import Usuario
 from models.paciente import Paciente
 from models.especialista import Especialista
 from models.administrador import Administrador
+from functions.contrasena import check_password, hash_password
 
-cus_routes1 = Blueprint('cus_routes1', __name__)
+cus_routes10 = Blueprint('cus_routes10', __name__)
 
-@cus_routes1.route('/login', methods=['POST'])
+@cus_routes10.route('/login', methods=['POST'])
 def login():
     print('Solicitud de inicio de sesión recibida')
     data = request.get_json()
@@ -29,6 +30,9 @@ def login():
             'status': 400
         }
         return make_response(jsonify(data), 400)
+
+    hashed_password = hash_password(contrasenia)
+    valida_contraseña = check_password(hashed_password, contrasenia) # true or false
 
     usuario = Usuario.query.filter_by(email=email, contrasenia=contrasenia, id_tipo_usuario=id_tipo_usuario).first()
 
@@ -100,7 +104,7 @@ def login():
     return make_response(jsonify(data), 200)
 
 
-@cus_routes1.route('/tipo_usuarios', methods=['GET'])
+@cus_routes10.route('/tipo_usuarios', methods=['GET'])
 def get_tipo_usuarios():
     tipos_usuarios = Tipo_usuario.query.all()  # Obtener todos los tipos de usuario
     result = tipos_usuario_schema.dump(tipos_usuarios)  # Utilizar el schema para serializar todas los tipos de usuario
