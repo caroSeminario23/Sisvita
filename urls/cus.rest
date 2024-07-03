@@ -45,3 +45,23 @@ Content-Type: application/json
     "lista_pacientes": "1",
     "id_test": 1
 }
+##########
+
+GET http://127.0.0.1:5000/identificar_ubigeo_routes/departamentos_unicos
+##########
+
+POST http://127.0.0.1:5000/identificar_ubigeo_routes/provincias_unicas
+Content-Type: application/json
+
+{
+    "departamento": "Lima"
+}
+##########
+
+POST http://127.0.0.1:5000/identificar_ubigeo_routes/distritos_unicos
+Content-Type: application/json
+
+{
+    "departamento": "Lima",
+    "provincia": "Lima"
+}
