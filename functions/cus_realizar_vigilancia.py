@@ -10,6 +10,8 @@ from models.resultado import Resultado
 from models.invitacion import Invitacion
 from models.escala import Escala
 from models.estado import Estado
+from models.tipo_test import Tipo_test
+from schemas.tipo_test_schema import tipo_test_schema, tipos_test_schema
 from schemas.estado_schema import estado_schema, estados_schema
 from schemas.escala_schema import escala_schema, escalas_schema
 from schemas.invitacion_schema import invitacion_schema, invitaciones_schema
@@ -135,4 +137,17 @@ def get_escalas_by_test(id_test):
         'status': 200
     }
 
+    return make_response(jsonify(data), 200)
+
+
+@cus_realizar_vigilancia.route('/get_tipo_tests', methods=['GET'])
+def get_tipo_tests():
+    all_tipo_tests = Tipo_test.query.all()
+    result = tipos_test_schema.dump(all_tipo_tests)
+
+    data = {
+        'message': 'Todos los tipos de tests han sido encontrados',
+        'status': 200,
+        'data': result
+    }
     return make_response(jsonify(data), 200)
