@@ -10,7 +10,9 @@ class Resultado(db.Model):
     id_estado = db.Column(db.Integer, db.ForeignKey('estado.id_estado'), nullable=False)
     id_escala = db.Column(db.Integer, db.ForeignKey('escala.id_escala'), nullable=True)
     fec_interpretacion = db.Column(db.Date, nullable=True)
-    observacion = db.Column(db.String(300), nullable=True)
+    observacion = db.Column(db.String(500), nullable=True)
+    informe = db.Column(db.String(500), nullable=True)
+    recomendacion = db.Column(db.String(500), nullable=True)
 
     escala = relationship('Escala', backref='resultado1')
     estado = relationship('Estado', backref='resultado2')
@@ -21,7 +23,7 @@ class Resultado(db.Model):
     tratamientos = relationship('Tratamiento', back_populates='resultado', cascade='all, delete-orphan')
 
     # constructor de la clase
-    def __init__(self, id_evaluacion, id_especialista, id_estado, id_escala=None, fec_interpretacion=None, observacion=None):
+    def __init__(self, id_evaluacion, id_especialista, id_estado, id_escala=None, fec_interpretacion=None, observacion=None, informe=None, recomendacion=None):
         self.id_evaluacion = id_evaluacion
         self.id_especialista = id_especialista
         self.id_estado = id_estado
@@ -31,3 +33,7 @@ class Resultado(db.Model):
             self.fec_interpretacion = fec_interpretacion
         if observacion is not None:
             self.observacion = observacion
+        if informe is not None:
+            self.informe = informe
+        if recomendacion is not None:
+            self.recomendacion = recomendacion

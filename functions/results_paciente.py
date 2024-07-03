@@ -2,18 +2,14 @@ import datetime
 from utils.db import db
 
 from flask import Blueprint, jsonify, make_response, request
-from models.pregunta import Pregunta
-from models.test import Test
-from models.opcion import Opcion
+from models.estado import Estado
 from models.evaluacion import Evaluacion
 from models.resultado import Resultado
 from models.invitacion import Invitacion
+
+from schemas.estado_schema import estado_schema, estados_schema
 from schemas.invitacion_schema import invitacion_schema, invitaciones_schema
 from schemas.resultado_schema import resultado_schema, resultados_schema
-from schemas.evaluacion_schema import evaluacion_schema, evaluaciones_schema
-from schemas.opcion_schema import opcion_schema, opciones_schema
-from schemas.test_schema import test_schema, tests_schema
-from schemas.pregunta_schema import pregunta_schema, preguntas_schema
 
 results_paciente= Blueprint('results_paciente', __name__)
 
@@ -56,6 +52,28 @@ def obtener_invitaciones(id_resultado):
     except Exception as e:
         data = {
             'message': 'Error al obtener las invitaciones',
+            'error': str(e),
+            'status': 500
+        }
+
+        return make_response(jsonify(data), 500)
+    
+@results_paciente.route('/get_estados_resultado', methods=['GET'])
+def obtener_estados_resultado():
+    try:
+        estados = Estado.query.filter_by(id_tipo_estado=1).all()  # id_tipo_estado=1 para "Resultado"
+        estados_serializados = estados_schema.dump(estados, many=True)
+        
+        data = {
+            'message': 'Estados obtenidos correctamente',
+            'data': estados_serializados,
+            'status': 200
+        }
+        
+        return make_response(jsonify(data), 200)
+    except Exception as e:
+        data = {
+            'message': 'Error al obtener los estados',
             'error': str(e),
             'status': 500
         }

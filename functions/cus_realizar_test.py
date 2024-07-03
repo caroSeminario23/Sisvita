@@ -118,7 +118,9 @@ def realizar_evaluacion():
         id_estado=4,  # Asume que el estado inicial es 1, resultado aun no revisado
         id_escala=escala_elegida.id_escala,
         fec_interpretacion=None,
-        observacion=None
+        observacion=None,
+        informe=None,
+        recomendacion=None
     )
 
     db.session.add(nuevo_resultado)
@@ -128,7 +130,6 @@ def realizar_evaluacion():
 
     data = {
         'message': 'Evaluación realizada con éxito y asignada a un especialista',
-        'status': 200,
         'status': 200,
         'data': result
     }
