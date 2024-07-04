@@ -40,6 +40,7 @@ from functions.cus_realizar_test import cus_realizar_test
 from functions.cus_evaluar_resultados_test import cus_evaluar_resultados_test
 from functions.results_paciente import results_paciente
 from functions.cus_realizar_vigilancia import cus_realizar_vigilancia
+from functions.identificar_ubigeo import identificar_ubigeo_routes
 
 from flask_sqlalchemy import SQLAlchemy
 from config import DATABASE_CONNECTION
@@ -95,6 +96,7 @@ app.register_blueprint(cus_realizar_test, url_prefix='/cus_realizar_test')
 app.register_blueprint(cus_evaluar_resultados_test, url_prefix='/cus_evaluar_resultados_test')
 app.register_blueprint(results_paciente, url_prefix='/results_paciente')
 app.register_blueprint(cus_realizar_vigilancia, url_prefix='/cus_realizar_vigilancia')
+app.register_blueprint(identificar_ubigeo_routes, url_prefix='/identificar_ubigeo_routes')
 
 
 with app.app_context():

@@ -10,9 +10,9 @@ class Resultado(db.Model):
     id_estado = db.Column(db.Integer, db.ForeignKey('estado.id_estado'), nullable=False)
     id_escala = db.Column(db.Integer, db.ForeignKey('escala.id_escala'), nullable=True)
     fec_interpretacion = db.Column(db.Date, nullable=True)
-    observacion = db.Column(db.String(500), nullable=True)
-    informe = db.Column(db.String(500), nullable=True)
-    recomendacion = db.Column(db.String(500), nullable=True)
+    observacion = db.Column(db.String(500), nullable=True) # observacion del especialista
+    informe = db.Column(db.String(500), nullable=True) # informacion interna que maneja el especialista
+    recomendacion = db.Column(db.String(500), nullable=True) # recomendacion para el paciente
 
     escala = relationship('Escala', backref='resultado1')
     estado = relationship('Estado', backref='resultado2')
