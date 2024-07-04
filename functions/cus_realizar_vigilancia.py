@@ -1,5 +1,7 @@
 import datetime
 from utils.db import db
+from utils.mail import send_mail
+
 
 from flask import Blueprint, jsonify, make_response, request
 from models.pregunta import Pregunta
@@ -151,3 +153,21 @@ def get_tipo_tests():
         'data': result
     }
     return make_response(jsonify(data), 200)
+
+
+@cus_realizar_vigilancia.route('/enviar_correo', methods=['POST'])
+def enviar_correo():
+    data = request.json
+    correo = data.get('correo')
+    mensaje = data.get('mensaje')
+    
+    if not correo or not mensaje:
+        return jsonify({'message': 'Datos incompletos', 'status': 400}), 400
+
+    print(correo)
+    print(mensaje)
+    try:
+        send_mail(correo, 'Resultados de tu evaluación', mensaje)
+        return jsonify({'message': 'Correo enviado correctamente', 'status': 200}), 200
+    except Exception as e:
+        return jsonify({'message': f'Error al enviar correo: {e}', 'status': 500}), 500

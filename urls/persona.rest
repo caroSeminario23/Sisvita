@@ -3,12 +3,12 @@ POST http://127.0.0.1:5000/persona_routes/create_persona
 Content-Type: application/json
 
 {
-  "doc_identidad": "72524600",
-  "nombres": "Richard Rafael",
-  "apellidos": "Quispe Gutierrez",
-  "fec_nacimiento": "2001-05-12",
+  "doc_identidad": "76130575",
+  "nombres": "David Jonathan",
+  "apellidos": "Fernandez Davila",
+  "fec_nacimiento": "2001-01-07",
   "id_genero": 2,
-  "num_telefono": "923192527"
+  "num_telefono": "922575024"
 }
 #####
 

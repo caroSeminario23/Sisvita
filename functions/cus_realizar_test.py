@@ -107,6 +107,7 @@ def realizar_evaluacion():
         id_escala=escala_elegida.id_escala
 
     )
+    print(new_evaluacion)
 
     db.session.add(new_evaluacion)
     db.session.commit()
@@ -135,4 +136,5 @@ def realizar_evaluacion():
     }
 
     return make_response(jsonify(data), 200)
+
 
