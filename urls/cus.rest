@@ -65,3 +65,14 @@ Content-Type: application/json
     "departamento": "Lima",
     "provincia": "Lima"
 }
+##########
+
+POST http://127.0.0.1:5000/identificar_ubigeo_routes/identificar_ubigeo
+Content-Type: application/json
+
+{
+    "departamento": "Lima",
+    "provincia": "Lima",
+    "distrito": "Magdalena del Mar"
+}
+##########

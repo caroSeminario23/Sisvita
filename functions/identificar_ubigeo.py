@@ -83,3 +83,33 @@ def identificar_distritos_unicos(): # considerando la elección previa de un pro
     }
 
     return make_response(jsonify(data), 200)
+
+@identificar_ubigeo_routes.route('/identificar_ubigeo', methods=['POST'])
+def identificar_ubigeo():
+    print('Solicitud para identificar ubigeo recibida')
+    departamento = request.json.get('departamento')
+    provincia = request.json.get('provincia')
+    distrito = request.json.get('distrito')
+
+    ubigeo = Ubigeo.query.filter_by(departamento=departamento, provincia=provincia, distrito=distrito).first()
+
+    if not ubigeo:
+        data = {
+            'message': 'Ubigeo no encontrado',
+            'status': 404
+        }
+        return make_response(jsonify(data), 404)
+    
+    data = {
+        'message': 'Ubigeo encontrado',
+        'status': 200,
+        'data': {
+            'id_ubigeo': ubigeo.id_ubigeo,
+            'departamento': ubigeo.departamento,
+            'provincia': ubigeo.provincia,
+            'distrito': ubigeo.distrito,
+            'codigo': ubigeo.codigo
+        }
+    }
+
+    return make_response(jsonify(data), 200)
