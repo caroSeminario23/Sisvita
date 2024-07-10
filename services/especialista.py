@@ -15,9 +15,6 @@ def create_especialista():
     id_persona = request.json.get('id_persona')
     id_usuario = request.json.get('id_usuario')
 
-    #contrasenia2 = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-    #print(contrasenia2)
-
     new_especialista = Especialista(id_especialidad=id_especialidad, n_licencia=n_licencia, activo=activo, id_persona=id_persona, id_usuario=id_usuario)
 
     db.session.add(new_especialista)
@@ -91,8 +88,6 @@ def update_especialista(id):
     especialista.activo = request.json.get('activo')
     especialista.id_persona = request.json.get('id_persona')
     especialista.id_usuario = request.json.get('id_usuario')
-
-    #contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
 
     db.session.commit()
 

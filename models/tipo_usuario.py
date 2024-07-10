@@ -10,7 +10,7 @@ class Tipo_usuario(db.Model):
     descripcion = db.Column(db.String(200), nullable=True)
 
     # relaciones
-    usuarios = relationship('Usuario', back_populates='tipo_usuario')
+    usuarios = relationship('Usuario', back_populates='tipo_usuario', cascade='all, delete-orphan')
     
     # constructor de la clase
     def __init__(self, nombre, descripcion=None):

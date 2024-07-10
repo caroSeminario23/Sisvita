@@ -1,5 +1,3 @@
-# insert / update / delete / select / select_all
-
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
 from models.condicion import Condicion

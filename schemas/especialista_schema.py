@@ -16,13 +16,11 @@ class Especialista_Schema(ma.Schema):
                   'id_persona',
                   'id_usuario',
                   'especialidad',
-                  'genero',
                   'usuario',
                   'persona'
                   )
         
     especialidad=ma.Nested(Especialidad_Schema)
-    genero=ma.Nested(Genero_Schema)
     usuario=ma.Nested(Usuario_Schema)
     persona=ma.Nested(Persona_Schema)
 

@@ -9,8 +9,8 @@ class Paciente(db.Model):
     id_ubigeo = db.Column(db.Integer, db.ForeignKey('ubigeo.id_ubigeo'), nullable=False)
     id_condicion = db.Column(db.Integer, db.ForeignKey('condicion.id_condicion'), nullable=False)
     id_carrera = db.Column(db.Integer, db.ForeignKey('carrera.id_carrera'), nullable=True)
-    id_persona = db.Column(db.Integer, db.ForeignKey('persona.id_persona'), nullable=False)
-    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id_usuario'), nullable=False)
+    id_persona = db.Column(db.Integer, db.ForeignKey('persona.id_persona'), nullable=False, unique=True)
+    id_usuario = db.Column(db.Integer, db.ForeignKey('usuario.id_usuario'), nullable=False, unique=True)
     
     # relaciones
     ubigeo = relationship('Ubigeo', backref='paciente1')
@@ -19,12 +19,6 @@ class Paciente(db.Model):
 
     persona = relationship('Persona', back_populates='pacientes')
     usuario = relationship('Usuario', back_populates='pacientes')
-
-    citas = relationship('Cita', back_populates='paciente', cascade='all, delete-orphan')
-    posts = relationship('Post', back_populates='paciente', cascade='all, delete-orphan')
-    comentarios = relationship('Comentario', back_populates='paciente', cascade='all, delete-orphan')
-    evaluaciones = relationship('Evaluacion', back_populates='paciente', cascade='all, delete-orphan')
-    asistencias = relationship('Asistencia', back_populates='paciente', cascade='all, delete-orphan')
     
     # constructor de la clase
     def __init__(self, id_ubigeo, id_condicion, id_persona, id_usuario, id_carrera=None):

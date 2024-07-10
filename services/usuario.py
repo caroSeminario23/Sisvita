@@ -14,9 +14,9 @@ def create_usuario():
     id_tipo_usuario = request.json.get('id_tipo_usuario')
 
     # Encriptar contrasenia
-    contrasenia = hash_password(contrasenia)
+    contrasenia_hash = hash_password(contrasenia)
 
-    new_usuario = Usuario(email=email, contrasenia=contrasenia, id_tipo_usuario=id_tipo_usuario)
+    new_usuario = Usuario(email=email, contrasenia=contrasenia_hash, id_tipo_usuario=id_tipo_usuario)
 
     db.session.add(new_usuario)
     db.session.commit()
@@ -85,10 +85,10 @@ def update_usuario(id):
         return make_response(jsonify(data), 404)
 
     usuario.email = request.json.get('email')
-    contrasenia = request.json.get('contrasenia')
+    contrasenia_nueva = request.json.get('contrasenia')
 
     # Encriptar contrasenia
-    usuario.contrasenia = hash_password(contrasenia)
+    usuario.contrasenia = hash_password(contrasenia_nueva)
     
     usuario.id_tipo_usuario = request.json.get('id_tipo_usuario')
 

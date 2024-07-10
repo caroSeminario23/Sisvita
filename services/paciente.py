@@ -1,6 +1,3 @@
-# insert / update / delete / select / select_all
-import bcrypt
-
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
 from models.paciente import Paciente
@@ -15,9 +12,6 @@ def create_paciente():
     id_carrera = request.json.get('id_carrera')
     id_persona = request.json.get('id_persona')
     id_usuario = request.json.get('id_usuario')
-
-    #contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-    #print(contrasenia)
 
     new_paciente = Paciente(id_ubigeo=id_ubigeo, id_condicion=id_condicion, id_carrera=id_carrera, id_persona=id_persona, id_usuario=id_usuario)
 

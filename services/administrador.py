@@ -1,5 +1,3 @@
-import bcrypt
-
 from flask import Blueprint, request, jsonify, make_response
 from utils.db import db
 from models.administrador import Administrador
@@ -11,8 +9,6 @@ administrador_routes = Blueprint("administrador_routes", __name__)
 def create_administrador():
     id_persona = request.json.get('id_persona')
     id_usuario = request.json.get('id_usuario')
-
-    #contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
     new_administrador = Administrador(id_persona=id_persona, id_usuario=id_usuario)
 
@@ -84,8 +80,6 @@ def update_administrador(id):
 
     id_persona = request.json.get('id_persona')
     id_usuario = request.json.get('id_usuario')
-
-    #contrasenia = bcrypt.hashpw(contrasenia.encode('utf-8'), bcrypt.gensalt())
 
     administrador.id_persona = id_persona
     administrador.id_usuario = id_usuario
